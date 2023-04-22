@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  rev/super_qomputer · Lucas Ball
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Lucas Ball">
+<meta name="description" content="This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1&rsquo;s and 0&rsquo;s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook.">
+<meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="rev/super_qomputer"/>
+<meta name="twitter:description" content="This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1&rsquo;s and 0&rsquo;s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook."/>
+
+<meta property="og:title" content="rev/super_qomputer" />
+<meta property="og:description" content="This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1&rsquo;s and 0&rsquo;s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucasball.com/write-ups/dice23/super_qomputer/" /><meta property="article:section" content="write-ups" />
+<meta property="article:published_time" content="2023-01-27T19:46:10-08:00" />
+<meta property="article:modified_time" content="2023-01-27T19:46:10-08:00" />
+
+
+
+
+<link rel="canonical" href="https://lucasball.com/write-ups/dice23/super_qomputer/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.65236a6d834b26194eed04a2a3b45e44d9194ef9e620253705d4bef03bd7ef81.css" integrity="sha256-ZSNqbYNLJhlO7QSio7ReRNkZTvnmICU3BdS&#43;8DvX74E=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.f6534b0b446b75d9b6ad77a97d43ede2ddaeff1b6e2361fb7198d6f8fcb7f83f.css" integrity="sha256-9lNLC0Rrddm2rXepfUPt4t2u/xtuI2H7cZjW&#43;Py3&#43;D8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Lucas Ball
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/homelab">Homelab</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/mywork">My Work</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/write-ups/">Write-Ups</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/contact/">Contact</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="https://lucasball.com/write-ups/dice23/super_qomputer/">
+          rev/super_qomputer
+        </a>
+      </h1>
+    </header>
+
+    <p>This challenge gave you a qasm file which creates a quantum circuit.
+This circuit was designed to just output a 1 or a 0 depending on the position.
+All you had to do was read the superposition of the qubits and the resulting
+string would be a bunch of 1&rsquo;s and 0&rsquo;s that translate to the ascii version of
+the flag. It helped to run these things one at a time cause some stuff took extra
+time so I did it in a jupyter notebook. Here&rsquo;s the script:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="font-weight:bold">import</span> <span style="font-weight:bold">numpy</span> <span style="font-weight:bold">as</span> <span style="font-weight:bold">np</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">from</span> <span style="font-weight:bold">qiskit</span> <span style="font-weight:bold">import</span> QuantumCircuit
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">from</span> <span style="font-weight:bold">qiskit</span> <span style="font-weight:bold">import</span> Aer, transpile, execute, assemble
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">from</span> <span style="font-weight:bold">qiskit.tools.visualization</span> <span style="font-weight:bold">import</span> plot_histogram, plot_state_city
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">import</span> <span style="font-weight:bold">qiskit.quantum_info</span> <span style="font-weight:bold">as</span> <span style="font-weight:bold">qi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>qc = QuantumCircuit.from_qasm_file(<span style="font-style:italic">&#34;./challenge.qasm&#34;</span>)
+</span></span><span style="display:flex;"><span>simulator = Aer.get_backend(<span style="font-style:italic">&#39;aer_simulator&#39;</span>)
+</span></span><span style="display:flex;"><span>job = execute(qc, simulator)
+</span></span><span style="display:flex;"><span>result = job.result()
+</span></span><span style="display:flex;"><span>print(result)
+</span></span><span style="display:flex;"><span>qc.measure_all()
+</span></span><span style="display:flex;"><span>qobj = assemble(qc)
+</span></span><span style="display:flex;"><span>result = simulator.run(qobj).result()
+</span></span><span style="display:flex;"><span>counts = result.get_counts()
+</span></span><span style="display:flex;"><span>plot_histogram(counts)
+</span></span><span style="display:flex;"><span>print(counts)
+</span></span></code></pre></div><p>And I got this back:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="font-style:italic">&#39;0000000000000000000000000000000000000000000000000000000000000000000000000
+</span></span></span><span style="display:flex;"><span><span style="font-style:italic">110010001101001011000110110010101111011011000110110110001101001011001100110
+</span></span></span><span style="display:flex;"><span><span style="font-style:italic">011001101111011100100110010000101101011101000110100001100101001011010110001
+</span></span></span><span style="display:flex;"><span><span style="font-style:italic">001101001011001110010110101110001011101010110000101101110011101000111010101
+</span></span></span><span style="display:flex;"><span><span style="font-style:italic">101101001011010110010001101111011001110010110100110001001110010110010100110
+</span></span></span><span style="display:flex;"><span><span style="font-style:italic">011011001100011010101111101&#39;</span>
+</span></span></code></pre></div><p>This is just the flag in binary</p>
+
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2023
+     Lucas Ball 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

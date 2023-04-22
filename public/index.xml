@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lucas Ball</title>
+    <link>https://lucasball.com/</link>
+    <description>Recent content on Lucas Ball</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lucasball.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Homelab</title>
+      <link>https://lucasball.com/homelab/</link>
+      <pubDate>Tue, 18 Apr 2023 01:25:53 -0800</pubDate>
+      
+      <guid>https://lucasball.com/homelab/</guid>
+      <description>How it started Link to heading I initially started my homelab with the intention to get a network-wide adblock set up for my network. I didn&amp;rsquo;t really like having to look at ads everywhere I went on the internet. I decided to install pi-hole on an old raspberry pi. This is what fuled my need for MORE! From there I found the /r/homelab subreddit and /r/selfhosted subreddit. These forums helped me figure out what to do with my homelab.</description>
+    </item>
+    
+    <item>
+      <title>misc/a-hackers-notes</title>
+      <link>https://lucasball.com/write-ups/lactf23/hacker-notes/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/hacker-notes/</guid>
+      <description>The Challenge Link to heading You are given a luks encrypted drive that has a pretty weak password on it. All you have to do to open it is run a bruteforce script on the drive:
+bruteforce-luks -t 6 -f dictionary.txt -v 30 hackers-drive.dd dictionary.txt had a bunch of variations of &amp;ldquo;hackerXXX&amp;rdquo; which is the format we are told the password is in. The result is &amp;ldquo;hacker765&amp;rdquo; as the password.</description>
+    </item>
+    
+    <item>
+      <title>misc/ebe</title>
+      <link>https://lucasball.com/write-ups/lactf23/ebe/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/ebe/</guid>
+      <description>The challenge Link to heading This was just a pcap that had certain flags set for the incorrect UDP packets. All you had to to was look at the RFC definition and filter by that ip flag. ip.flags.rb == 0. Then you can just export bytes or read the flag one character at a time.</description>
+    </item>
+    
+    <item>
+      <title>pwn/bot</title>
+      <link>https://lucasball.com/write-ups/lactf23/bot/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/bot/</guid>
+      <description>The challenge Link to heading This was a simple buffer overflow. The program runs gets() which is a huge vulnerability since it doesn&amp;rsquo;t have the size specified. There&amp;rsquo;s also a bug with strcmp() that stops reading the input after a NULL byte. So the problem asks for your input and then compares it with a few strings before returning. All you have to do is write one of the strings terminated with a NULL byte then write the buffer overflow.</description>
+    </item>
+    
+    <item>
+      <title>pwn/gatekeep</title>
+      <link>https://lucasball.com/write-ups/lactf23/gatekeep/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/gatekeep/</guid>
+      <description>The challenge Link to heading This is one of the baby intro challenges, so it just checked if your input was the same as the program&amp;rsquo;s variable on the stack. You just need to send a bunch of &amp;ldquo;A&amp;quot;s to the program to get the flag.
+❯ ./gatekeep If I gaslight you enough, you won&amp;#39;t be able to guess my password! :) Password: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA I swore that was the right password .</description>
+    </item>
+    
+    <item>
+      <title>pwn/rick-roll</title>
+      <link>https://lucasball.com/write-ups/lactf23/rick-roll/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/rick-roll/</guid>
+      <description>The Vulnerability Link to heading This is a simple format string vulnerability. The program gets the user&amp;rsquo;s input then calls printf() on the user&amp;rsquo;s input. This is a very common vulnerability and a reason why developers should never be calling printf directly on user input. Here&amp;rsquo;s the code from the chall:
+int main(void) { if (main_called) { puts(&amp;#34;nice try&amp;#34;); return 1; } main_called = 1; setbuf(stdout, NULL); printf(&amp;#34;Lyrics: &amp;#34;); char buf[256]; fgets(buf, 256, stdin); printf(&amp;#34;Never gonna give you up, never gonna let you down\nNever gonna run around and &amp;#34;); printf(buf); printf(&amp;#34;Never gonna make you cry, never gonna say goodbye\nNever gonna tell a lie and hurt you\n&amp;#34;); return 0; } So there&amp;rsquo;s a small security measure that makes it so you can&amp;rsquo;t call main twice.</description>
+    </item>
+    
+    <item>
+      <title>pwn/rut_roh_relro</title>
+      <link>https://lucasball.com/write-ups/lactf23/relro/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/relro/</guid>
+      <description>The challenge Link to heading This was a printf format string vulnerability. The program gets your input then calls printf() on that input. Then it repeats that again. The relro and PIE are what make this more difficult than the rick-roll challenge. Instead of exploiting the GOT (which is read-only). You can read the address of libc as well as the return address on the stack, then you can use the format string write in order to create a ROP chain that just calls system(&#39;/bin/sh&#39;).</description>
+    </item>
+    
+    <item>
+      <title>rev/switcheroo</title>
+      <link>https://lucasball.com/write-ups/lactf23/switcheroo/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/switcheroo/</guid>
+      <description>The challenge Link to heading The was a switch statement written in assembly. I&amp;rsquo;m not amazing at REV, so I was a little bit slow at this. Essentially the concept was to have a region of memory that acted as a &amp;ldquo;key&amp;rdquo;. Each character of the user input would act as an index to an 8-byte region of this memory. Then it would take the 8 bytes and do some math on it.</description>
+    </item>
+    
+    <item>
+      <title>3x17</title>
+      <link>https://lucasball.com/write-ups/pwnable/3x17/</link>
+      <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/pwnable/3x17/</guid>
+      <description>This challenge was relatively difficult for me and introduced a few new concepts to me. Overall a pretty good challenge I would say.
+I started out by looking at the binary information to see what&amp;rsquo;s going on. Calling pwn checksec ./3x17 shows this:
+Arch: amd64-64-little RELRO: Partial RELRO Stack: No canary found NX: NX enabled PIE: No PIE (0x400000) Nice! No PIE and no canary. That makes it easier. Wait a second&amp;hellip;file .</description>
+    </item>
+    
+    <item>
+      <title>Calc</title>
+      <link>https://lucasball.com/write-ups/pwnable/calc/</link>
+      <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/pwnable/calc/</guid>
+      <description>Calc Link to heading Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing&amp;rsquo;s first, lets pull this up in ghidra and see what this is all about.
+void main(){ signal(0xe,timeout); alarm(0x3c); puts(&amp;#34;=== Welcome to SECPROG calculator ===&amp;#34;); fflush((FILE *)stdout); calc(); puts(&amp;#34;Merry Christmas!&amp;#34;); return; Looks like it&amp;rsquo;s got a timer on it, so you can&amp;rsquo;t take too long to do your thing on the program.</description>
+    </item>
+    
+    <item>
+      <title>Dubblesort</title>
+      <link>https://lucasball.com/write-ups/pwnable/dubblesort/</link>
+      <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/pwnable/dubblesort/</guid>
+      <description>Dubblesort Link to heading Okay this was by far the most frustrating challenge yet. So many issues that took way too long to fix. Nevertheless, it&amp;rsquo;s solved and here&amp;rsquo;s how it&amp;rsquo;s done.
+Start out by checking the security on the binary:
+pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary found NX: NX enabled PIE: PIE enabled FORTIFY: Enabled Yikes. Alright looks like there&amp;rsquo;s gonna be a very specific bug here.</description>
+    </item>
+    
+    <item>
+      <title>orw</title>
+      <link>https://lucasball.com/write-ups/pwnable/orw/</link>
+      <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/pwnable/orw/</guid>
+      <description>orw.md Link to heading ORW write-up Link to heading Starting this challenge I ran pwn checksec on the program to get the info on the security measures for the binary:
+Arch: i386-32-little RELRO: Partial RELRO Stack: Canary found NX: NX disabled PIE: No PIE (0x8048000) RWX: Has RWX segments After running the binary I quickly realized these security measures didn’t matter. Running the binary in GDB gave me the functionality of the program: disass main</description>
+    </item>
+    
+    <item>
+      <title>rev/parallel</title>
+      <link>https://lucasball.com/write-ups/dice23/parallel/</link>
+      <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/dice23/parallel/</guid>
+      <description>This was basically a flag scrambler/checker that would run in 8 different processes. The binary required there to be 8 processes in order to run correctly because it would use inter-process communication.
+Essentially it would take your input, and jumble it using a key and just swap bytes in weird places. This was easily reversable. Then it would user openMPI to send your jumbled input in 8 byte sections to the 8 different processes.</description>
+    </item>
+    
+    <item>
+      <title>rev/super_qomputer</title>
+      <link>https://lucasball.com/write-ups/dice23/super_qomputer/</link>
+      <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/dice23/super_qomputer/</guid>
+      <description>This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1&amp;rsquo;s and 0&amp;rsquo;s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook.</description>
+    </item>
+    
+    <item>
+      <title>Start</title>
+      <link>https://lucasball.com/write-ups/pwnable/start/</link>
+      <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/pwnable/start/</guid>
+      <description>Alright so my first steps were to download the binary and open it up in ghidra. Opening it up in ghidra yielded nothing because the program was a super basic opcodes. With no libraries. This made it really hard for ghidra to figure out what the functions were really doing. This meant I would have to open it up in GDB to see what was happening in the dissassembly.
+I first ran the program to see what it did.</description>
+    </item>
+    
+    <item>
+      <title>Seethefile</title>
+      <link>https://lucasball.com/write-ups/pwnable/seethefile/</link>
+      <pubDate>Fri, 27 Jan 2023 18:46:22 -0800</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/pwnable/seethefile/</guid>
+      <description>How this program works Link to heading We start with a simple menu with 5 options. This is what that looks like:
+---------------MENU--------------- 1. Open 2. Read 3. Write to screen 4. Close 5. Exit ---------------------------------- Your choice : Okay this looks like a simple file reader. Looks like you can read any file in the filesystem and print it to the screen with open/read/write. Opening it up in Ghidra shows that my prediction was mostly correct.</description>
+    </item>
+    
+    <item>
+      <title>My Work</title>
+      <link>https://lucasball.com/mywork/</link>
+      <pubDate>Tue, 24 Jan 2023 01:25:53 -0800</pubDate>
+      
+      <guid>https://lucasball.com/mywork/</guid>
+      <description> Notable Competitions Link to heading CPTC West 2022 - 3rd place Defcon CTF 2022 - Finalist National CCDC 2022 - 5th place NSA Codebreaker Challenge 2021 - High Performer Pacific Rim CCDC - 1st Place N1CTF 2021 - 5th place Check out my team&amp;rsquo;s ctftime profile for most recent CTF events
+Project Contributions Link to heading P-O-O-H (Honeypots) OPEnSLab-OSU Loom Relevant Classes Link to heading CS 572 - Compuer Architecture CS 261 - Data Structures ECE 271 - Digital Logic Design CS 290 - Web Development CS 325 - Analysis of Algorithms CS 271 - Computer Architecture &amp;amp; Assembly Language CS 321 - Theory of Computation CS 340 - Databases CS 331 - Artificial Intelligence CS 344 - Operating Systems 1 CS 444 - Operating Systems 2 CS 314 - Computer Networks CS 370 - Intro to Security CS 373 - Defence Against the Dark Arts CS 499 - Cyber Attacks &amp;amp; Defence CS 499 - Incident Response </description>
+    </item>
+    
+  </channel>
+</rss>

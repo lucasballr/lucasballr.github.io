@@ -1,4 +1,81 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://lucasball.com/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Lucas Ball'
 theme = 'hugo-coder'
+languagecode = "en"
+defaultcontentlanguage = "en"
+
+paginate = 20
+
+pygmentsstyle = "bw"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+disqusShortname = "yourdiscussshortname"
+
+[params]
+  author = "Lucas Ball"
+  info = "PWN | CTF | Homelab"
+  description = "I'm in the business of cybersecurity"
+  keywords = "blog,cybersecurity,infosec,personal,pwn"
+  avatarurl = "images/profile1.png"
+  #gravatar = "john.doe@example.com"
+
+  favicon_32 = "/img/favicon-32x32.png"
+  favicon_16 = "/img/favicon-16x16.png"
+
+  since = 2019
+
+  enableTwemoji = true
+
+  colorScheme = "auto"
+  hidecolorschemetoggle = false
+
+  # customCSS = ["css/custom.css"]
+  # customSCSS = ["scss/custom.scss"]
+  # customJS = ["js/custom.js"]
+
+[taxonomies]
+  category = "categories"
+  series = "series"
+  tag = "tags"
+  author = "authors"
+
+# Social links
+[[params.social]]
+  name = "Github"
+  icon = "fa fa-github fa-2x"
+  weight = 1
+  url = "https://github.com/lucasballr/"
+[[params.social]]
+  name = "Gitlab"
+  icon = "fa fa-solid fa-flag fa-2x"
+  weight = 2
+  url = "https://ctftime.org/team/12858"
+[[params.social]]
+  name = "Twitter"
+  icon = "fa fa-twitter fa-2x"
+  weight = 3
+  url = "https://twitter.com/lucasballr/"
+
+# Menu links
+[[menu.main]]
+  name = "My Work"
+  weight = 1
+  url  = "mywork"
+[[menu.main]]
+  name = "Homelab"
+  weight = 1
+  url  = "homelab"
+[[menu.main]]
+  name = "Write-Ups"
+  weight = 1
+  url  = "write-ups/"
+[[menu.main]]
+  name = "Resume"
+  weight = 1
+  url  = "images/resume.pdf"
+[[menu.main]]
+  name = "Contact"
+  weight = 2
+  url = "contact/"

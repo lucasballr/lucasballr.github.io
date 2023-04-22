@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>
+  rev/switcheroo · Lucas Ball
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Lucas Ball">
+<meta name="description" content="The challenge Link to heading The was a switch statement written in assembly. I&rsquo;m not amazing at REV, so I was a little bit slow at this. Essentially the concept was to have a region of memory that acted as a &ldquo;key&rdquo;. Each character of the user input would act as an index to an 8-byte region of this memory. Then it would take the 8 bytes and do some math on it.">
+<meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="rev/switcheroo"/>
+<meta name="twitter:description" content="The challenge Link to heading The was a switch statement written in assembly. I&rsquo;m not amazing at REV, so I was a little bit slow at this. Essentially the concept was to have a region of memory that acted as a &ldquo;key&rdquo;. Each character of the user input would act as an index to an 8-byte region of this memory. Then it would take the 8 bytes and do some math on it."/>
+
+<meta property="og:title" content="rev/switcheroo" />
+<meta property="og:description" content="The challenge Link to heading The was a switch statement written in assembly. I&rsquo;m not amazing at REV, so I was a little bit slow at this. Essentially the concept was to have a region of memory that acted as a &ldquo;key&rdquo;. Each character of the user input would act as an index to an 8-byte region of this memory. Then it would take the 8 bytes and do some math on it." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://lucasball.com/write-ups/lactf23/switcheroo/" /><meta property="article:section" content="write-ups" />
+<meta property="article:published_time" content="2023-02-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-12T00:00:00+00:00" />
+
+
+
+
+<link rel="canonical" href="https://lucasball.com/write-ups/lactf23/switcheroo/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.min.65236a6d834b26194eed04a2a3b45e44d9194ef9e620253705d4bef03bd7ef81.css" integrity="sha256-ZSNqbYNLJhlO7QSio7ReRNkZTvnmICU3BdS&#43;8DvX74E=" crossorigin="anonymous" media="screen" />
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.min.f6534b0b446b75d9b6ad77a97d43ede2ddaeff1b6e2361fb7198d6f8fcb7f83f.css" integrity="sha256-9lNLC0Rrddm2rXepfUPt4t2u/xtuI2H7cZjW&#43;Py3&#43;D8=" crossorigin="anonymous" media="screen" />
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Lucas Ball
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/homelab">Homelab</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/mywork">My Work</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/write-ups/">Write-Ups</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/contact/">Contact</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="https://lucasball.com/write-ups/lactf23/switcheroo/">
+          rev/switcheroo
+        </a>
+      </h1>
+    </header>
+
+    <h3 id="the-challenge">
+  The challenge
+  <a class="heading-link" href="#the-challenge">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The was a switch statement written in assembly. I&rsquo;m not amazing at REV,
+so I was a little bit slow at this. Essentially the concept was to have
+a region of memory that acted as a &ldquo;key&rdquo;. Each character of the user input
+would act as an index to an 8-byte region of this memory. Then it would take
+the 8 bytes and do some math on it. I was a little hazy on the details, but
+essentially it would to an 8-bit rotation of the memory and grab the last byte
+of that value and compare it to the running index count. If it was larger than
+the index, it would rotate again. If it was smaller than the index, it would
+move on to the next input and that char would be considered correct. I used
+this knowledge to create most of the flag, but there were some issues with it
+since the program didn&rsquo;t necessarily do this exact algorithm. I was able to fill
+in the rest of the flag by testing out different rotation counts for each step.
+Here&rsquo;s my exploit code. It&rsquo;s pretty messy, but it got it done.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="font-style:italic">#! /usr/bin/env python</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x = [0x0700010203040506, 0x3e04f4fb783cfc7e,\
+</span></span><span style="display:flex;"><span>0x9d70813d04308703,     0x4a51a1f8093da74d,\
+</span></span><span style="display:flex;"><span>0x0c4950b2a88b02fc,     0x02d21d9262f0fd4b,\
+</span></span><span style="display:flex;"><span>0x88e781beaabe46a9,     0x77090f0e85bb1994,\
+</span></span><span style="display:flex;"><span>0x564eb824353f49fb,     0x7f0b7a9deb629b47,\
+</span></span><span style="display:flex;"><span>0x013fb130146e18d1,     0xe650e17e4dd465ed,\
+</span></span><span style="display:flex;"><span>0x81d36704803dabe7,     0x02ce80a373718c7a,\
+</span></span><span style="display:flex;"><span>0x822c510930254873,     0x570837475070684e,\
+</span></span><span style="display:flex;"><span>0x3bd734ec321014b5,     0x975e1ee37edd98b3,\
+</span></span><span style="display:flex;"><span>0x158144feb60d4cfd,     0x88407c6cac154291,\
+</span></span><span style="display:flex;"><span>0x0fae192b920dfc1b,     0xfc0c676e7c762680,\
+</span></span><span style="display:flex;"><span>0x4850b8d36d94ef27,     0x086466720d884da2,\
+</span></span><span style="display:flex;"><span>0xac7e0453c14f48dc,     0x7c2568ad2461dfd8,\
+</span></span><span style="display:flex;"><span>0x473b065dde911f08,     0x1eed1fd742e65871,\
+</span></span><span style="display:flex;"><span>0x6c81edc3c1b82548,     0x03169f71b61802ff,\
+</span></span><span style="display:flex;"><span>0xe4a7396792ae3fe0,     0x90cf08ac6b10b7ca,\
+</span></span><span style="display:flex;"><span>0x004ca10931f081a0,     0x00f53df18f89683b,\
+</span></span><span style="display:flex;"><span>0x004242bcb1de8f49,     0x007e5900ceac84ca,\
+</span></span><span style="display:flex;"><span>0x00706f0fe8110ea4,     0x002278b42062504e,\
+</span></span><span style="display:flex;"><span>0x002a05a95da52b9c,     0x004dc5d0b9df0e49,\
+</span></span><span style="display:flex;"><span>0x006c3641e06cf0c4,     0x007947a68e374a6e,\
+</span></span><span style="display:flex;"><span>0x00d8d2632b336802,     0x013856c42fb5022e,\
+</span></span><span style="display:flex;"><span>0x003b14db1a083918,     0x00f8673ab12fe1bb,\
+</span></span><span style="display:flex;"><span>0x00a108b014ed1224,     0x00b2892e6aef3b04,\
+</span></span><span style="display:flex;"><span>0x022c3cd3180024d6,     0x023911aad0fc5f34,\
+</span></span><span style="display:flex;"><span>0x020807c9714b4ee6,     0x071a331c09302327,\
+</span></span><span style="display:flex;"><span>0x0418062921a9d245,     0x051f16342b0f9253,\
+</span></span><span style="display:flex;"><span>0x013b19bfda0ae97c,     0x0712172535192f1e,\
+</span></span><span style="display:flex;"><span>0x03322a0bc910d295,     0x00c070fffa196394,\
+</span></span><span style="display:flex;"><span>0x009ab072a84999dd,     0x004e82e174a1aaac,\
+</span></span><span style="display:flex;"><span>0x00aa5205419584b9,     0x00678a2b8c1ee3d5,\
+</span></span><span style="display:flex;"><span>0x0045bcacc9d8e7d0,     0x003a19c384b0d4f9,\
+</span></span><span style="display:flex;"><span>0x008b1960a582c51b,     0x004ec4506c2a2acd,\
+</span></span><span style="display:flex;"><span>0x007473c8605786e1,     0x011316536bbab37f,\
+</span></span><span style="display:flex;"><span>0x000f0d247fdbdeef,     0x00adf608a9de1e76,\
+</span></span><span style="display:flex;"><span>0x009f540868cf82e3,     0x0014f5fc312b801d,\
+</span></span><span style="display:flex;"><span>0x00106f14c43224fe,     0x00b85bad5d8b37c5,\
+</span></span><span style="display:flex;"><span>0x00edce17848c990d,     0x00ccdc13df11bcc4,\
+</span></span><span style="display:flex;"><span>0x020c2d6776a0559b,     0x020a1b64ea7521f7,\
+</span></span><span style="display:flex;"><span>0x00391d24d990be82,     0x007500719dd73ca8,\
+</span></span><span style="display:flex;"><span>0x00ef2eadb2a82a37,     0x008ef10a40961460,\
+</span></span><span style="display:flex;"><span>0x00339a2cfe3f67a5,     0x00e071306365879d,\
+</span></span><span style="display:flex;"><span>0x006e6e3d2a75dcf0,     0x012e7254c18273f0,\
+</span></span><span style="display:flex;"><span>0x004808adcd9b667f,     0x0110801230ea6395,\
+</span></span><span style="display:flex;"><span>0x00fa98c7f1f1fc38,     0x010d400fe6fe7bd9,\
+</span></span><span style="display:flex;"><span>0x00479e150008b94d,     0x00f980cf38134895,\
+</span></span><span style="display:flex;"><span>0x002a0ffe7bcb5dac,     0x00750b4b0fce9b99,\
+</span></span><span style="display:flex;"><span>0x00bd6efe79b37758,     0x07200e2431153628,\
+</span></span><span style="display:flex;"><span>0x007caaf14032bc02,     0x023d011f618395bb,\
+</span></span><span style="display:flex;"><span>0x0053807834fe6f9e,     0x0102303de88670c9,\
+</span></span><span style="display:flex;"><span>0x00f50c3ac708d8f8, 0x00ff5ef8a99d75bc,\
+</span></span><span style="display:flex;"><span>0x02043a12100e517e, 0x00e82d19d049d706,\
+</span></span><span style="display:flex;"><span>0x02142631db624214, 0x00a91363b0ffa60b,\
+</span></span><span style="display:flex;"><span>0x00858ea1137db2f9, 0x006f4ffa06b018ec,\
+</span></span><span style="display:flex;"><span>0x010057e77680f034, 0x005a5ab88b8c7272,\
+</span></span><span style="display:flex;"><span>0x011d196834081d82, 0x006dee0756faeaac,\
+</span></span><span style="display:flex;"><span>0x001661e80c160078, 0x00cca67a1a58c313,\
+</span></span><span style="display:flex;"><span>0x01223683b81b13e8, 0x0065cac20345d68d,\
+</span></span><span style="display:flex;"><span>0x01031c1a6050ecdc, 0x013704ec972c1905,\
+</span></span><span style="display:flex;"><span>0x004ec9e48b6c0b25, 0x0055c40d12a5e1dd,\
+</span></span><span style="display:flex;"><span>0x00f0d4fcc420e40e, 0x009bb8c1998b27f3,\
+</span></span><span style="display:flex;"><span>0x00cac85d04041af6, 0x020541af898eba05,\
+</span></span><span style="display:flex;"><span>0x002cb0263d671095, 0x023e42ffe7ac3643,\
+</span></span><span style="display:flex;"><span>0x0019f3624e096087, 0x26f8d3995aa788ec,\
+</span></span><span style="display:flex;"><span>0x7472747368732e00, 0x65746f6e2e006261,\
+</span></span><span style="display:flex;"><span>0x6975622e756e672e, 0x742e0064692d646c,\
+</span></span><span style="display:flex;"><span>0x7461642e00747865]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">def</span> leftRotate(n, d):
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">return</span> ((n &lt;&lt; d)|(n &gt;&gt; (64 - d))) &amp; 0xFFFFFFFFFFFFFFFF
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test_flag = <span style="font-style:italic">b</span><span style="font-style:italic">&#34;l#ctf{##2#M#LY##W#7Ch###4#3##n#5_#r#########0#U###8####u+1#6#a}&#34;</span>
+</span></span><span style="display:flex;"><span>test_flag = <span style="font-style:italic">b</span><span style="font-style:italic">&#34;l#ctf{##2#M#LYf5W#7Ch_##473r#n#5_#r#########0#U#3#8####u+1#6#a}&#34;</span>
+</span></span><span style="display:flex;"><span>test_flag = <span style="font-style:italic">b</span><span style="font-style:italic">&#34;lactf{4223M8LY_5W17Ch_57473Mtn75_4r3_7h3_4850LU########u+1f60a}&#34;</span>
+</span></span><span style="display:flex;"><span>test_flag = <span style="font-style:italic">b</span><span style="font-style:italic">&#34;lactf{4223M8LY_5W17Ch_57473Mtn75_4r3_7h3_4850LU+3_8357#u+1f60a}&#34;</span>
+</span></span><span style="display:flex;"><span>chars = <span style="font-style:italic">b</span><span style="font-style:italic">&#34;+012345678CLMUWY_acfhlnrtu</span><span style="font-weight:bold;font-style:italic">{}</span><span style="font-style:italic">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flag = <span style="font-style:italic">b</span><span style="font-style:italic">&#34;#&#34;</span>*64
+</span></span><span style="display:flex;"><span>flag = flag.split(<span style="font-style:italic">b</span><span style="font-style:italic">&#39;#&#39;</span>)
+</span></span><span style="display:flex;"><span>cnt = 0
+</span></span><span style="display:flex;"><span>print(hex(leftRotate(x[0x61],8)))
+</span></span><span style="display:flex;"><span>r = leftRotate(x[0x61], 8)
+</span></span><span style="display:flex;"><span>r1 = leftRotate(r,8)
+</span></span><span style="display:flex;"><span>r2 = leftRotate(r1,8)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test_flag = list(test_flag)
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">for</span> i <span style="font-weight:bold">in</span> chars:
+</span></span><span style="display:flex;"><span>    rot1 = leftRotate(x[i], 8)
+</span></span><span style="display:flex;"><span>    rot2 = leftRotate(rot1,8)
+</span></span><span style="display:flex;"><span>    rot3 = leftRotate(rot2, 8)
+</span></span><span style="display:flex;"><span>    rot4 = leftRotate(rot3, 8)
+</span></span><span style="display:flex;"><span>    rot5 = leftRotate(rot4, 8)
+</span></span><span style="display:flex;"><span>    rot6 = leftRotate(rot5, 8)
+</span></span><span style="display:flex;"><span>    rot7 = leftRotate(rot6, 8)
+</span></span><span style="display:flex;"><span>    rot8 = leftRotate(rot7, 8)
+</span></span><span style="display:flex;"><span>    rot9 = leftRotate(rot8, 8)
+</span></span><span style="display:flex;"><span>    rot10 = leftRotate(rot9, 8)
+</span></span><span style="display:flex;"><span>    rot11 = leftRotate(rot10, 8)
+</span></span><span style="display:flex;"><span>    rot12 = leftRotate(rot11, 8)
+</span></span><span style="display:flex;"><span>    rot13 = leftRotate(rot12, 8)
+</span></span><span style="display:flex;"><span>    c = rot12 &amp; 0xff
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">if</span> c &lt; 0x40: <span style="font-style:italic"># and (test_flag[c]== ord(b&#39;#&#39;)):</span>
+</span></span><span style="display:flex;"><span>        test_flag[c] = i
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="font-style:italic">&#39;</span><span style="font-weight:bold;font-style:italic">\n</span><span style="font-style:italic">&#39;</span>)
+</span></span><span style="display:flex;"><span>arr = <span style="font-style:italic">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">for</span> i <span style="font-weight:bold">in</span> test_flag:
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">if</span> i == <span style="font-style:italic">b</span><span style="font-style:italic">&#39;&#39;</span>:
+</span></span><span style="display:flex;"><span>        arr += <span style="font-style:italic">&#39;#&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">else</span>:
+</span></span><span style="display:flex;"><span>        arr += chr(i)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(arr)
+</span></span></code></pre></div>
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2023
+     Lucas Ball 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

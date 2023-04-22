@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>laozi on Lucas Ball</title>
+    <link>https://lucasball.com/authors/laozi/</link>
+    <description>Recent content in laozi on Lucas Ball</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Feb 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://lucasball.com/authors/laozi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LACTF 2023</title>
+      <link>https://lucasball.com/write-ups/lactf23/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>misc/a-hackers-notes</title>
+      <link>https://lucasball.com/write-ups/lactf23/hacker-notes/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/hacker-notes/</guid>
+      <description>The Challenge Link to heading You are given a luks encrypted drive that has a pretty weak password on it. All you have to do to open it is run a bruteforce script on the drive:
+bruteforce-luks -t 6 -f dictionary.txt -v 30 hackers-drive.dd dictionary.txt had a bunch of variations of &amp;ldquo;hackerXXX&amp;rdquo; which is the format we are told the password is in. The result is &amp;ldquo;hacker765&amp;rdquo; as the password.</description>
+    </item>
+    
+    <item>
+      <title>misc/ebe</title>
+      <link>https://lucasball.com/write-ups/lactf23/ebe/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/ebe/</guid>
+      <description>The challenge Link to heading This was just a pcap that had certain flags set for the incorrect UDP packets. All you had to to was look at the RFC definition and filter by that ip flag. ip.flags.rb == 0. Then you can just export bytes or read the flag one character at a time.</description>
+    </item>
+    
+    <item>
+      <title>pwn/bot</title>
+      <link>https://lucasball.com/write-ups/lactf23/bot/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/bot/</guid>
+      <description>The challenge Link to heading This was a simple buffer overflow. The program runs gets() which is a huge vulnerability since it doesn&amp;rsquo;t have the size specified. There&amp;rsquo;s also a bug with strcmp() that stops reading the input after a NULL byte. So the problem asks for your input and then compares it with a few strings before returning. All you have to do is write one of the strings terminated with a NULL byte then write the buffer overflow.</description>
+    </item>
+    
+    <item>
+      <title>pwn/gatekeep</title>
+      <link>https://lucasball.com/write-ups/lactf23/gatekeep/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/gatekeep/</guid>
+      <description>The challenge Link to heading This is one of the baby intro challenges, so it just checked if your input was the same as the program&amp;rsquo;s variable on the stack. You just need to send a bunch of &amp;ldquo;A&amp;quot;s to the program to get the flag.
+❯ ./gatekeep If I gaslight you enough, you won&amp;#39;t be able to guess my password! :) Password: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA I swore that was the right password .</description>
+    </item>
+    
+    <item>
+      <title>pwn/rick-roll</title>
+      <link>https://lucasball.com/write-ups/lactf23/rick-roll/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/rick-roll/</guid>
+      <description>The Vulnerability Link to heading This is a simple format string vulnerability. The program gets the user&amp;rsquo;s input then calls printf() on the user&amp;rsquo;s input. This is a very common vulnerability and a reason why developers should never be calling printf directly on user input. Here&amp;rsquo;s the code from the chall:
+int main(void) { if (main_called) { puts(&amp;#34;nice try&amp;#34;); return 1; } main_called = 1; setbuf(stdout, NULL); printf(&amp;#34;Lyrics: &amp;#34;); char buf[256]; fgets(buf, 256, stdin); printf(&amp;#34;Never gonna give you up, never gonna let you down\nNever gonna run around and &amp;#34;); printf(buf); printf(&amp;#34;Never gonna make you cry, never gonna say goodbye\nNever gonna tell a lie and hurt you\n&amp;#34;); return 0; } So there&amp;rsquo;s a small security measure that makes it so you can&amp;rsquo;t call main twice.</description>
+    </item>
+    
+    <item>
+      <title>pwn/rut_roh_relro</title>
+      <link>https://lucasball.com/write-ups/lactf23/relro/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/relro/</guid>
+      <description>The challenge Link to heading This was a printf format string vulnerability. The program gets your input then calls printf() on that input. Then it repeats that again. The relro and PIE are what make this more difficult than the rick-roll challenge. Instead of exploiting the GOT (which is read-only). You can read the address of libc as well as the return address on the stack, then you can use the format string write in order to create a ROP chain that just calls system(&#39;/bin/sh&#39;).</description>
+    </item>
+    
+    <item>
+      <title>rev/switcheroo</title>
+      <link>https://lucasball.com/write-ups/lactf23/switcheroo/</link>
+      <pubDate>Sun, 12 Feb 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://lucasball.com/write-ups/lactf23/switcheroo/</guid>
+      <description>The challenge Link to heading The was a switch statement written in assembly. I&amp;rsquo;m not amazing at REV, so I was a little bit slow at this. Essentially the concept was to have a region of memory that acted as a &amp;ldquo;key&amp;rdquo;. Each character of the user input would act as an index to an 8-byte region of this memory. Then it would take the 8 bytes and do some math on it.</description>
+    </item>
+    
+  </channel>
+</rss>
