@@ -12,6 +12,7 @@ pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
 disqusShortname = "yourdiscussshortname"
+googleAnalytics = "G-0V6ZC4TG82"
 
 [params]
   author = "Lucas Ball"
