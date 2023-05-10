@@ -1,7 +1,7 @@
 ---
 title: "Babystack"
 date: 2023-05-09T00:22:46-07:00
-draft: true
+draft: false
 ---
 
 # The binary
