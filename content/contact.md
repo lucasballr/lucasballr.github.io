@@ -13,5 +13,5 @@ Or direct message on any of my socials:
 - [Linkedin](www.linkedin.com/in/lucasballr)
 - [Twitter](https://twitter.com/lucasballr)
 - [Instagram](https://www.instagram.com/lucasballr/)
-- [Mastodon](https://ioc.exchange/@laozi)
+- [Mastodon](https://defcon.social/@laozi)
 - Discord -> Laozi#5522
