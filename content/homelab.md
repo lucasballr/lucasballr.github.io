@@ -9,7 +9,7 @@ draft: false
 I initially started my homelab with the intention to get a network-wide
 adblock set up for my network. I didn't really like having to look at ads
 everywhere I went on the internet. I decided to install [pi-hole](https://pi-hole.net/) on an old
-raspberry pi. This is what fuled my need for MORE! From there I found the /r/homelab subreddit and
+raspberry pi. This is what fueled my need for MORE! From there I found the /r/homelab subreddit and
 /r/selfhosted subreddit. These forums helped me figure out what to do with my homelab.
 Since I am a cybersecurity student, I obviously wanted to use my homelab to improve my skills in
 cybersecurity.
