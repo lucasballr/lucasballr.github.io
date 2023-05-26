@@ -16,6 +16,8 @@ cybersecurity.
 
 # How it's going
 
+![Homelab Diagram](/images/laozi_homelab.png)
+
 I continued down the path to obtain more and more server hardware until I felt I had something I
 could use as a training lab of sorts. So I'll just explain how I've set up the homelab. 
 All of my computability is contained within 2 server boxes:
