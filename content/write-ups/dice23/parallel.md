@@ -1,6 +1,6 @@
 ---
 title: "rev/parallel"
-date: 2023-01-27T19:46:10-08:00
+date: 2023-01-27t19:46:10-08:00
 draft: false
 ---
 
