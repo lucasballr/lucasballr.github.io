@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  rev/super_qomputer · Lucas Ball
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Lucas Ball">
+<meta name="description" content="This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1&rsquo;s and 0&rsquo;s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook.">
+<meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="rev/super_qomputer"/>
+<meta name="twitter:description" content="This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1&rsquo;s and 0&rsquo;s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook."/>
+
+<meta property="og:title" content="rev/super_qomputer" />
+<meta property="og:description" content="This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1&rsquo;s and 0&rsquo;s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/cyber/dice23/super_qomputer/" /><meta property="article:section" content="cyber" />
+<meta property="article:published_time" content="2023-01-27T19:46:10-08:00" />
+<meta property="article:modified_time" content="2023-01-27T19:46:10-08:00" />
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/cyber/dice23/super_qomputer/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Lucas Ball
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/Cyber/">Cyber</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/mywork">My Work</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/contact/">Contact</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="http://localhost:1313/cyber/dice23/super_qomputer/">
+          rev/super_qomputer
+        </a>
+      </h1>
+    </header>
+
+    <p>This challenge gave you a qasm file which creates a quantum circuit.
+This circuit was designed to just output a 1 or a 0 depending on the position.
+All you had to do was read the superposition of the qubits and the resulting
+string would be a bunch of 1&rsquo;s and 0&rsquo;s that translate to the ascii version of
+the flag. It helped to run these things one at a time cause some stuff took extra
+time so I did it in a jupyter notebook. Here&rsquo;s the script:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">numpy</span> <span style="color:#cba6f7">as</span> <span style="color:#fab387">np</span>
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">from</span> <span style="color:#fab387">qiskit</span> <span style="color:#94e2d5">import</span> QuantumCircuit
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">from</span> <span style="color:#fab387">qiskit</span> <span style="color:#94e2d5">import</span> Aer, transpile, execute, assemble
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">from</span> <span style="color:#fab387">qiskit.tools.visualization</span> <span style="color:#94e2d5">import</span> plot_histogram, plot_state_city
+</span></span><span style="display:flex;"><span><span style="color:#94e2d5">import</span> <span style="color:#fab387">qiskit.quantum_info</span> <span style="color:#cba6f7">as</span> <span style="color:#fab387">qi</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>qc <span style="color:#89dceb;font-weight:bold">=</span> QuantumCircuit<span style="color:#89dceb;font-weight:bold">.</span>from_qasm_file(<span style="color:#a6e3a1">&#34;./challenge.qasm&#34;</span>)
+</span></span><span style="display:flex;"><span>simulator <span style="color:#89dceb;font-weight:bold">=</span> Aer<span style="color:#89dceb;font-weight:bold">.</span>get_backend(<span style="color:#a6e3a1">&#39;aer_simulator&#39;</span>)
+</span></span><span style="display:flex;"><span>job <span style="color:#89dceb;font-weight:bold">=</span> execute(qc, simulator)
+</span></span><span style="display:flex;"><span>result <span style="color:#89dceb;font-weight:bold">=</span> job<span style="color:#89dceb;font-weight:bold">.</span>result()
+</span></span><span style="display:flex;"><span><span style="color:#89dceb">print</span>(result)
+</span></span><span style="display:flex;"><span>qc<span style="color:#89dceb;font-weight:bold">.</span>measure_all()
+</span></span><span style="display:flex;"><span>qobj <span style="color:#89dceb;font-weight:bold">=</span> assemble(qc)
+</span></span><span style="display:flex;"><span>result <span style="color:#89dceb;font-weight:bold">=</span> simulator<span style="color:#89dceb;font-weight:bold">.</span>run(qobj)<span style="color:#89dceb;font-weight:bold">.</span>result()
+</span></span><span style="display:flex;"><span>counts <span style="color:#89dceb;font-weight:bold">=</span> result<span style="color:#89dceb;font-weight:bold">.</span>get_counts()
+</span></span><span style="display:flex;"><span>plot_histogram(counts)
+</span></span><span style="display:flex;"><span><span style="color:#89dceb">print</span>(counts)
+</span></span></code></pre></div><p>And I got this back:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#a6e3a1">&#39;0000000000000000000000000000000000000000000000000000000000000000000000000
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">110010001101001011000110110010101111011011000110110110001101001011001100110
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">011001101111011100100110010000101101011101000110100001100101001011010110001
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">001101001011001110010110101110001011101010110000101101110011101000111010101
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">101101001011010110010001101111011001110010110100110001001110010110010100110
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">011011001100011010101111101&#39;</span>
+</span></span></code></pre></div><p>This is just the flag in binary</p>
+
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2024
+     Lucas Ball 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
+}
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

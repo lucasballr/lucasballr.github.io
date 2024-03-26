@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DiceCTF 2023 on Lucas Ball</title>
+    <link>http://localhost:1313/cyber/dice23/</link>
+    <description>Recent content in DiceCTF 2023 on Lucas Ball</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 27 Jan 2023 19:46:10 -0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/cyber/dice23/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>rev/super_qomputer</title>
+      <link>http://localhost:1313/cyber/dice23/super_qomputer/</link>
+      <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
+      <guid>http://localhost:1313/cyber/dice23/super_qomputer/</guid>
+      <description>This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1&amp;rsquo;s and 0&amp;rsquo;s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook.</description>
+    </item>
+    <item>
+      <title>rev/parallel</title>
+      <link>http://localhost:1313/cyber/dice23/parallel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/cyber/dice23/parallel/</guid>
+      <description>This was basically a flag scrambler/checker that would run in 8 different processes. The binary required there to be 8 processes in order to run correctly because it would use inter-process communication.&#xA;Essentially it would take your input, and jumble it using a key and just swap bytes in weird places. This was easily reversable. Then it would user openMPI to send your jumbled input in 8 byte sections to the 8 different processes.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  misc/a-hackers-notes · Lucas Ball
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Lucas Ball">
+<meta name="description" content="The Challenge Link to heading You are given a luks encrypted drive that has a pretty weak password on it. All you have to do to open it is run a bruteforce script on the drive:
+bruteforce-luks -t 6 -f dictionary.txt -v 30 hackers-drive.dd dictionary.txt had a bunch of variations of &ldquo;hackerXXX&rdquo; which is the format we are told the password is in. The result is &ldquo;hacker765&rdquo; as the password.">
+<meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="misc/a-hackers-notes"/>
+<meta name="twitter:description" content="The Challenge Link to heading You are given a luks encrypted drive that has a pretty weak password on it. All you have to do to open it is run a bruteforce script on the drive:
+bruteforce-luks -t 6 -f dictionary.txt -v 30 hackers-drive.dd dictionary.txt had a bunch of variations of &ldquo;hackerXXX&rdquo; which is the format we are told the password is in. The result is &ldquo;hacker765&rdquo; as the password."/>
+
+<meta property="og:title" content="misc/a-hackers-notes" />
+<meta property="og:description" content="The Challenge Link to heading You are given a luks encrypted drive that has a pretty weak password on it. All you have to do to open it is run a bruteforce script on the drive:
+bruteforce-luks -t 6 -f dictionary.txt -v 30 hackers-drive.dd dictionary.txt had a bunch of variations of &ldquo;hackerXXX&rdquo; which is the format we are told the password is in. The result is &ldquo;hacker765&rdquo; as the password." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/cyber/lactf23/hacker-notes/" /><meta property="article:section" content="cyber" />
+<meta property="article:published_time" content="2023-02-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-02-12T00:00:00+00:00" />
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/cyber/lactf23/hacker-notes/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Lucas Ball
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/Cyber/">Cyber</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/mywork">My Work</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/contact/">Contact</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="http://localhost:1313/cyber/lactf23/hacker-notes/">
+          misc/a-hackers-notes
+        </a>
+      </h1>
+    </header>
+
+    <h3 id="the-challenge">
+  The Challenge
+  <a class="heading-link" href="#the-challenge">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>You are given a luks encrypted drive that has a pretty weak password on it.
+All you have to do to open it is run a bruteforce script on the drive:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bruteforce-luks -t <span style="color:#fab387">6</span> -f dictionary.txt -v <span style="color:#fab387">30</span> hackers-drive.dd
+</span></span></code></pre></div><p>dictionary.txt had a bunch of variations of &ldquo;hackerXXX&rdquo; which is the format
+we are told the password is in. The result is &ldquo;hacker765&rdquo; as the password.
+Then you need to mount the drive to take a look at it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo cryptsetup luksOpen hackers-drive.dd tmp
+</span></span><span style="display:flex;"><span>sudo mount /dev/mapper/tmp ./asdf
+</span></span></code></pre></div><p>This turns out to be a joplin notebook that is encrypted with joplin&rsquo;s e2ee
+encryption. The joplin sql database holds the master password in it, so you
+can easily pull that password: Encryption master pw: &ldquo;n72ROU9BqbjVOlXKH5Ju&rdquo;</p>
+<p>The next step was kind of difficult. Since the joplin-cli is not easy to work
+with, I could not figure out how to actually open the joplin notebook. Instead,
+I opened up the joplin app and set my &ldquo;master-password&rdquo; to the above string.
+Then I chose to &ldquo;sync with filesystem&rdquo; and chose the directory of the hacker&rsquo;s
+notebook. This ended up automatically decrypting the notebook in turn decrypting
+the flag.</p>
+
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2024
+     Lucas Ball 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
+}
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

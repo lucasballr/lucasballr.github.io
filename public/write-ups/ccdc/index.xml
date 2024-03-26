@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CCDC on Lucas Ball</title>
+    <link>http://localhost:1313/write-ups/ccdc/</link>
+    <description>Recent content in CCDC on Lucas Ball</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/write-ups/ccdc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NCCDC 2022</title>
+      <link>http://localhost:1313/write-ups/ccdc/nccdc-2022/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/write-ups/ccdc/nccdc-2022/</guid>
+      <description>How did we get here? Link to heading It started with a random tryout with the OSUSEC club to see who might be eligible to compete in the competition. This ended with me getting my spot on the team learning anything I can about cyber defence. I had been working on binary exploitation at the time, so I had no idea what to expect for this. They told me to look up the best ways to secure a wordpress site as well as an nginx site.</description>
+    </item>
+    <item>
+      <title>PRCCDC 2022</title>
+      <link>http://localhost:1313/write-ups/ccdc/prccdc-2022/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/write-ups/ccdc/prccdc-2022/</guid>
+      <description>Okay so I&amp;rsquo;m writing this two years after the fact, but I figured I&amp;rsquo;d talk about my experience. The 2024 version is much more in-depth than this one.&#xA;Why would I do this? Link to heading I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn&amp;rsquo;t really have the guidance/motivation to participate.</description>
+    </item>
+  </channel>
+</rss>

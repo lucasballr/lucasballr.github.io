@@ -24,19 +24,20 @@ Okay I'm skipping a lot, but the gist of it is that we made it there without any
 
 Waking up at 7:00AM (San Antonio time) was difficult, but we had no time to complain. We went to our designated breakfast location and listened to the briefing on the details of the competition. This is where we got our first look at the team packets which included: usernames, passwords, ip addresses, ip ranges, and more including the whole concept of the organization we were "working for". Let me go into further detail on the specifics of this.
 
-We were introduced to the company "Capissen", a video game company that hosts video game servers and sells video game peripherals. We were in charge of keeping this game company working despite persistent attacks from the red team.  
+We were introduced to the company "Capissen", a video game company that hosts video game servers and sells video game peripherals. We were in charge of keeping this game company working despite persistent attacks from the red team.
 The services included:
-- An e-commerce website for selling video game products An internal ERP  
-- An internal HRM system  
+
+- An e-commerce website for selling video game products An internal ERP
+- An internal HRM system
 - 5 separate video game servers
-- 2 SSH hosts (one internal and one in the cloud) 3 hosts for controlling Point-Of-Sale  
-- A VOIP phone for customer service  
+- 2 SSH hosts (one internal and one in the cloud) 3 hosts for controlling Point-Of-Sale
+- A VOIP phone for customer service
 - A DNS server for resolving our hostname. Windows AD and DC
-- Palo Alto firewalls on local and remote networks.  
-This is as much as I can remember right now, but there was more
-These were separated into 3 separate subnets:
-- 10.70.70.0/24 was our local subnet hosting our website and internal services.  
-- 172.16.70.0/24 was our "cloud" subnet which was just an esxi instance running the game servers and a couple other things.  
+- Palo Alto firewalls on local and remote networks.
+  This is as much as I can remember right now, but there was more
+  These were separated into 3 separate subnets:
+- 10.70.70.0/24 was our local subnet hosting our website and internal services.
+- 172.16.70.0/24 was our "cloud" subnet which was just an esxi instance running the game servers and a couple other things.
 - 172.16.75.0/24 was our other "cloud" subnet in charge of the Point-of-Sale systems. Most of this was on windows, so I'm not really sure about it.
 
 So we get started at 9:00AM. Every team is sitting ouside their team rooms ready to be let in and everyone gets let in at the same time. We walk in and see 8 workstation laptops and 2 other laptops that we weren't really sure about. Going around the room, we realized 6 of the laptops were windows and 2 were linux. CRAP. We had 3 linux guys and only 2 linux workstations. I elected to be the one on the windows workstation as I probably have the most experience on windows out of us 3. The other 2 laptops were an ESXI hypervisor (running our local virtualized servers) and a blank laptop with nothing installed on it. We were told that we could do anything we would like to this extra laptop.
@@ -56,6 +57,7 @@ Shortly after that, we had an issue with our "cloud" infrastructure. All of our 
 Robert had realized that in order to fix the database, he had to completely reinstall mysql on the VM. This was problematic though because the repository for the machine was misconfigured forcing him to reconfigure the repositories to the point where he could reinstall mysql. After this happened, it was as simple as starting up the sql server and importing the .sql backup file. There was a problem with the backup though. We had a bad database and realized there was an inject requesting a ransom (points) to get our database back. Well that sucks. So overall this whole problem cost us A LOT of points.
 
 Following this, we decided to start looking for what the heck the red team had done while we were busy fixing all these issues. I logged into one of the VMs and realized the red team was online. I decided to start a wall conversation with this guy:
+
 ```
 RT: Heyyy wanna be friends?
 Me: Yes! Only if you tell me your persistence method.
@@ -78,15 +80,17 @@ Me: My team has informed me that I'm not allowed to do that :/
 
 RT: Hmmm... Maybe we can play another game
 ```
-At this point we had wasted enough of each other's time and I decided to end the conversation. 
+
+At this point we had wasted enough of each other's time and I decided to end the conversation.
 
 Anyways...
 
 We looked through the VMs and realized that there were a TON of misconfigurations that we knew we had not touched. First, there were ssh keys littered in tons of home user accounts as well as weird places like the /bin/.ssh folder which did not exist before. Next, there were tons of misonfigurations in the /etc/pam.d/su , /etc/ssh/sshd_config and others that allowed all users to login as root and do anything they liked. YIKES. We changed all these configs to the correct state and removed the ssh keys. A quick "ls" revealed that our problem was a lot worse than we thought. Almost immediately after removing these files and fixing configs, they were all back to their original state. This is about when day one was comming to an end. We did a little bit of investigating, but we realized we needed to mitigate the effects of this malware. Gabriel had the incredible idea of removing the services that the malware was using. Privilege escalation capabilities were now removed from the system and the only way to login to the VM was with root and password. This meant that the ssh keys were useless and the privilege escalation was impossible. We also added a line to the sshd_config that only allowed connections from our IP addresses. We obviously couldn't do that on the scored ssh VM's, but that severely lessened the attack surface of the SSH service.
 
-Recap of our mitigations: 
+Recap of our mitigations:
+
 - Remove privilege escalation capabilities.
-- Configure ssh to only allow root login with password. 
+- Configure ssh to only allow root login with password.
 - Restrict access to only certain source IP's.
 
 Soon after this, the first day had ended and we all took a big sigh of relief. The competition was halfway over and it was time to relax. We had dinner and chatted with other teams before heading to one of our rooms to do a first-day-meeting with the team. We decided to change our password scheme to something much more simple as well as reset all current passwords. We also synced up all of our current passwords to make sure we didn't have to ask all the time what passwords were.
@@ -105,7 +109,7 @@ Halfway through the day, Gabriel and I decided to start digging. We wanted to fi
 
 And that was it. That was the competition. We packed up everything in the team room and went to get ready for the networking night.
 
-Networking Night
+### Networking Night
 
 We were told to bring our resumes to this event, wear business casual, and talk to as many people as possible because everyone wants to hire us apparently. Afterwards, I realized that the vast majority of these organizations were government contractors or large corporations WOW.
 
@@ -113,6 +117,6 @@ We walked in and instantly I chose to go to the Scale.api booth. The first perso
 
 I proceeded to go around talking to all the other organizations that were sponsoring this event. This lead to me realizing that they really want to hire us. We exchanged contact information and I handed out a good amount of resumes.
 
-Panopoly
+### Panopoly
 
-This was a bust. We spent all night the night before figuring out a good script for persistence in the machine and didn't even think about how we'd actually get in. Turns out the initial "getting in" part was the hard part and we never ended up succeeding.  
+This was a bust. We spent all night the night before figuring out a good script for persistence in the machine and didn't even think about how we'd actually get in. Turns out the initial "getting in" part was the hard part and we never ended up succeeding.

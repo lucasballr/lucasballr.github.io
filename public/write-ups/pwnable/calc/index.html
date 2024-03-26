@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   Calc · Lucas Ball
 </title>
@@ -17,8 +17,7 @@
 void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it&rsquo;s got a timer on it, so you can&rsquo;t take too long to do your thing on the program.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Calc"/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Calc"/>
 <meta name="twitter:description" content="Calc Link to heading Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing&rsquo;s first, lets pull this up in ghidra and see what this is all about.
 void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it&rsquo;s got a timer on it, so you can&rsquo;t take too long to do your thing on the program."/>
 
@@ -26,14 +25,14 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 <meta property="og:description" content="Calc Link to heading Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing&rsquo;s first, lets pull this up in ghidra and see what this is all about.
 void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it&rsquo;s got a timer on it, so you can&rsquo;t take too long to do your thing on the program." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lucasball.com/write-ups/pwnable/calc/" /><meta property="article:section" content="write-ups" />
+<meta property="og:url" content="http://localhost:1313/write-ups/pwnable/calc/" /><meta property="article:section" content="write-ups" />
 <meta property="article:published_time" content="2023-01-27T19:46:10-08:00" />
 <meta property="article:modified_time" content="2023-01-27T19:46:10-08:00" />
 
 
 
 
-<link rel="canonical" href="https://lucasball.com/write-ups/pwnable/calc/">
+<link rel="canonical" href="http://localhost:1313/write-ups/pwnable/calc/">
 
 
 <link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
@@ -41,7 +40,7 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.65236a6d834b26194eed04a2a3b45e44d9194ef9e620253705d4bef03bd7ef81.css" integrity="sha256-ZSNqbYNLJhlO7QSio7ReRNkZTvnmICU3BdS&#43;8DvX74E=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -51,7 +50,7 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.f6534b0b446b75d9b6ad77a97d43ede2ddaeff1b6e2361fb7198d6f8fcb7f83f.css" integrity="sha256-9lNLC0Rrddm2rXepfUPt4t2u/xtuI2H7cZjW&#43;Py3&#43;D8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -142,7 +141,7 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
   <article>
     <header>
       <h1 class="title">
-        <a class="title-link" href="https://lucasball.com/write-ups/pwnable/calc/">
+        <a class="title-link" href="http://localhost:1313/write-ups/pwnable/calc/">
           Calc
         </a>
       </h1>
@@ -156,44 +155,44 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
   </a>
 </h1>
 <p>Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing&rsquo;s first, lets pull this up in ghidra and see what this is all about.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="">void</span> main(){
-</span></span><span style="display:flex;"><span>  signal(0xe,timeout);
-</span></span><span style="display:flex;"><span>  alarm(0x3c);
-</span></span><span style="display:flex;"><span>  puts(<span style="font-style:italic">&#34;=== Welcome to SECPROG calculator ===&#34;</span>);
-</span></span><span style="display:flex;"><span>  fflush((FILE *)stdout);
-</span></span><span style="display:flex;"><span>  calc();
-</span></span><span style="display:flex;"><span>  puts(<span style="font-style:italic">&#34;Merry Christmas!&#34;</span>);
-</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">return</span>;
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">main</span>(){
+</span></span><span style="display:flex;"><span>  <span style="color:#89b4fa">signal</span>(<span style="color:#fab387">0xe</span>,timeout);
+</span></span><span style="display:flex;"><span>  <span style="color:#89b4fa">alarm</span>(<span style="color:#fab387">0x3c</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#89b4fa">puts</span>(<span style="color:#a6e3a1">&#34;=== Welcome to SECPROG calculator ===&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#89b4fa">fflush</span>((FILE <span style="color:#89dceb;font-weight:bold">*</span>)stdout);
+</span></span><span style="display:flex;"><span>  <span style="color:#89b4fa">calc</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#89b4fa">puts</span>(<span style="color:#a6e3a1">&#34;Merry Christmas!&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">return</span>;
 </span></span></code></pre></div><p>Looks like it&rsquo;s got a timer on it, so you can&rsquo;t take too long to do your thing on the program. Good thing we&rsquo;ll only end up needing a few seconds. The function we want to look at here is the <code>calc()</code> function:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>calc (){
-</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">while</span>( true ) {
-</span></span><span style="display:flex;"><span>    bzero(local_410,0x400);
-</span></span><span style="display:flex;"><span>    iVar1 = get_expr(local_410,0x400);
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">if</span> (iVar1 == 0) <span style="font-weight:bold">break</span>;
-</span></span><span style="display:flex;"><span>    init_pool(&amp;local_5a4);
-</span></span><span style="display:flex;"><span>    iVar1 = parse_expr(local_410,&amp;local_5a4);
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">if</span> (iVar1 != 0) {
-</span></span><span style="display:flex;"><span>      printf(<span style="font-style:italic">&#34;%d</span><span style="font-weight:bold;font-style:italic">\n</span><span style="font-style:italic">&#34;</span>,auStack1440[local_5a4 + -1]);
-</span></span><span style="display:flex;"><span>      fflush((FILE *)stdout);
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#89b4fa">calc</span> (){
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">while</span>( <span style="color:#89dceb">true</span> ) {
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">bzero</span>(local_410,<span style="color:#fab387">0x400</span>);
+</span></span><span style="display:flex;"><span>    iVar1 <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">get_expr</span>(local_410,<span style="color:#fab387">0x400</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (iVar1 <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#fab387">0</span>) <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">init_pool</span>(<span style="color:#89dceb;font-weight:bold">&amp;</span>local_5a4);
+</span></span><span style="display:flex;"><span>    iVar1 <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">parse_expr</span>(local_410,<span style="color:#89dceb;font-weight:bold">&amp;</span>local_5a4);
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> (iVar1 <span style="color:#89dceb;font-weight:bold">!=</span> <span style="color:#fab387">0</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;%d</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>,auStack1440[local_5a4 <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#89dceb;font-weight:bold">-</span><span style="color:#fab387">1</span>]);
+</span></span><span style="display:flex;"><span>      <span style="color:#89b4fa">fflush</span>((FILE <span style="color:#89dceb;font-weight:bold">*</span>)stdout);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>  }
 </span></span></code></pre></div><p>Within this function it looks like it clears some space for us to work with <code>bzero()</code>. Then it will get the user input with <code>get_expr()</code>. Then it parses the user input with <code>parse_expr()</code> Then it takes the result of the parsed user input and prints it out. My first idea here was maybe there&rsquo;s some inputs that could give some weird results, so I started out by just throwing some random inputs at it to see what happened. None of my attempts really got me anything. I decided to take a hard look at the <code>get_expr()</code> and <code>parse_expr()</code> functions to see what was going on under the hood:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="">int</span> get_expr(<span style="">int</span> param_1,<span style="">int</span> param_2){
-</span></span><span style="display:flex;"><span>  local10 = 0;
-</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">while</span> (local10 &lt; param2) {
-</span></span><span style="display:flex;"><span>    sVar1 = read(0,&amp;local_11,1);
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">if</span> ((sVar1 == -1)  (local_11 == <span style="font-style:italic">&#39;\n&#39;</span>)) <span style="font-weight:bold">break</span>;
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">if</span> ((((local_11 == <span style="font-style:italic">&#39;+&#39;</span>)  (((local_11 == <span style="font-style:italic">&#39;-&#39;</span>  (local_11 == <span style="font-style:italic">&#39;*&#39;</span>))  (local_11 == <span style="font-style:italic">&#39;/&#39;</span>))))
-</span></span><span style="display:flex;"><span>        (local_11 == <span style="font-style:italic">&#39;%&#39;</span>))  ((<span style="font-style:italic">&#39;/&#39;</span> &lt; local_11 &amp;&amp; (local_11 &lt; <span style="font-style:italic">&#39;:&#39;</span>)))) {
-</span></span><span style="display:flex;"><span>      *(<span style="">char</span> *)(local10 + param_1) = local_11;
-</span></span><span style="display:flex;"><span>      local10 = local10 + 1;
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">get_expr</span>(<span style="color:#f38ba8">int</span> param_1,<span style="color:#f38ba8">int</span> param_2){
+</span></span><span style="display:flex;"><span>  local10 <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">while</span> (local10 <span style="color:#89dceb;font-weight:bold">&lt;</span> param2) {
+</span></span><span style="display:flex;"><span>    sVar1 <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">read</span>(<span style="color:#fab387">0</span>,<span style="color:#89dceb;font-weight:bold">&amp;</span>local_11,<span style="color:#fab387">1</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> ((sVar1 <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#89dceb;font-weight:bold">-</span><span style="color:#fab387">1</span>)  (local_11 <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;\n&#39;</span>)) <span style="color:#cba6f7">break</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">if</span> ((((local_11 <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;+&#39;</span>)  (((local_11 <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;-&#39;</span>  (local_11 <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;*&#39;</span>))  (local_11 <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;/&#39;</span>))))
+</span></span><span style="display:flex;"><span>        (local_11 <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;%&#39;</span>))  ((<span style="color:#a6e3a1">&#39;/&#39;</span> <span style="color:#89dceb;font-weight:bold">&lt;</span> local_11 <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> (local_11 <span style="color:#89dceb;font-weight:bold">&lt;</span> <span style="color:#a6e3a1">&#39;:&#39;</span>)))) {
+</span></span><span style="display:flex;"><span>      <span style="color:#89dceb;font-weight:bold">*</span>(<span style="color:#f38ba8">char</span> <span style="color:#89dceb;font-weight:bold">*</span>)(local10 <span style="color:#89dceb;font-weight:bold">+</span> param_1) <span style="color:#89dceb;font-weight:bold">=</span> local_11;
+</span></span><span style="display:flex;"><span>      local10 <span style="color:#89dceb;font-weight:bold">=</span> local10 <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">1</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">return</span> local10;
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">return</span> local10;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Looks like this function reads exactly 400 characters of user input and puts it on the on in the <code>local10</code> buffer. This is only the case if the characters include <code>+,-,*,/,%,0-9</code>. These are the characters I had to work with. Now lets take a look at the <code>parse_expr()</code> function where all the magic happens.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>int parse_expr(void *param_1, void *param_2
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>int parse_expr(void *param_1, void *param_2
 </span></span><span style="display:flex;"><span>  bzero(local_74,100);
 </span></span><span style="display:flex;"><span>  local_88 = 0;
 </span></span><span style="display:flex;"><span>  do {
@@ -258,7 +257,7 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 </span></span><span style="display:flex;"><span>    local_88 = local_88 + 1;
 </span></span><span style="display:flex;"><span>  } while( true );
 </span></span></code></pre></div><p>Looks like the first part is just converting each string of number characters into integers that could be evaluated. Then it would put the numbers on one buffer and the expression symbols on another buffer In This case, it&rsquo;s useful to take a look at how these buffers are being used to be evaluated. Looks like the ghidra decompiler had some issues with this section, but we&rsquo;ll just assume that the eval function takes an integer buffer and a char. The char is the expression symbol while the buffer is an array of numbers that was created in the parsing. Alright lets take a look at the eval function:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void eval(int param_1,char param_2)
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void eval(int param_1,char param_2)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  if (param_2 == &#39;+&#39;) {
@@ -285,7 +284,7 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 </span></span><span style="display:flex;"><span>  return;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Alright so I was right. The char gets checked to see how the evaluation should go, then it evaluates with the buffer at index -1 and index 1. Wait what??? This took far too long to notice, but there&rsquo;s a problem with trying to access the -1 index. If the sanitation is working correctly, this might actually be secure, but lets take a look at the sanitation to see if theres a problem here:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>iVar2 = strcmp(__s1,&#34;0&#34;);
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>iVar2 = strcmp(__s1,&#34;0&#34;);
 </span></span><span style="display:flex;"><span>if (iVar2 == 0) {
 </span></span><span style="display:flex;"><span>    puts(&#34;prevent division by zero&#34;);
 </span></span><span style="display:flex;"><span>    fflush((FILE *)stdout);
@@ -299,30 +298,30 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 </span></span><span style="display:flex;"><span>        param_2[iVar1 + 1] = iVar2;
 </span></span><span style="display:flex;"><span>    }
 </span></span></code></pre></div><p>So looking at it here it will check if the number we entered is &ldquo;0&rdquo;. If it is, we get an expression error and we resturn back to user input. If it&rsquo;s not &ldquo;0&rdquo; it will convert the number to an integer and save it to the buffer that will later be used in the eval function, <strong>but only if the converted number is larger than 0</strong>. So what if we entered &ldquo;00&rdquo; for the first input. Lets try it:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>=== Welcome to SECPROG calculator ===
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>=== Welcome to SECPROG calculator ===
 </span></span><span style="display:flex;"><span>00+10
 </span></span><span style="display:flex;"><span>0
 </span></span></code></pre></div><p>Okay we didn&rsquo;t get an expression error, but I don&rsquo;t exactly know what&rsquo;s going on here. I guess I&rsquo;ll take a look back at the eval function to see what&rsquo;s going on. When it runs the eval function we see that it sets the buffer[-1] to the value that was calculated. So with our &ldquo;00&rdquo; input, the first number was never allocated, so it must be evaluating our second number with whatever is before the buffer. Lets take a look at the order of variable definitions to see what comes before the buffer:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="">int</span> iVar1;
-</span></span><span style="display:flex;"><span><span style="">char</span> *s1;
-</span></span><span style="display:flex;"><span><span style="">int</span> iVar2;
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#f38ba8">int</span> iVar1;
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">char</span> <span style="color:#89dceb;font-weight:bold">*</span>s1;
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> iVar2;
 </span></span><span style="display:flex;"><span>undefined4 uVar3;
-</span></span><span style="display:flex;"><span><span style="">size_t</span> n;
-</span></span><span style="display:flex;"><span><span style="">int</span> in_GS_OFFSET;
-</span></span><span style="display:flex;"><span><span style="">void</span> *local_8c;
-</span></span><span style="display:flex;"><span><span style="">int</span> local_88;
-</span></span><span style="display:flex;"><span><span style="">int</span> local_84; <span style="font-style:italic">// Right before the buffer
-</span></span></span><span style="display:flex;"><span><span style="font-style:italic"></span><span style="">char</span> local_74 [100]; <span style="font-style:italic">// The buffer
-</span></span></span><span style="display:flex;"><span><span style="font-style:italic"></span><span style="">int</span> local_10;
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">size_t</span> n;
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> in_GS_OFFSET;
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89dceb;font-weight:bold">*</span>local_8c;
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> local_88;
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> local_84; <span style="color:#6c7086;font-style:italic">// Right before the buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#f38ba8">char</span> local_74 [<span style="color:#fab387">100</span>]; <span style="color:#6c7086;font-style:italic">// The buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#f38ba8">int</span> local_10;
 </span></span></code></pre></div><p>So <code>local_84</code> is our culprit. If we look above: <code>eval(param_2,(int)local_74[local_84]);</code> its the index of the buffer! And this is the value that ultimately gets output to the screen. I wrote a program to go through an arbitrary number of buffer indexes and I was able to read everything on the stack in the area. If you take a look at <code>e.py</code> you can see that it&rsquo;s the <code>list_stack()</code> function. So now we have arbitrary read. We can&rsquo;t really do much with that unless we can write things to memory. This is where it gets incredibly complicated. So lets say you plug in <code>00+20</code>. You&rsquo;re gonna get a response with the value of <code>buffer[20]</code>. But this parser runs on a loop until the expression is finished. So what if you sent <code>00+20+30</code>? We start out with the eval function outputting <code>buffer[20]</code>, but we&rsquo;ve done something here. We altered the index variable to <code>index = 20</code> so we run the loop again and we have <code>buffer[index-1] = buffer[index-1] + 30</code>. Well there you go, the value at buffer[19] just got set to whatever it was +30. We got arbitrary write.</p>
 <p>Now to figure out what we can do with this arbitrary read and write. I figured it would be a safe bet to try to overwrite the return address so I ran my <code>list_stack()</code> in gdb to find where that was. I found it at buffer[359]. This means I had to overwrite the buffer at index 360 to overwrite the return address. Lets try it:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>=== Welcome to SECPROG calculator ===
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>=== Welcome to SECPROG calculator ===
 </span></span><span style="display:flex;"><span>00+360+20
 </span></span><span style="display:flex;"><span>-5770548
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>Segmentation fault (core dumped)
 </span></span></code></pre></div><p>There we go, we got a seg fault because we overwrote the return address. Since we can alter anything on the stack why not try some ROP? I took a look at the functions I had to work with and found that there were no <code>execve</code> or <code>system</code>. Uh oh&hellip; I guess I&rsquo;m gonna have to go the hard way and manually call execve with a ROP and <code>int 0x80</code>. But wait:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>pwndbg&gt; search &#34;/bin/sh&#34;
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>pwndbg&gt; search &#34;/bin/sh&#34;
 </span></span><span style="display:flex;"><span>pwndbg&gt;
 </span></span></code></pre></div><p>Looks like I&rsquo;m gonna also have to put &ldquo;/bin/sh&rdquo; somewhere so I can use it when I call execve. This stumped me for a while because I could put &ldquo;/bin/sh&rdquo; on the stack with my arbitrary write, but I couldn&rsquo;t access it, because (after a lot of trial an error) I was unable to put a value higher than 0x7fffffff on the stack, and the stack just happened to start at 0xffff0000 making this a big problem. I&rsquo;d have to use <code>read()</code> to read the user input and place the &ldquo;/bin/sh&rdquo; somewhere in memory. So I did exactly that, I built a ROP chain that would read my input then return back to the <code>calc()</code> function so I could continue the exploit. Then I used the <code>calc()</code> function to create another ROP chain that would use our string to all <code>execve(&quot;/bin/sh&quot;, 0, 0)</code>. The way I did it took hours of trial and error because building the stack from the return address to the <code>int 0x80</code> was incredibly hard. Turns out doing that, each value that you changed would alter the next value. Which makes sense because of the way the <code>eval</code> function is put together. This means that each address that I entered had to be an offset of the previous address. After hours of trial and error, I got it. I connected up to the server and got the flag. <code>FLAG{EXAMPLE_FLAG}</code></p>
 <p>Later I realized that if I built the stack backwards I wouldn&rsquo;t have had to go through all that trouble, but I guess some things you just gotta learn the hard way.</p>
@@ -340,7 +339,7 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
     
       2019 -
     
-    2023
+    2024
      Lucas Ball 
     ·
     
@@ -355,7 +354,7 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   pwn/gatekeep · Lucas Ball
 </title>
@@ -17,8 +17,7 @@
 ❯ ./gatekeep If I gaslight you enough, you won&#39;t be able to guess my password! :) Password: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA I swore that was the right password .">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="pwn/gatekeep"/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="pwn/gatekeep"/>
 <meta name="twitter:description" content="The challenge Link to heading This is one of the baby intro challenges, so it just checked if your input was the same as the program&rsquo;s variable on the stack. You just need to send a bunch of &ldquo;A&quot;s to the program to get the flag.
 ❯ ./gatekeep If I gaslight you enough, you won&#39;t be able to guess my password! :) Password: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA I swore that was the right password ."/>
 
@@ -26,14 +25,14 @@
 <meta property="og:description" content="The challenge Link to heading This is one of the baby intro challenges, so it just checked if your input was the same as the program&rsquo;s variable on the stack. You just need to send a bunch of &ldquo;A&quot;s to the program to get the flag.
 ❯ ./gatekeep If I gaslight you enough, you won&#39;t be able to guess my password! :) Password: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA I swore that was the right password ." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lucasball.com/write-ups/lactf23/gatekeep/" /><meta property="article:section" content="write-ups" />
+<meta property="og:url" content="http://localhost:1313/write-ups/lactf23/gatekeep/" /><meta property="article:section" content="write-ups" />
 <meta property="article:published_time" content="2023-02-12T00:00:00+00:00" />
 <meta property="article:modified_time" content="2023-02-12T00:00:00+00:00" />
 
 
 
 
-<link rel="canonical" href="https://lucasball.com/write-ups/lactf23/gatekeep/">
+<link rel="canonical" href="http://localhost:1313/write-ups/lactf23/gatekeep/">
 
 
 <link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
@@ -41,7 +40,7 @@
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.65236a6d834b26194eed04a2a3b45e44d9194ef9e620253705d4bef03bd7ef81.css" integrity="sha256-ZSNqbYNLJhlO7QSio7ReRNkZTvnmICU3BdS&#43;8DvX74E=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -51,7 +50,7 @@
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.f6534b0b446b75d9b6ad77a97d43ede2ddaeff1b6e2361fb7198d6f8fcb7f83f.css" integrity="sha256-9lNLC0Rrddm2rXepfUPt4t2u/xtuI2H7cZjW&#43;Py3&#43;D8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -142,7 +141,7 @@
   <article>
     <header>
       <h1 class="title">
-        <a class="title-link" href="https://lucasball.com/write-ups/lactf23/gatekeep/">
+        <a class="title-link" href="http://localhost:1313/write-ups/lactf23/gatekeep/">
           pwn/gatekeep
         </a>
       </h1>
@@ -158,13 +157,13 @@
 <p>This is one of the baby intro challenges, so it just checked if your input
 was the same as the program&rsquo;s variable on the stack. You just need to send
 a bunch of &ldquo;A&quot;s to the program to get the flag.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ ./gatekeep
-</span></span><span style="display:flex;"><span>If I gaslight you enough, you won<span style="font-style:italic">&#39;t be able to guess my password! :)
-</span></span></span><span style="display:flex;"><span><span style="font-style:italic">Password:
-</span></span></span><span style="display:flex;"><span><span style="font-style:italic">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-</span></span></span><span style="display:flex;"><span><span style="font-style:italic">I swore that was the right password ...
-</span></span></span><span style="display:flex;"><span><span style="font-style:italic">Guess I couldn&#39;</span>t gaslight you!
-</span></span><span style="display:flex;"><span>flag{ASDASDSADFASDFGASDFASDF}
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ ./gatekeep
+</span></span><span style="display:flex;"><span>If I gaslight you enough, you won<span style="color:#a6e3a1">&#39;t be able to guess my password! :)
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">Password:
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">I swore that was the right password ...
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e3a1">Guess I couldn&#39;</span>t gaslight you!
+</span></span><span style="display:flex;"><span>flag<span style="color:#89dceb;font-weight:bold">{</span>ASDASDSADFASDFGASDFASDF<span style="color:#89dceb;font-weight:bold">}</span>
 </span></span></code></pre></div>
   </article>
 </section>
@@ -179,7 +178,7 @@ a bunch of &ldquo;A&quot;s to the program to get the flag.</p>
     
       2019 -
     
-    2023
+    2024
      Lucas Ball 
     ·
     
@@ -194,7 +193,7 @@ a bunch of &ldquo;A&quot;s to the program to get the flag.</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   

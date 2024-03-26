@@ -2,72 +2,60 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pwnable.tw on Lucas Ball</title>
-    <link>https://lucasball.com/write-ups/pwnable/</link>
+    <link>http://localhost:1313/write-ups/pwnable/</link>
     <description>Recent content in Pwnable.tw on Lucas Ball</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 27 Jan 2023 19:46:10 -0800</lastBuildDate><atom:link href="https://lucasball.com/write-ups/pwnable/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 May 2023 00:22:46 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/write-ups/pwnable/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Babystack</title>
+      <link>http://localhost:1313/write-ups/pwnable/babystack/</link>
+      <pubDate>Tue, 09 May 2023 00:22:46 -0700</pubDate>
+      <guid>http://localhost:1313/write-ups/pwnable/babystack/</guid>
+      <description>The binary Link to heading So this binary is super small, but it&amp;rsquo;s stripped for the most part making it pretty annoying to work with. I opened it up in ghidra and found the main function. Essentially what the program does is open up the /dev/urandom file on the filesystem and save 16 bytes of that to a local variable. This is shown here:&#xA;rand_fp = open(&amp;#34;/dev/urandom&amp;#34;,0); read(rand_fp,&amp;amp;rand_str,0x10); puVar1 = DAT_00302020; *DAT_00302020 = rand_str; puVar1[1] = local_20; close(rand_fp); rand_str is what I named this random string that gets pulled from the urandom file.</description>
+    </item>
     <item>
       <title>3x17</title>
-      <link>https://lucasball.com/write-ups/pwnable/3x17/</link>
+      <link>http://localhost:1313/write-ups/pwnable/3x17/</link>
       <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
-      
-      <guid>https://lucasball.com/write-ups/pwnable/3x17/</guid>
-      <description>This challenge was relatively difficult for me and introduced a few new concepts to me. Overall a pretty good challenge I would say.
-I started out by looking at the binary information to see what&amp;rsquo;s going on. Calling pwn checksec ./3x17 shows this:
-Arch: amd64-64-little RELRO: Partial RELRO Stack: No canary found NX: NX enabled PIE: No PIE (0x400000) Nice! No PIE and no canary. That makes it easier. Wait a second&amp;hellip;file .</description>
+      <guid>http://localhost:1313/write-ups/pwnable/3x17/</guid>
+      <description>This challenge was relatively difficult for me and introduced a few new concepts to me. Overall a pretty good challenge I would say.&#xA;I started out by looking at the binary information to see what&amp;rsquo;s going on. Calling pwn checksec ./3x17 shows this:&#xA;Arch: amd64-64-little RELRO: Partial RELRO Stack: No canary found NX: NX enabled PIE: No PIE (0x400000) Nice! No PIE and no canary. That makes it easier. Wait a second&amp;hellip;file .</description>
     </item>
-    
     <item>
       <title>Calc</title>
-      <link>https://lucasball.com/write-ups/pwnable/calc/</link>
+      <link>http://localhost:1313/write-ups/pwnable/calc/</link>
       <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
-      
-      <guid>https://lucasball.com/write-ups/pwnable/calc/</guid>
-      <description>Calc Link to heading Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing&amp;rsquo;s first, lets pull this up in ghidra and see what this is all about.
-void main(){ signal(0xe,timeout); alarm(0x3c); puts(&amp;#34;=== Welcome to SECPROG calculator ===&amp;#34;); fflush((FILE *)stdout); calc(); puts(&amp;#34;Merry Christmas!&amp;#34;); return; Looks like it&amp;rsquo;s got a timer on it, so you can&amp;rsquo;t take too long to do your thing on the program.</description>
+      <guid>http://localhost:1313/write-ups/pwnable/calc/</guid>
+      <description>Calc Link to heading Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing&amp;rsquo;s first, lets pull this up in ghidra and see what this is all about.&#xA;void main(){ signal(0xe,timeout); alarm(0x3c); puts(&amp;#34;=== Welcome to SECPROG calculator ===&amp;#34;); fflush((FILE *)stdout); calc(); puts(&amp;#34;Merry Christmas!&amp;#34;); return; Looks like it&amp;rsquo;s got a timer on it, so you can&amp;rsquo;t take too long to do your thing on the program.</description>
     </item>
-    
     <item>
       <title>Dubblesort</title>
-      <link>https://lucasball.com/write-ups/pwnable/dubblesort/</link>
+      <link>http://localhost:1313/write-ups/pwnable/dubblesort/</link>
       <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
-      
-      <guid>https://lucasball.com/write-ups/pwnable/dubblesort/</guid>
-      <description>Dubblesort Link to heading Okay this was by far the most frustrating challenge yet. So many issues that took way too long to fix. Nevertheless, it&amp;rsquo;s solved and here&amp;rsquo;s how it&amp;rsquo;s done.
-Start out by checking the security on the binary:
-pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary found NX: NX enabled PIE: PIE enabled FORTIFY: Enabled Yikes. Alright looks like there&amp;rsquo;s gonna be a very specific bug here.</description>
+      <guid>http://localhost:1313/write-ups/pwnable/dubblesort/</guid>
+      <description>Dubblesort Link to heading Okay this was by far the most frustrating challenge yet. So many issues that took way too long to fix. Nevertheless, it&amp;rsquo;s solved and here&amp;rsquo;s how it&amp;rsquo;s done.&#xA;Start out by checking the security on the binary:&#xA;pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary found NX: NX enabled PIE: PIE enabled FORTIFY: Enabled Yikes. Alright looks like there&amp;rsquo;s gonna be a very specific bug here.</description>
     </item>
-    
     <item>
       <title>orw</title>
-      <link>https://lucasball.com/write-ups/pwnable/orw/</link>
+      <link>http://localhost:1313/write-ups/pwnable/orw/</link>
       <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
-      
-      <guid>https://lucasball.com/write-ups/pwnable/orw/</guid>
-      <description>orw.md Link to heading ORW write-up Link to heading Starting this challenge I ran pwn checksec on the program to get the info on the security measures for the binary:
-Arch: i386-32-little RELRO: Partial RELRO Stack: Canary found NX: NX disabled PIE: No PIE (0x8048000) RWX: Has RWX segments After running the binary I quickly realized these security measures didn’t matter. Running the binary in GDB gave me the functionality of the program: disass main</description>
+      <guid>http://localhost:1313/write-ups/pwnable/orw/</guid>
+      <description>orw.md Link to heading ORW write-up Link to heading Starting this challenge I ran pwn checksec on the program to get the info on the security measures for the binary:&#xA;Arch: i386-32-little RELRO: Partial RELRO Stack: Canary found NX: NX disabled PIE: No PIE (0x8048000) RWX: Has RWX segments After running the binary I quickly realized these security measures didn’t matter. Running the binary in GDB gave me the functionality of the program: disass main</description>
     </item>
-    
     <item>
       <title>Start</title>
-      <link>https://lucasball.com/write-ups/pwnable/start/</link>
+      <link>http://localhost:1313/write-ups/pwnable/start/</link>
       <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
-      
-      <guid>https://lucasball.com/write-ups/pwnable/start/</guid>
-      <description>Alright so my first steps were to download the binary and open it up in ghidra. Opening it up in ghidra yielded nothing because the program was a super basic opcodes. With no libraries. This made it really hard for ghidra to figure out what the functions were really doing. This meant I would have to open it up in GDB to see what was happening in the dissassembly.
-I first ran the program to see what it did.</description>
+      <guid>http://localhost:1313/write-ups/pwnable/start/</guid>
+      <description>Alright so my first steps were to download the binary and open it up in ghidra. Opening it up in ghidra yielded nothing because the program was a super basic opcodes. With no libraries. This made it really hard for ghidra to figure out what the functions were really doing. This meant I would have to open it up in GDB to see what was happening in the dissassembly.&#xA;I first ran the program to see what it did.</description>
     </item>
-    
     <item>
       <title>Seethefile</title>
-      <link>https://lucasball.com/write-ups/pwnable/seethefile/</link>
+      <link>http://localhost:1313/write-ups/pwnable/seethefile/</link>
       <pubDate>Fri, 27 Jan 2023 18:46:22 -0800</pubDate>
-      
-      <guid>https://lucasball.com/write-ups/pwnable/seethefile/</guid>
-      <description>How this program works Link to heading We start with a simple menu with 5 options. This is what that looks like:
----------------MENU--------------- 1. Open 2. Read 3. Write to screen 4. Close 5. Exit ---------------------------------- Your choice : Okay this looks like a simple file reader. Looks like you can read any file in the filesystem and print it to the screen with open/read/write. Opening it up in Ghidra shows that my prediction was mostly correct.</description>
+      <guid>http://localhost:1313/write-ups/pwnable/seethefile/</guid>
+      <description>How this program works Link to heading We start with a simple menu with 5 options. This is what that looks like:&#xA;---------------MENU--------------- 1. Open 2. Read 3. Write to screen 4. Close 5. Exit ---------------------------------- Your choice : Okay this looks like a simple file reader. Looks like you can read any file in the filesystem and print it to the screen with open/read/write. Opening it up in Ghidra shows that my prediction was mostly correct.</description>
     </item>
-    
   </channel>
 </rss>

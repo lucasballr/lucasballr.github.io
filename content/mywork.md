@@ -10,7 +10,7 @@ draft: false
 - [Defcon CTF 2022](https://defcon.org/html/links/dc-ctf.html) - Finalist
 - [National CCDC 2022](https://www.nationalccdc.org/) - 5th place
 - [NSA Codebreaker Challenge 2021](https://nsa-codebreaker.org/home) - High Performer
-- [Pacific Rim CCDC](https://www.nationalccdc.org/index.php/competition/competitors/ccdc-regionals) - 1st Place
+- [Pacific Rim CCDC](https://www.nationalccdc.org/index.php/competition/competitors/ccdc-regionals) - 1st Place x2
 - [N1CTF 2021](https://ctftime.org/event/1367) - 5th place
 
 Check out my team's [ctftime profile](https://ctftime.org/team/12858) for most recent CTF events
@@ -22,6 +22,9 @@ Check out my team's [ctftime profile](https://ctftime.org/team/12858) for most r
 
 ### Relevant Classes
 
+- CS 527 - Error-Correcting Codes
+- CS 578 - Cyber-Security
+- CS 579 - Cybersec Enterprise Defense
 - CS 572 - Compuer Architecture
 - CS 261 - Data Structures
 - ECE 271 - Digital Logic Design

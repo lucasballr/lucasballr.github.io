@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <title>
   rev/parallel · Lucas Ball
 </title>
@@ -17,8 +17,7 @@
 Essentially it would take your input, and jumble it using a key and just swap bytes in weird places. This was easily reversable. Then it would user openMPI to send your jumbled input in 8 byte sections to the 8 different processes.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="rev/parallel"/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="rev/parallel"/>
 <meta name="twitter:description" content="This was basically a flag scrambler/checker that would run in 8 different processes. The binary required there to be 8 processes in order to run correctly because it would use inter-process communication.
 Essentially it would take your input, and jumble it using a key and just swap bytes in weird places. This was easily reversable. Then it would user openMPI to send your jumbled input in 8 byte sections to the 8 different processes."/>
 
@@ -26,14 +25,14 @@ Essentially it would take your input, and jumble it using a key and just swap by
 <meta property="og:description" content="This was basically a flag scrambler/checker that would run in 8 different processes. The binary required there to be 8 processes in order to run correctly because it would use inter-process communication.
 Essentially it would take your input, and jumble it using a key and just swap bytes in weird places. This was easily reversable. Then it would user openMPI to send your jumbled input in 8 byte sections to the 8 different processes." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://lucasball.com/write-ups/dice23/parallel/" /><meta property="article:section" content="write-ups" />
-<meta property="article:published_time" content="2023-01-27T19:46:10-08:00" />
-<meta property="article:modified_time" content="2023-01-27T19:46:10-08:00" />
+<meta property="og:url" content="http://localhost:1313/write-ups/dice23/parallel/" /><meta property="article:section" content="write-ups" />
 
 
 
 
-<link rel="canonical" href="https://lucasball.com/write-ups/dice23/parallel/">
+
+
+<link rel="canonical" href="http://localhost:1313/write-ups/dice23/parallel/">
 
 
 <link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
@@ -41,7 +40,7 @@ Essentially it would take your input, and jumble it using a key and just swap by
 
   
   
-  <link rel="stylesheet" href="/css/coder.min.65236a6d834b26194eed04a2a3b45e44d9194ef9e620253705d4bef03bd7ef81.css" integrity="sha256-ZSNqbYNLJhlO7QSio7ReRNkZTvnmICU3BdS&#43;8DvX74E=" crossorigin="anonymous" media="screen" />
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
 
 
 
@@ -51,7 +50,7 @@ Essentially it would take your input, and jumble it using a key and just swap by
   
     
     
-    <link rel="stylesheet" href="/css/coder-dark.min.f6534b0b446b75d9b6ad77a97d43ede2ddaeff1b6e2361fb7198d6f8fcb7f83f.css" integrity="sha256-9lNLC0Rrddm2rXepfUPt4t2u/xtuI2H7cZjW&#43;Py3&#43;D8=" crossorigin="anonymous" media="screen" />
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
   
 
 
@@ -142,7 +141,7 @@ Essentially it would take your input, and jumble it using a key and just swap by
   <article>
     <header>
       <h1 class="title">
-        <a class="title-link" href="https://lucasball.com/write-ups/dice23/parallel/">
+        <a class="title-link" href="http://localhost:1313/write-ups/dice23/parallel/">
           rev/parallel
         </a>
       </h1>
@@ -157,64 +156,64 @@ jumbled input in 8 byte sections to the 8 different processes. Then these proces
 went in a loop 10000 times sending a byte at a certain index to the next process. These
 processes were essentially rotating the bytes in a circle between processes. So it looked
 kinda like this:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>proc1 = [a,b,c,d,e]
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>proc1 <span style="color:#89dceb;font-weight:bold">=</span> [a,b,c,d,e]
 </span></span><span style="display:flex;"><span>         v
-</span></span><span style="display:flex;"><span>proc2 = [f,g,h,i,j]
+</span></span><span style="display:flex;"><span>proc2 <span style="color:#89dceb;font-weight:bold">=</span> [f,g,h,i,j]
 </span></span><span style="display:flex;"><span>         v
-</span></span><span style="display:flex;"><span>proc2 = [k,l,m,n,o]
-</span></span><span style="display:flex;"><span>...       
-</span></span><span style="display:flex;"><span>proc8 = [w,x,y,z,s]
+</span></span><span style="display:flex;"><span>proc2 <span style="color:#89dceb;font-weight:bold">=</span> [k,l,m,n,o]
+</span></span><span style="display:flex;"><span><span style="color:#89dceb;font-weight:bold">...</span>       
+</span></span><span style="display:flex;"><span>proc8 <span style="color:#89dceb;font-weight:bold">=</span> [w,x,y,z,s]
 </span></span><span style="display:flex;"><span>         v
-</span></span><span style="display:flex;"><span>proc1 = [a,b,c,d,e]
+</span></span><span style="display:flex;"><span>proc1 <span style="color:#89dceb;font-weight:bold">=</span> [a,b,c,d,e]
 </span></span></code></pre></div><p>At the end of the program, it would check the result against a string, so all we had to do
 was create a program that did all this stuff backwards. This is what it looked like (code
 assisted by chatgpt):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="">#include</span> <span style="">&lt;stdio.h&gt;</span><span style="">
-</span></span></span><span style="display:flex;"><span><span style="">#include</span> <span style="">&lt;string.h&gt;</span><span style="">
-</span></span></span><span style="display:flex;"><span><span style=""></span>
-</span></span><span style="display:flex;"><span><span style="">#define NUM_BINS 8
-</span></span></span><span style="display:flex;"><span><span style="">#define NUM_CHARS 8
-</span></span></span><span style="display:flex;"><span><span style="">#define MAX_KEY_LEN 32
-</span></span></span><span style="display:flex;"><span><span style=""></span>
-</span></span><span style="display:flex;"><span><span style="">int</span> key[MAX_KEY_LEN] = {0x1a, 0x20, 0xe, 0xb, 3, 1, 0x20, 0x18, 0xd, 0x11, 3, 0x11, 2, 0xd, 0x13, 6, 0xc, 0x16, 3, 0x1e, 10, 6, 8, 0x1a, 6, 0x16, 0xd, 1, 0x13, 1, 1, 0x1d};
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;stdio.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#include</span> <span style="color:#6c7086;font-weight:bold;font-style:italic">&lt;string.h&gt;</span><span style="color:#6c7086;font-style:italic">
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define NUM_BINS 8
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define NUM_CHARS 8
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#define MAX_KEY_LEN 32
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> key[MAX_KEY_LEN] <span style="color:#89dceb;font-weight:bold">=</span> {<span style="color:#fab387">0x1a</span>, <span style="color:#fab387">0x20</span>, <span style="color:#fab387">0xe</span>, <span style="color:#fab387">0xb</span>, <span style="color:#fab387">3</span>, <span style="color:#fab387">1</span>, <span style="color:#fab387">0x20</span>, <span style="color:#fab387">0x18</span>, <span style="color:#fab387">0xd</span>, <span style="color:#fab387">0x11</span>, <span style="color:#fab387">3</span>, <span style="color:#fab387">0x11</span>, <span style="color:#fab387">2</span>, <span style="color:#fab387">0xd</span>, <span style="color:#fab387">0x13</span>, <span style="color:#fab387">6</span>, <span style="color:#fab387">0xc</span>, <span style="color:#fab387">0x16</span>, <span style="color:#fab387">3</span>, <span style="color:#fab387">0x1e</span>, <span style="color:#fab387">10</span>, <span style="color:#fab387">6</span>, <span style="color:#fab387">8</span>, <span style="color:#fab387">0x1a</span>, <span style="color:#fab387">6</span>, <span style="color:#fab387">0x16</span>, <span style="color:#fab387">0xd</span>, <span style="color:#fab387">1</span>, <span style="color:#fab387">0x13</span>, <span style="color:#fab387">1</span>, <span style="color:#fab387">1</span>, <span style="color:#fab387">0x1d</span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="">char</span> bins[NUM_BINS][NUM_CHARS] = {<span style="font-style:italic">&#34;m_ERpmfr&#34;</span>, <span style="font-style:italic">&#34;NkekU4_4&#34;</span>, <span style="font-style:italic">&#34;asI_Tra1&#34;</span>, <span style="font-style:italic">&#34;e_4l_c4_&#34;</span>, <span style="font-style:italic">&#34;GCDlryid&#34;</span>, <span style="font-style:italic">&#34;S3{Ptsu9&#34;</span>, <span style="font-style:italic">&#34;i}13Es4V&#34;</span>, <span style="font-style:italic">&#34;73M4_ans&#34;</span>};
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">char</span> bins[NUM_BINS][NUM_CHARS] <span style="color:#89dceb;font-weight:bold">=</span> {<span style="color:#a6e3a1">&#34;m_ERpmfr&#34;</span>, <span style="color:#a6e3a1">&#34;NkekU4_4&#34;</span>, <span style="color:#a6e3a1">&#34;asI_Tra1&#34;</span>, <span style="color:#a6e3a1">&#34;e_4l_c4_&#34;</span>, <span style="color:#a6e3a1">&#34;GCDlryid&#34;</span>, <span style="color:#a6e3a1">&#34;S3{Ptsu9&#34;</span>, <span style="color:#a6e3a1">&#34;i}13Es4V&#34;</span>, <span style="color:#a6e3a1">&#34;73M4_ans&#34;</span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="">int</span> num_workers = NUM_BINS;
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> num_workers <span style="color:#89dceb;font-weight:bold">=</span> NUM_BINS;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="">int</span> main(<span style="">void</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(<span style="color:#f38ba8">void</span>)
 </span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>    <span style="">char</span> to_arr[8];
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">for</span> (<span style="">int</span> i = 10000; i &gt; -1; i--)
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">char</span> to_arr[<span style="color:#fab387">8</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">10000</span>; i <span style="color:#89dceb;font-weight:bold">&gt;</span> <span style="color:#89dceb;font-weight:bold">-</span><span style="color:#fab387">1</span>; i<span style="color:#89dceb;font-weight:bold">--</span>)
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="">int</span> offset = i % NUM_CHARS;
-</span></span><span style="display:flex;"><span>        <span style="font-weight:bold">for</span> (<span style="">int</span> rank = 8; rank &gt; 0; rank--)
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> offset <span style="color:#89dceb;font-weight:bold">=</span> i <span style="color:#89dceb;font-weight:bold">%</span> NUM_CHARS;
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> rank <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">8</span>; rank <span style="color:#89dceb;font-weight:bold">&gt;</span> <span style="color:#fab387">0</span>; rank<span style="color:#89dceb;font-weight:bold">--</span>)
 </span></span><span style="display:flex;"><span>        {
-</span></span><span style="display:flex;"><span>            <span style="">int</span> to_bin = (num_workers + (rank-1 - i) % num_workers) % num_workers;
-</span></span><span style="display:flex;"><span>            <span style="font-style:italic">//int from_bin = (num_workers + (i + rank) % num_workers) % num_workers;
-</span></span></span><span style="display:flex;"><span><span style="font-style:italic"></span>            to_arr[rank-1] = bins[to_bin][offset];
+</span></span><span style="display:flex;"><span>            <span style="color:#f38ba8">int</span> to_bin <span style="color:#89dceb;font-weight:bold">=</span> (num_workers <span style="color:#89dceb;font-weight:bold">+</span> (rank<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#fab387">1</span> <span style="color:#89dceb;font-weight:bold">-</span> i) <span style="color:#89dceb;font-weight:bold">%</span> num_workers) <span style="color:#89dceb;font-weight:bold">%</span> num_workers;
+</span></span><span style="display:flex;"><span>            <span style="color:#6c7086;font-style:italic">//int from_bin = (num_workers + (i + rank) % num_workers) % num_workers;
+</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span>            to_arr[rank<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#fab387">1</span>] <span style="color:#89dceb;font-weight:bold">=</span> bins[to_bin][offset];
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        <span style="font-weight:bold">for</span> (<span style="">int</span> i = 0; i &lt; 8; i++){
-</span></span><span style="display:flex;"><span>            bins[i][offset] = to_arr[i];
+</span></span><span style="display:flex;"><span>        <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>; i <span style="color:#89dceb;font-weight:bold">&lt;</span> <span style="color:#fab387">8</span>; i<span style="color:#89dceb;font-weight:bold">++</span>){
+</span></span><span style="display:flex;"><span>            bins[i][offset] <span style="color:#89dceb;font-weight:bold">=</span> to_arr[i];
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    <span style="">char</span> string_thing[NUM_BINS * NUM_CHARS];
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">for</span> (<span style="">int</span> i = 0; i &lt; NUM_BINS; i++)
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">char</span> string_thing[NUM_BINS <span style="color:#89dceb;font-weight:bold">*</span> NUM_CHARS];
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">0</span>; i <span style="color:#89dceb;font-weight:bold">&lt;</span> NUM_BINS; i<span style="color:#89dceb;font-weight:bold">++</span>)
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        strcpy(string_thing + i * NUM_CHARS, bins[i]);
+</span></span><span style="display:flex;"><span>        <span style="color:#89b4fa">strcpy</span>(string_thing <span style="color:#89dceb;font-weight:bold">+</span> i <span style="color:#89dceb;font-weight:bold">*</span> NUM_CHARS, bins[i]);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    printf(<span style="font-style:italic">&#34;%s</span><span style="font-weight:bold;font-style:italic">\n</span><span style="font-style:italic">&#34;</span>, string_thing);
-</span></span><span style="display:flex;"><span>    <span style="">int</span> string_thing_len = strlen(string_thing);
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">for</span> (<span style="">int</span> i = 31; i &gt;= 0; i--)
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;%s</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>, string_thing);
+</span></span><span style="display:flex;"><span>    <span style="color:#f38ba8">int</span> string_thing_len <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">strlen</span>(string_thing);
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">for</span> (<span style="color:#f38ba8">int</span> i <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">31</span>; i <span style="color:#89dceb;font-weight:bold">&gt;=</span> <span style="color:#fab387">0</span>; i<span style="color:#89dceb;font-weight:bold">--</span>)
 </span></span><span style="display:flex;"><span>    {
-</span></span><span style="display:flex;"><span>        <span style="">int</span> x = string_thing[i];
-</span></span><span style="display:flex;"><span>        string_thing[i] = string_thing[key[i] + 0x1f];
-</span></span><span style="display:flex;"><span>        string_thing[key[i] + 0x1f] = x;
+</span></span><span style="display:flex;"><span>        <span style="color:#f38ba8">int</span> x <span style="color:#89dceb;font-weight:bold">=</span> string_thing[i];
+</span></span><span style="display:flex;"><span>        string_thing[i] <span style="color:#89dceb;font-weight:bold">=</span> string_thing[key[i] <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">0x1f</span>];
+</span></span><span style="display:flex;"><span>        string_thing[key[i] <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#fab387">0x1f</span>] <span style="color:#89dceb;font-weight:bold">=</span> x;
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    printf(<span style="font-style:italic">&#34;%s</span><span style="font-weight:bold;font-style:italic">\n</span><span style="font-style:italic">&#34;</span>, string_thing);
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">printf</span>(<span style="color:#a6e3a1">&#34;%s</span><span style="color:#89b4fa">\n</span><span style="color:#a6e3a1">&#34;</span>, string_thing);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">return</span> 0;
+</span></span><span style="display:flex;"><span>    <span style="color:#cba6f7">return</span> <span style="color:#fab387">0</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
   </article>
@@ -230,7 +229,7 @@ assisted by chatgpt):</p>
     
       2019 -
     
-    2023
+    2024
      Lucas Ball 
     ·
     
@@ -245,7 +244,7 @@ assisted by chatgpt):</p>
 
   
   
-  <script src="/js/coder.min.6ae284be93d2d19dad1f02b0039508d9aab3180a12a06dcc71b0b0ef7825a317.js" integrity="sha256-auKEvpPS0Z2tHwKwA5UI2aqzGAoSoG3McbCw73gloxc="></script>
+  <script src="/js/coder.js"></script>
   
 
   

