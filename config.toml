@@ -70,7 +70,7 @@ url = "mywork"
 [[menu.main]]
 name = "Cyber"
 weight = 1
-url = "Cyber/"
+url = "cyber/"
 [[menu.main]]
 name = "Resume"
 weight = 1
