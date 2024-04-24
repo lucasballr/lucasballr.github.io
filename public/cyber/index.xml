@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Write-Ups on Lucas Ball</title>
+    <title>Cyber on Lucas Ball</title>
     <link>http://localhost:1313/cyber/</link>
-    <description>Recent content in Write-Ups on Lucas Ball</description>
+    <description>Recent content in Cyber on Lucas Ball</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Apr 2023 01:25:53 -0800</lastBuildDate>
+    <lastBuildDate></lastBuildDate>
     <atom:link href="http://localhost:1313/cyber/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Homelab</title>
-      <link>http://localhost:1313/cyber/homelab/</link>
-      <pubDate>Tue, 18 Apr 2023 01:25:53 -0800</pubDate>
-      <guid>http://localhost:1313/cyber/homelab/</guid>
-      <description>How it started Link to heading I initially started my homelab with the intention to get a network-wide adblock set up for my network. I didn&amp;rsquo;t really like having to look at ads everywhere I went on the internet. I decided to install pi-hole on an old raspberry pi. This is what fueled my need for MORE! From there I found the /r/homelab subreddit and /r/selfhosted subreddit. These forums helped me figure out what to do with my homelab.</description>
-    </item>
   </channel>
 </rss>

@@ -17,9 +17,9 @@
     </item>
     <item>
       <title>Homelab</title>
-      <link>http://localhost:1313/cyber/homelab/</link>
+      <link>http://localhost:1313/cyber/home/homelab/</link>
       <pubDate>Tue, 18 Apr 2023 01:25:53 -0800</pubDate>
-      <guid>http://localhost:1313/cyber/homelab/</guid>
+      <guid>http://localhost:1313/cyber/home/homelab/</guid>
       <description>How it started Link to heading I initially started my homelab with the intention to get a network-wide adblock set up for my network. I didn&amp;rsquo;t really like having to look at ads everywhere I went on the internet. I decided to install pi-hole on an old raspberry pi. This is what fueled my need for MORE! From there I found the /r/homelab subreddit and /r/selfhosted subreddit. These forums helped me figure out what to do with my homelab.</description>
     </item>
     <item>

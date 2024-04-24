@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/cyber/ccdc/</loc>
-    <lastmod>2024-03-25T19:55:10-08:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/</loc>
+    <lastmod>2024-04-23T19:55:10-08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/cyber/ccdc/</loc>
     <lastmod>2024-03-25T19:55:10-08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/cyber/pwnable/babystack/</loc>
     <lastmod>2023-05-09T00:22:46-07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/cyber/homelab/</loc>
+    <loc>http://localhost:1313/cyber/home/homelab/</loc>
     <lastmod>2023-04-18T01:25:53-08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/authors/</loc>
@@ -50,6 +50,9 @@
     <loc>http://localhost:1313/cyber/pwnable/calc/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/cyber/</loc>
+    <lastmod>2023-01-27T19:46:10-08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/cyber/dice23/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
@@ -66,9 +69,6 @@
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/cyber/pwnable/start/</loc>
-    <lastmod>2023-01-27T19:46:10-08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/cyber/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/cyber/pwnable/seethefile/</loc>
