@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  PRCCDC 2022 · Lucas Ball
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Lucas Ball">
+<meta name="description" content="Okay so I&rsquo;m writing this two years after the fact, but I figured I&rsquo;d talk about my experience. The 2024 version is much more in-depth than this one.
+Why would I do this? Link to heading I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn&rsquo;t really have the guidance/motivation to participate.">
+<meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="PRCCDC 2022"/>
+<meta name="twitter:description" content="Okay so I&rsquo;m writing this two years after the fact, but I figured I&rsquo;d talk about my experience. The 2024 version is much more in-depth than this one.
+Why would I do this? Link to heading I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn&rsquo;t really have the guidance/motivation to participate."/>
+
+<meta property="og:title" content="PRCCDC 2022" />
+<meta property="og:description" content="Okay so I&rsquo;m writing this two years after the fact, but I figured I&rsquo;d talk about my experience. The 2024 version is much more in-depth than this one.
+Why would I do this? Link to heading I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn&rsquo;t really have the guidance/motivation to participate." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/cyber/ccdc1/prccdc-2022/" /><meta property="article:section" content="cyber" />
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/cyber/ccdc1/prccdc-2022/">
+
+
+<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      Lucas Ball
+    </a>
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/cyber/">Cyber</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/mywork">My Work</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link" href="/contact/">Contact</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="http://localhost:1313/cyber/ccdc1/prccdc-2022/">
+          PRCCDC 2022
+        </a>
+      </h1>
+    </header>
+
+    <p>Okay so I&rsquo;m writing this two years after the fact, but I figured I&rsquo;d talk about my experience. The 2024 version is much more in-depth than this one.</p>
+<h3 id="why-would-i-do-this">
+  Why would I do this?
+  <a class="heading-link" href="#why-would-i-do-this">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn&rsquo;t really have the guidance/motivation to participate. Fast-forward to 2021, I started showing up to meetings and getting to know everyone. I started joining in on CTF meetings and got introduced to the idea of the cyber defense competitions. I decided to try out for the CDC team and managed to get on it. We were scheduled to compete in the 2022 PRCCDC, so we got to practicing.</p>
+<h3 id="training">
+  Training
+  <a class="heading-link" href="#training">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>I was designated to the Linux side (which is what I primarily enjoy). I didn&rsquo;t really know what I was doing though. I was pretty new to the field and it got overwhelming pretty fast. My teammates were absultely amazing though and I have them to thank for the majority of the things I know today. Writing this two years later, I&rsquo;m realizing that this was likely the tipping point for me to go all in on cybersecurity. I started learning about every aspect of the linux operating system all the way from the kernel to the specific services that are commonly deployed through Linux. My primary teammates Gabriel and Robert Were hugely instrumental in my learning. Both are near genius level when it comes to the Linux operating system and they were kind enough to teach me anything and everything I wanted to know. FYI, both have since taken very prestegious positions at various organizations.</p>
+<p>Anyways, our training consisted of practicing basic linux terminal commands and strategies to lock down the operating system. These included mostly basic commands like <code>ufw</code> and <code>kill -9</code>. Basic commands that any proficient linux user would find easy, but were mostly new to me.</p>
+<h3 id="the-event">
+  The event
+  <a class="heading-link" href="#the-event">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>PRCCDC was remote this year. COVID rules were still in place, so the competition organizers made the decision to make the competition remote with the stipulation that we needed to be live on camera the entire time. This allowed us to set up an incredible war room with tons of monitors and plenty of computers to do anything and everything we wanted.</p>
+<h3 id="t0">
+  t0
+  <a class="heading-link" href="#t0">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>We are given an openvpn config file and a list of hosts with respective IP addresses in our team packets and the competition starts. Almost immediately, we realize there is nothing online. The only thing we were able to really find was a basic wordpress service working on one of the linux servers. This was subsequently secured very quickly mainly by changing the password and verifying the proper version. An issue we found, though, was that all of the IP addresses for the content on the site were incorrect. Simply changing the config to fix the primary URL was not sufficient, so I had to change every link on the site. Luckily, it wasn&rsquo;t vulnerable so I wasn&rsquo;t bothered by the red team at all.</p>
+<h3 id="t1">
+  t1
+  <a class="heading-link" href="#t1">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>This was 2 years ago, so there&rsquo;s a lot I&rsquo;m forgetting about this event. What I can remember is getting shells on every single linux VM in a different window. My teammates had previously explained multiple strategies for monitoring the activity on the box. I monitored the wordpress logs and connected users for any activity and noticed a couple things happening. Red team activity was pretty obvious since the scoring system made the same request at a regular interval. Any time we observed anything happening, we investigated everything and created an incident response report for it. I think the hardest part about the rest of the competition was the injects that had us deploying new services or adding new content to the wordpress site.</p>
+<h3 id="reflection">
+  Reflection
+  <a class="heading-link" href="#reflection">
+    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>I think it&rsquo;s entirely possible that this event sparked something in me to go all in on cybersecurity. The camaraderie and excitement of this intense competition made me extremely excited to be a part of this new community. It made me excited for the future of my career in cybersecurity.</p>
+
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2024
+     Lucas Ball 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
+}
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+
+</html>

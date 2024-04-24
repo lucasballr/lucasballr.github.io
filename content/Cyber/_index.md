@@ -12,4 +12,4 @@ draft: false
 
 ## [pwnable.tw](/cyber/pwnable)
 
-## [Home](/cyber/home)
+## [Home Infrastructure](/cyber/home)
