@@ -1,15 +1,15 @@
 ---
-title: "Write-Ups"
+title: "Cyber"
 date: 2023-01-27T19:46:10-08:00
 draft: false
 ---
 
-## [Cyber Defense Competitions](/write-ups/ccdc)
+## [Cyber Defense Competitions](/cyber/ccdc)
 
-## [DiceCTF 2023](/write-ups/dice23)
+## [DiceCTF 2023](/cyber/dice23)
 
-## [LACTF 2023](/write-ups/lactf23)
+## [LACTF 2023](/cyber/lactf23)
 
-## [pwnable.tw](/write-ups/pwnable)
+## [pwnable.tw](/cyber/pwnable)
 
-## [Homelab](/home/homelab)
+## [Homelab](/cyber/home)
