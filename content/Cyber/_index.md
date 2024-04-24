@@ -12,4 +12,4 @@ draft: false
 
 ## [pwnable.tw](/write-ups/pwnable)
 
-## [Homelab](/homelab)
+## [Homelab](/home/homelab)
