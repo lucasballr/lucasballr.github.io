@@ -17,11 +17,13 @@ Check out my team's [ctftime profile](https://ctftime.org/team/12858) for most r
 
 ### Project Contributions
 
+- [Exploitables (Masters Project)](https://github.com/lucasballr/exploitables)
 - [P-O-O-H (Honeypots)](https://github.com/P-O-O-H)
 - [OPEnSLab-OSU Loom](https://github.com/OPEnSLab-OSU/Loom)
 
 ### Relevant Classes
 
+- CS 575 - Intro to Parallel Programming
 - CS 527 - Error-Correcting Codes
 - CS 578 - Cyber-Security
 - CS 579 - Cybersec Enterprise Defense
