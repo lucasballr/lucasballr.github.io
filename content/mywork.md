@@ -6,6 +6,7 @@ draft: false
 
 ### Notable Competitions
 
+- [National CCDC 2024](https://www.nationalccdc.org/) - 8th place
 - [CPTC West 2022](https://cp.tc/) - 3rd place
 - [Defcon CTF 2022](https://defcon.org/html/links/dc-ctf.html) - Finalist
 - [National CCDC 2022](https://www.nationalccdc.org/) - 5th place
@@ -13,7 +14,7 @@ draft: false
 - [Pacific Rim CCDC](https://www.nationalccdc.org/index.php/competition/competitors/ccdc-regionals) - 1st Place x2
 - [N1CTF 2021](https://ctftime.org/event/1367) - 5th place
 
-Check out my team's [ctftime profile](https://ctftime.org/team/12858) for most recent CTF events
+Check out my ctf team's [ctftime profile](https://ctftime.org/team/12858) for most recent CTF events
 
 ### Project Contributions
 
