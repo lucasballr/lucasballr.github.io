@@ -18,7 +18,7 @@ Check out my ctf team's [ctftime profile](https://ctftime.org/team/12858) for mo
 
 ### Project Contributions
 
-- [Exploitables (Masters Project)](https://github.com/lucasballr/exploitables)
+- [Exploitables (Masters Project)](https://github.com/lucasballr/exploitables) [Project Paper](images/masters_project_paper.pdf)
 - [P-O-O-H (Honeypots)](https://github.com/P-O-O-H)
 - [OPEnSLab-OSU Loom](https://github.com/OPEnSLab-OSU/Loom)
 
