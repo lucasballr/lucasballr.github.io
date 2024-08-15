@@ -16,15 +16,20 @@
 <meta name="description" content="The challenge Link to heading This was a printf format string vulnerability. The program gets your input then calls printf() on that input. Then it repeats that again. The relro and PIE are what make this more difficult than the rick-roll challenge. Instead of exploiting the GOT (which is read-only). You can read the address of libc as well as the return address on the stack, then you can use the format string write in order to create a ROP chain that just calls system(&#39;/bin/sh&#39;).">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="pwn/rut_roh_relro"/>
-<meta name="twitter:description" content="The challenge Link to heading This was a printf format string vulnerability. The program gets your input then calls printf() on that input. Then it repeats that again. The relro and PIE are what make this more difficult than the rick-roll challenge. Instead of exploiting the GOT (which is read-only). You can read the address of libc as well as the return address on the stack, then you can use the format string write in order to create a ROP chain that just calls system(&#39;/bin/sh&#39;)."/>
 
-<meta property="og:title" content="pwn/rut_roh_relro" />
-<meta property="og:description" content="The challenge Link to heading This was a printf format string vulnerability. The program gets your input then calls printf() on that input. Then it repeats that again. The relro and PIE are what make this more difficult than the rick-roll challenge. Instead of exploiting the GOT (which is read-only). You can read the address of libc as well as the return address on the stack, then you can use the format string write in order to create a ROP chain that just calls system(&#39;/bin/sh&#39;)." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/cyber/lactf23/relro/" /><meta property="article:section" content="cyber" />
-<meta property="article:published_time" content="2023-02-12T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-02-12T00:00:00+00:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="pwn/rut_roh_relro">
+  <meta name="twitter:description" content="The challenge Link to heading This was a printf format string vulnerability. The program gets your input then calls printf() on that input. Then it repeats that again. The relro and PIE are what make this more difficult than the rick-roll challenge. Instead of exploiting the GOT (which is read-only). You can read the address of libc as well as the return address on the stack, then you can use the format string write in order to create a ROP chain that just calls system(&#39;/bin/sh&#39;).">
+
+<meta property="og:url" content="http://localhost:1313/cyber/lactf23/relro/">
+  <meta property="og:site_name" content="Lucas Ball">
+  <meta property="og:title" content="pwn/rut_roh_relro">
+  <meta property="og:description" content="The challenge Link to heading This was a printf format string vulnerability. The program gets your input then calls printf() on that input. Then it repeats that again. The relro and PIE are what make this more difficult than the rick-roll challenge. Instead of exploiting the GOT (which is read-only). You can read the address of libc as well as the return address on the stack, then you can use the format string write in order to create a ROP chain that just calls system(&#39;/bin/sh&#39;).">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="cyber">
+    <meta property="article:published_time" content="2023-02-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-02-12T00:00:00+00:00">
 
 
 
@@ -225,16 +230,25 @@ in order to create a ROP chain that just calls <code>system('/bin/sh')</code>.</
 
 
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0V6ZC4TG82');
+        }
+      </script>
+    
+  
+
 
 
   

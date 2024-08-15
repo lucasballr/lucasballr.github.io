@@ -17,17 +17,22 @@
 I first ran the program to see what it did.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Start"/>
-<meta name="twitter:description" content="Alright so my first steps were to download the binary and open it up in ghidra. Opening it up in ghidra yielded nothing because the program was a super basic opcodes. With no libraries. This made it really hard for ghidra to figure out what the functions were really doing. This meant I would have to open it up in GDB to see what was happening in the dissassembly.
-I first ran the program to see what it did."/>
 
-<meta property="og:title" content="Start" />
-<meta property="og:description" content="Alright so my first steps were to download the binary and open it up in ghidra. Opening it up in ghidra yielded nothing because the program was a super basic opcodes. With no libraries. This made it really hard for ghidra to figure out what the functions were really doing. This meant I would have to open it up in GDB to see what was happening in the dissassembly.
-I first ran the program to see what it did." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/cyber/pwnable/start/" /><meta property="article:section" content="cyber" />
-<meta property="article:published_time" content="2023-01-27T19:46:10-08:00" />
-<meta property="article:modified_time" content="2023-01-27T19:46:10-08:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Start">
+  <meta name="twitter:description" content="Alright so my first steps were to download the binary and open it up in ghidra. Opening it up in ghidra yielded nothing because the program was a super basic opcodes. With no libraries. This made it really hard for ghidra to figure out what the functions were really doing. This meant I would have to open it up in GDB to see what was happening in the dissassembly.
+I first ran the program to see what it did.">
+
+<meta property="og:url" content="http://localhost:1313/cyber/pwnable/start/">
+  <meta property="og:site_name" content="Lucas Ball">
+  <meta property="og:title" content="Start">
+  <meta property="og:description" content="Alright so my first steps were to download the binary and open it up in ghidra. Opening it up in ghidra yielded nothing because the program was a super basic opcodes. With no libraries. This made it really hard for ghidra to figure out what the functions were really doing. This meant I would have to open it up in GDB to see what was happening in the dissassembly.
+I first ran the program to see what it did.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="cyber">
+    <meta property="article:published_time" content="2023-01-27T19:46:10-08:00">
+    <meta property="article:modified_time" content="2023-01-27T19:46:10-08:00">
 
 
 
@@ -278,16 +283,25 @@ Then I looked really hard at what was happening. The instructions from my shellc
 
 
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0V6ZC4TG82');
+        }
+      </script>
+    
+  
+
 
 
   

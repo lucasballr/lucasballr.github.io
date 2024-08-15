@@ -17,17 +17,22 @@
 rand_fp = open(&#34;/dev/urandom&#34;,0); read(rand_fp,&amp;rand_str,0x10); puVar1 = DAT_00302020; *DAT_00302020 = rand_str; puVar1[1] = local_20; close(rand_fp); rand_str is what I named this random string that gets pulled from the urandom file.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Babystack"/>
-<meta name="twitter:description" content="The binary Link to heading So this binary is super small, but it&rsquo;s stripped for the most part making it pretty annoying to work with. I opened it up in ghidra and found the main function. Essentially what the program does is open up the /dev/urandom file on the filesystem and save 16 bytes of that to a local variable. This is shown here:
-rand_fp = open(&#34;/dev/urandom&#34;,0); read(rand_fp,&amp;rand_str,0x10); puVar1 = DAT_00302020; *DAT_00302020 = rand_str; puVar1[1] = local_20; close(rand_fp); rand_str is what I named this random string that gets pulled from the urandom file."/>
 
-<meta property="og:title" content="Babystack" />
-<meta property="og:description" content="The binary Link to heading So this binary is super small, but it&rsquo;s stripped for the most part making it pretty annoying to work with. I opened it up in ghidra and found the main function. Essentially what the program does is open up the /dev/urandom file on the filesystem and save 16 bytes of that to a local variable. This is shown here:
-rand_fp = open(&#34;/dev/urandom&#34;,0); read(rand_fp,&amp;rand_str,0x10); puVar1 = DAT_00302020; *DAT_00302020 = rand_str; puVar1[1] = local_20; close(rand_fp); rand_str is what I named this random string that gets pulled from the urandom file." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/cyber/pwnable/babystack/" /><meta property="article:section" content="cyber" />
-<meta property="article:published_time" content="2023-05-09T00:22:46-07:00" />
-<meta property="article:modified_time" content="2023-05-09T00:22:46-07:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Babystack">
+  <meta name="twitter:description" content="The binary Link to heading So this binary is super small, but it’s stripped for the most part making it pretty annoying to work with. I opened it up in ghidra and found the main function. Essentially what the program does is open up the /dev/urandom file on the filesystem and save 16 bytes of that to a local variable. This is shown here:
+rand_fp = open(&#34;/dev/urandom&#34;,0); read(rand_fp,&amp;rand_str,0x10); puVar1 = DAT_00302020; *DAT_00302020 = rand_str; puVar1[1] = local_20; close(rand_fp); rand_str is what I named this random string that gets pulled from the urandom file.">
+
+<meta property="og:url" content="http://localhost:1313/cyber/pwnable/babystack/">
+  <meta property="og:site_name" content="Lucas Ball">
+  <meta property="og:title" content="Babystack">
+  <meta property="og:description" content="The binary Link to heading So this binary is super small, but it’s stripped for the most part making it pretty annoying to work with. I opened it up in ghidra and found the main function. Essentially what the program does is open up the /dev/urandom file on the filesystem and save 16 bytes of that to a local variable. This is shown here:
+rand_fp = open(&#34;/dev/urandom&#34;,0); read(rand_fp,&amp;rand_str,0x10); puVar1 = DAT_00302020; *DAT_00302020 = rand_str; puVar1[1] = local_20; close(rand_fp); rand_str is what I named this random string that gets pulled from the urandom file.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="cyber">
+    <meta property="article:published_time" content="2023-05-09T00:22:46-07:00">
+    <meta property="article:modified_time" content="2023-05-09T00:22:46-07:00">
 
 
 
@@ -319,16 +324,25 @@ just fine. This is what my final exploit looked like:</p>
 
 
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0V6ZC4TG82');
+        }
+      </script>
+    
+  
+
 
 
   
