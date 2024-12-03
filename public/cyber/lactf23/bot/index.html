@@ -16,15 +16,20 @@
 <meta name="description" content="The challenge Link to heading This was a simple buffer overflow. The program runs gets() which is a huge vulnerability since it doesn&rsquo;t have the size specified. There&rsquo;s also a bug with strcmp() that stops reading the input after a NULL byte. So the problem asks for your input and then compares it with a few strings before returning. All you have to do is write one of the strings terminated with a NULL byte then write the buffer overflow.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="pwn/bot"/>
-<meta name="twitter:description" content="The challenge Link to heading This was a simple buffer overflow. The program runs gets() which is a huge vulnerability since it doesn&rsquo;t have the size specified. There&rsquo;s also a bug with strcmp() that stops reading the input after a NULL byte. So the problem asks for your input and then compares it with a few strings before returning. All you have to do is write one of the strings terminated with a NULL byte then write the buffer overflow."/>
 
-<meta property="og:title" content="pwn/bot" />
-<meta property="og:description" content="The challenge Link to heading This was a simple buffer overflow. The program runs gets() which is a huge vulnerability since it doesn&rsquo;t have the size specified. There&rsquo;s also a bug with strcmp() that stops reading the input after a NULL byte. So the problem asks for your input and then compares it with a few strings before returning. All you have to do is write one of the strings terminated with a NULL byte then write the buffer overflow." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/cyber/lactf23/bot/" /><meta property="article:section" content="cyber" />
-<meta property="article:published_time" content="2023-02-12T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-02-12T00:00:00+00:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="pwn/bot">
+  <meta name="twitter:description" content="The challenge Link to heading This was a simple buffer overflow. The program runs gets() which is a huge vulnerability since it doesn’t have the size specified. There’s also a bug with strcmp() that stops reading the input after a NULL byte. So the problem asks for your input and then compares it with a few strings before returning. All you have to do is write one of the strings terminated with a NULL byte then write the buffer overflow.">
+
+<meta property="og:url" content="http://localhost:1313/cyber/lactf23/bot/">
+  <meta property="og:site_name" content="Lucas Ball">
+  <meta property="og:title" content="pwn/bot">
+  <meta property="og:description" content="The challenge Link to heading This was a simple buffer overflow. The program runs gets() which is a huge vulnerability since it doesn’t have the size specified. There’s also a bug with strcmp() that stops reading the input after a NULL byte. So the problem asks for your input and then compares it with a few strings before returning. All you have to do is write one of the strings terminated with a NULL byte then write the buffer overflow.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="cyber">
+    <meta property="article:published_time" content="2023-02-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-02-12T00:00:00+00:00">
 
 
 
@@ -216,16 +221,25 @@ the return address with that section:</p>
 
 
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0V6ZC4TG82');
+        }
+      </script>
+    
+  
+
 
 
   

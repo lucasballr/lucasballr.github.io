@@ -17,17 +17,22 @@
 Arch: i386-32-little RELRO: Partial RELRO Stack: Canary found NX: NX disabled PIE: No PIE (0x8048000) RWX: Has RWX segments After running the binary I quickly realized these security measures didn’t matter. Running the binary in GDB gave me the functionality of the program: disass main">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="orw"/>
-<meta name="twitter:description" content="orw.md Link to heading ORW write-up Link to heading Starting this challenge I ran pwn checksec on the program to get the info on the security measures for the binary:
-Arch: i386-32-little RELRO: Partial RELRO Stack: Canary found NX: NX disabled PIE: No PIE (0x8048000) RWX: Has RWX segments After running the binary I quickly realized these security measures didn’t matter. Running the binary in GDB gave me the functionality of the program: disass main"/>
 
-<meta property="og:title" content="orw" />
-<meta property="og:description" content="orw.md Link to heading ORW write-up Link to heading Starting this challenge I ran pwn checksec on the program to get the info on the security measures for the binary:
-Arch: i386-32-little RELRO: Partial RELRO Stack: Canary found NX: NX disabled PIE: No PIE (0x8048000) RWX: Has RWX segments After running the binary I quickly realized these security measures didn’t matter. Running the binary in GDB gave me the functionality of the program: disass main" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/cyber/pwnable/orw/" /><meta property="article:section" content="cyber" />
-<meta property="article:published_time" content="2023-01-27T19:46:10-08:00" />
-<meta property="article:modified_time" content="2023-01-27T19:46:10-08:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="orw">
+  <meta name="twitter:description" content="orw.md Link to heading ORW write-up Link to heading Starting this challenge I ran pwn checksec on the program to get the info on the security measures for the binary:
+Arch: i386-32-little RELRO: Partial RELRO Stack: Canary found NX: NX disabled PIE: No PIE (0x8048000) RWX: Has RWX segments After running the binary I quickly realized these security measures didn’t matter. Running the binary in GDB gave me the functionality of the program: disass main">
+
+<meta property="og:url" content="http://localhost:1313/cyber/pwnable/orw/">
+  <meta property="og:site_name" content="Lucas Ball">
+  <meta property="og:title" content="orw">
+  <meta property="og:description" content="orw.md Link to heading ORW write-up Link to heading Starting this challenge I ran pwn checksec on the program to get the info on the security measures for the binary:
+Arch: i386-32-little RELRO: Partial RELRO Stack: Canary found NX: NX disabled PIE: No PIE (0x8048000) RWX: Has RWX segments After running the binary I quickly realized these security measures didn’t matter. Running the binary in GDB gave me the functionality of the program: disass main">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="cyber">
+    <meta property="article:published_time" content="2023-01-27T19:46:10-08:00">
+    <meta property="article:modified_time" content="2023-01-27T19:46:10-08:00">
 
 
 
@@ -265,16 +270,25 @@ Arch: i386-32-little RELRO: Partial RELRO Stack: Canary found NX: NX disabled PI
 
 
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0V6ZC4TG82');
+        }
+      </script>
+    
+  
+
 
 
   

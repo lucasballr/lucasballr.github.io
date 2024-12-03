@@ -17,17 +17,22 @@
 void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it&rsquo;s got a timer on it, so you can&rsquo;t take too long to do your thing on the program.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Calc"/>
-<meta name="twitter:description" content="Calc Link to heading Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing&rsquo;s first, lets pull this up in ghidra and see what this is all about.
-void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it&rsquo;s got a timer on it, so you can&rsquo;t take too long to do your thing on the program."/>
 
-<meta property="og:title" content="Calc" />
-<meta property="og:description" content="Calc Link to heading Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing&rsquo;s first, lets pull this up in ghidra and see what this is all about.
-void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it&rsquo;s got a timer on it, so you can&rsquo;t take too long to do your thing on the program." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/cyber/pwnable/calc/" /><meta property="article:section" content="cyber" />
-<meta property="article:published_time" content="2023-01-27T19:46:10-08:00" />
-<meta property="article:modified_time" content="2023-01-27T19:46:10-08:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Calc">
+  <meta name="twitter:description" content="Calc Link to heading Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing’s first, lets pull this up in ghidra and see what this is all about.
+void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it’s got a timer on it, so you can’t take too long to do your thing on the program.">
+
+<meta property="og:url" content="http://localhost:1313/cyber/pwnable/calc/">
+  <meta property="og:site_name" content="Lucas Ball">
+  <meta property="og:title" content="Calc">
+  <meta property="og:description" content="Calc Link to heading Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing’s first, lets pull this up in ghidra and see what this is all about.
+void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it’s got a timer on it, so you can’t take too long to do your thing on the program.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="cyber">
+    <meta property="article:published_time" content="2023-01-27T19:46:10-08:00">
+    <meta property="article:modified_time" content="2023-01-27T19:46:10-08:00">
 
 
 
@@ -359,16 +364,25 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 
 
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0V6ZC4TG82');
+        }
+      </script>
+    
+  
+
 
 
   

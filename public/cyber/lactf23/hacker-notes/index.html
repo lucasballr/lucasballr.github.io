@@ -17,17 +17,22 @@
 bruteforce-luks -t 6 -f dictionary.txt -v 30 hackers-drive.dd dictionary.txt had a bunch of variations of &ldquo;hackerXXX&rdquo; which is the format we are told the password is in. The result is &ldquo;hacker765&rdquo; as the password.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="misc/a-hackers-notes"/>
-<meta name="twitter:description" content="The Challenge Link to heading You are given a luks encrypted drive that has a pretty weak password on it. All you have to do to open it is run a bruteforce script on the drive:
-bruteforce-luks -t 6 -f dictionary.txt -v 30 hackers-drive.dd dictionary.txt had a bunch of variations of &ldquo;hackerXXX&rdquo; which is the format we are told the password is in. The result is &ldquo;hacker765&rdquo; as the password."/>
 
-<meta property="og:title" content="misc/a-hackers-notes" />
-<meta property="og:description" content="The Challenge Link to heading You are given a luks encrypted drive that has a pretty weak password on it. All you have to do to open it is run a bruteforce script on the drive:
-bruteforce-luks -t 6 -f dictionary.txt -v 30 hackers-drive.dd dictionary.txt had a bunch of variations of &ldquo;hackerXXX&rdquo; which is the format we are told the password is in. The result is &ldquo;hacker765&rdquo; as the password." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/cyber/lactf23/hacker-notes/" /><meta property="article:section" content="cyber" />
-<meta property="article:published_time" content="2023-02-12T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-02-12T00:00:00+00:00" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="misc/a-hackers-notes">
+  <meta name="twitter:description" content="The Challenge Link to heading You are given a luks encrypted drive that has a pretty weak password on it. All you have to do to open it is run a bruteforce script on the drive:
+bruteforce-luks -t 6 -f dictionary.txt -v 30 hackers-drive.dd dictionary.txt had a bunch of variations of “hackerXXX” which is the format we are told the password is in. The result is “hacker765” as the password.">
+
+<meta property="og:url" content="http://localhost:1313/cyber/lactf23/hacker-notes/">
+  <meta property="og:site_name" content="Lucas Ball">
+  <meta property="og:title" content="misc/a-hackers-notes">
+  <meta property="og:description" content="The Challenge Link to heading You are given a luks encrypted drive that has a pretty weak password on it. All you have to do to open it is run a bruteforce script on the drive:
+bruteforce-luks -t 6 -f dictionary.txt -v 30 hackers-drive.dd dictionary.txt had a bunch of variations of “hackerXXX” which is the format we are told the password is in. The result is “hacker765” as the password.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="cyber">
+    <meta property="article:published_time" content="2023-02-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-02-12T00:00:00+00:00">
 
 
 
@@ -205,16 +210,25 @@ the flag.</p>
 
 
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0V6ZC4TG82');
+        }
+      </script>
+    
+  
+
 
 
   

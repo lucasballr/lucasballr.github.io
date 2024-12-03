@@ -18,19 +18,24 @@ Start out by checking the security on the binary:
 pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary found NX: NX enabled PIE: PIE enabled FORTIFY: Enabled Yikes. Alright looks like there&rsquo;s gonna be a very specific bug here.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Dubblesort"/>
-<meta name="twitter:description" content="Dubblesort Link to heading Okay this was by far the most frustrating challenge yet. So many issues that took way too long to fix. Nevertheless, it&rsquo;s solved and here&rsquo;s how it&rsquo;s done.
-Start out by checking the security on the binary:
-pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary found NX: NX enabled PIE: PIE enabled FORTIFY: Enabled Yikes. Alright looks like there&rsquo;s gonna be a very specific bug here."/>
 
-<meta property="og:title" content="Dubblesort" />
-<meta property="og:description" content="Dubblesort Link to heading Okay this was by far the most frustrating challenge yet. So many issues that took way too long to fix. Nevertheless, it&rsquo;s solved and here&rsquo;s how it&rsquo;s done.
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dubblesort">
+  <meta name="twitter:description" content="Dubblesort Link to heading Okay this was by far the most frustrating challenge yet. So many issues that took way too long to fix. Nevertheless, it’s solved and here’s how it’s done.
 Start out by checking the security on the binary:
-pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary found NX: NX enabled PIE: PIE enabled FORTIFY: Enabled Yikes. Alright looks like there&rsquo;s gonna be a very specific bug here." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/cyber/pwnable/dubblesort/" /><meta property="article:section" content="cyber" />
-<meta property="article:published_time" content="2023-01-27T19:46:10-08:00" />
-<meta property="article:modified_time" content="2023-01-27T19:46:10-08:00" />
+pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary found NX: NX enabled PIE: PIE enabled FORTIFY: Enabled Yikes. Alright looks like there’s gonna be a very specific bug here.">
+
+<meta property="og:url" content="http://localhost:1313/cyber/pwnable/dubblesort/">
+  <meta property="og:site_name" content="Lucas Ball">
+  <meta property="og:title" content="Dubblesort">
+  <meta property="og:description" content="Dubblesort Link to heading Okay this was by far the most frustrating challenge yet. So many issues that took way too long to fix. Nevertheless, it’s solved and here’s how it’s done.
+Start out by checking the security on the binary:
+pwn checksec ./dubblesort Arch: i386-32-little RELRO: Full RELRO Stack: Canary found NX: NX enabled PIE: PIE enabled FORTIFY: Enabled Yikes. Alright looks like there’s gonna be a very specific bug here.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="cyber">
+    <meta property="article:published_time" content="2023-01-27T19:46:10-08:00">
+    <meta property="article:modified_time" content="2023-01-27T19:46:10-08:00">
 
 
 
@@ -326,16 +331,25 @@ Before input:</p>
 
 
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0V6ZC4TG82');
+        }
+      </script>
+    
+  
+
 
 
   

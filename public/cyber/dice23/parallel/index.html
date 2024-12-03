@@ -17,17 +17,20 @@
 Essentially it would take your input, and jumble it using a key and just swap bytes in weird places. This was easily reversable. Then it would user openMPI to send your jumbled input in 8 byte sections to the 8 different processes.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="rev/parallel"/>
-<meta name="twitter:description" content="This was basically a flag scrambler/checker that would run in 8 different processes. The binary required there to be 8 processes in order to run correctly because it would use inter-process communication.
-Essentially it would take your input, and jumble it using a key and just swap bytes in weird places. This was easily reversable. Then it would user openMPI to send your jumbled input in 8 byte sections to the 8 different processes."/>
 
-<meta property="og:title" content="rev/parallel" />
-<meta property="og:description" content="This was basically a flag scrambler/checker that would run in 8 different processes. The binary required there to be 8 processes in order to run correctly because it would use inter-process communication.
-Essentially it would take your input, and jumble it using a key and just swap bytes in weird places. This was easily reversable. Then it would user openMPI to send your jumbled input in 8 byte sections to the 8 different processes." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/cyber/dice23/parallel/" /><meta property="article:section" content="cyber" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="rev/parallel">
+  <meta name="twitter:description" content="This was basically a flag scrambler/checker that would run in 8 different processes. The binary required there to be 8 processes in order to run correctly because it would use inter-process communication.
+Essentially it would take your input, and jumble it using a key and just swap bytes in weird places. This was easily reversable. Then it would user openMPI to send your jumbled input in 8 byte sections to the 8 different processes.">
 
-
+<meta property="og:url" content="http://localhost:1313/cyber/dice23/parallel/">
+  <meta property="og:site_name" content="Lucas Ball">
+  <meta property="og:title" content="rev/parallel">
+  <meta property="og:description" content="This was basically a flag scrambler/checker that would run in 8 different processes. The binary required there to be 8 processes in order to run correctly because it would use inter-process communication.
+Essentially it would take your input, and jumble it using a key and just swap bytes in weird places. This was easily reversable. Then it would user openMPI to send your jumbled input in 8 byte sections to the 8 different processes.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="cyber">
 
 
 
@@ -249,16 +252,25 @@ assisted by chatgpt):</p>
 
 
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-0V6ZC4TG82', { 'anonymize_ip': false });
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0V6ZC4TG82');
+        }
+      </script>
+    
+  
+
 
 
   
