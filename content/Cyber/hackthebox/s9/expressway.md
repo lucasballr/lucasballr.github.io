@@ -1,3 +1,10 @@
+---
+title: "Expressway"
+date: 2025-09-27T19:55:10-08:00
+draft: false
+---
+
+
 # Write-up for HTB Expressway
 
 ### Initial recon
@@ -47,7 +54,9 @@ User: ike
 Pass: <!-- freakingrockstarontheroad -->
 
 (not useful. IDK what this is lol but I found it in the running processes)
+```bash
 bash -c $'(( ( printf "\xCF\xC9\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x0Aduckduckgo\x03com\x00\x00\x01\x00\x01" >&3; dd bs=9000 count=1 <&3 2>/dev/null | xxd ) 3>/dev/udp/1.1.1.1/53 && echo "DNS accessible") | grep "accessible" && exit 0 ) 2>/dev/null || echo "DNS is not accessible"'
+```
 
 ### Sudo
 got a nudge to look at sudo, so I checked the version and there were multiple CVEs for it. I normally don't check sudo versions for vulns cause

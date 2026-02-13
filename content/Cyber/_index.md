@@ -12,5 +12,3 @@ draft: false
 ## [LACTF 2023](/cyber/lactf23)
 
 ## [pwnable.tw](/cyber/pwnable)
-
-## [Home Infrastructure](/cyber/home)

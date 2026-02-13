@@ -13,21 +13,54 @@
 
 
 <meta name="author" content="Lucas Ball">
-<meta name="description" content="The Vulnerability Link to heading This is a simple format string vulnerability. The program gets the user&rsquo;s input then calls printf() on the user&rsquo;s input. This is a very common vulnerability and a reason why developers should never be calling printf directly on user input. Here&rsquo;s the code from the chall:
-int main(void) { if (main_called) { puts(&#34;nice try&#34;); return 1; } main_called = 1; setbuf(stdout, NULL); printf(&#34;Lyrics: &#34;); char buf[256]; fgets(buf, 256, stdin); printf(&#34;Never gonna give you up, never gonna let you down\nNever gonna run around and &#34;); printf(buf); printf(&#34;Never gonna make you cry, never gonna say goodbye\nNever gonna tell a lie and hurt you\n&#34;); return 0; } So there&rsquo;s a small security measure that makes it so you can&rsquo;t call main twice.">
+<meta name="description" content="
+  The Vulnerability
+  
+    
+    Link to heading
+  
+
+This is a simple format string vulnerability. The program gets the user&rsquo;s
+input then calls printf() on the user&rsquo;s input. This is a very common
+vulnerability and a reason why developers should never be calling printf
+directly on user input. Here&rsquo;s the code from the chall:
+int main(void) {
+    if (main_called) {
+        puts(&#34;nice try&#34;);
+        return 1;
+    }
+    main_called = 1;
+    setbuf(stdout, NULL);
+    printf(&#34;Lyrics: &#34;);
+    char buf[256];
+    fgets(buf, 256, stdin);
+    printf(&#34;Never gonna give you up, never gonna let you down\nNever gonna run around and &#34;);
+    printf(buf);
+    printf(&#34;Never gonna make you cry, never gonna say goodbye\nNever gonna tell a lie and hurt you\n&#34;);
+    return 0;
+}
+So there&rsquo;s a small security measure that makes it so you can&rsquo;t call main twice.
+That&rsquo;s fine though cause you can just jump into the middle of the main function.
+So you can just use the pwntools library to create the format string writes for
+you. You just need to find the offset of your input in the printf call. The
+compiler also changes the last printf call to puts() so you can utilize that
+knowledge to overwrite the GOT of puts with the location of fgets() in the main()
+function. Then you can just get as much input as you want since it loops. Next step
+is to leak libc and replace printf() with system(). Here&rsquo;s the exploit.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
 
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="pwn/rick-roll">
   <meta name="twitter:description" content="The Vulnerability Link to heading This is a simple format string vulnerability. The program gets the user’s input then calls printf() on the user’s input. This is a very common vulnerability and a reason why developers should never be calling printf directly on user input. Here’s the code from the chall:
-int main(void) { if (main_called) { puts(&#34;nice try&#34;); return 1; } main_called = 1; setbuf(stdout, NULL); printf(&#34;Lyrics: &#34;); char buf[256]; fgets(buf, 256, stdin); printf(&#34;Never gonna give you up, never gonna let you down\nNever gonna run around and &#34;); printf(buf); printf(&#34;Never gonna make you cry, never gonna say goodbye\nNever gonna tell a lie and hurt you\n&#34;); return 0; } So there’s a small security measure that makes it so you can’t call main twice.">
+int main(void) { if (main_called) { puts(&#34;nice try&#34;); return 1; } main_called = 1; setbuf(stdout, NULL); printf(&#34;Lyrics: &#34;); char buf[256]; fgets(buf, 256, stdin); printf(&#34;Never gonna give you up, never gonna let you down\nNever gonna run around and &#34;); printf(buf); printf(&#34;Never gonna make you cry, never gonna say goodbye\nNever gonna tell a lie and hurt you\n&#34;); return 0; } So there’s a small security measure that makes it so you can’t call main twice. That’s fine though cause you can just jump into the middle of the main function. So you can just use the pwntools library to create the format string writes for you. You just need to find the offset of your input in the printf call. The compiler also changes the last printf call to puts() so you can utilize that knowledge to overwrite the GOT of puts with the location of fgets() in the main() function. Then you can just get as much input as you want since it loops. Next step is to leak libc and replace printf() with system(). Here’s the exploit.">
 
 <meta property="og:url" content="http://localhost:1313/cyber/lactf23/rick-roll/">
   <meta property="og:site_name" content="Lucas Ball">
   <meta property="og:title" content="pwn/rick-roll">
   <meta property="og:description" content="The Vulnerability Link to heading This is a simple format string vulnerability. The program gets the user’s input then calls printf() on the user’s input. This is a very common vulnerability and a reason why developers should never be calling printf directly on user input. Here’s the code from the chall:
-int main(void) { if (main_called) { puts(&#34;nice try&#34;); return 1; } main_called = 1; setbuf(stdout, NULL); printf(&#34;Lyrics: &#34;); char buf[256]; fgets(buf, 256, stdin); printf(&#34;Never gonna give you up, never gonna let you down\nNever gonna run around and &#34;); printf(buf); printf(&#34;Never gonna make you cry, never gonna say goodbye\nNever gonna tell a lie and hurt you\n&#34;); return 0; } So there’s a small security measure that makes it so you can’t call main twice.">
+int main(void) { if (main_called) { puts(&#34;nice try&#34;); return 1; } main_called = 1; setbuf(stdout, NULL); printf(&#34;Lyrics: &#34;); char buf[256]; fgets(buf, 256, stdin); printf(&#34;Never gonna give you up, never gonna let you down\nNever gonna run around and &#34;); printf(buf); printf(&#34;Never gonna make you cry, never gonna say goodbye\nNever gonna tell a lie and hurt you\n&#34;); return 0; } So there’s a small security measure that makes it so you can’t call main twice. That’s fine though cause you can just jump into the middle of the main function. So you can just use the pwntools library to create the format string writes for you. You just need to find the offset of your input in the printf call. The compiler also changes the last printf call to puts() so you can utilize that knowledge to overwrite the GOT of puts with the location of fgets() in the main() function. Then you can just get as much input as you want since it loops. Next step is to leak libc and replace printf() with system(). Here’s the exploit.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="cyber">
@@ -40,7 +73,9 @@ int main(void) { if (main_called) { puts(&#34;nice try&#34;); return 1; } main_c
 <link rel="canonical" href="http://localhost:1313/cyber/lactf23/rick-roll/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
@@ -65,6 +100,7 @@ int main(void) { if (main_called) { puts(&#34;nice try&#34;); return 1; } main_c
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
 
@@ -93,7 +129,7 @@ int main(void) { if (main_called) { puts(&#34;nice try&#34;); return 1; } main_c
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -101,31 +137,37 @@ int main(void) { if (main_called) { puts(&#34;nice try&#34;); return 1; } main_c
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
       Lucas Ball
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cyber/">Cyber</a>
+              <a class="navigation-link " href="/homelab/">Homelab</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/mywork">My Work</a>
+              <a class="navigation-link " href="/mywork">My Work</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+              <a class="navigation-link " href="/cyber/">Cyber</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/contact/">Contact</a>
+              <a class="navigation-link " href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/contact/">Contact</a>
             </li>
           
         
@@ -151,7 +193,7 @@ int main(void) { if (main_called) { puts(&#34;nice try&#34;); return 1; } main_c
     <h3 id="the-vulnerability">
   The Vulnerability
   <a class="heading-link" href="#the-vulnerability">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -182,7 +224,7 @@ compiler also changes the last printf call to <code>puts()</code> so you can uti
 knowledge to overwrite the GOT of puts with the location of <code>fgets()</code> in the <code>main()</code>
 function. Then you can just get as much input as you want since it loops. Next step
 is to leak libc and replace <code>printf()</code> with <code>system()</code>. Here&rsquo;s the exploit.</p>
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#!/usr/bin/env python3</span>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#585b70;font-style:italic">#!/usr/bin/env python3</span>
 </span></span><span style="display:flex;"><span><span style="color:#94e2d5">from</span> <span style="color:#fab387">pwn</span> <span style="color:#94e2d5">import</span> <span style="color:#89dceb;font-weight:bold">*</span>
 </span></span><span style="display:flex;"><span>elf <span style="color:#89dceb;font-weight:bold">=</span> ELF(<span style="color:#a6e3a1">&#34;./rickroll_patched&#34;</span>)
 </span></span><span style="display:flex;"><span>libc <span style="color:#89dceb;font-weight:bold">=</span> ELF(<span style="color:#a6e3a1">&#34;./libc.so.6&#34;</span>)
@@ -228,7 +270,7 @@ is to leak libc and replace <code>printf()</code> with <code>system()</code>. He
     
       2019 -
     
-    2024
+    2026
      Lucas Ball 
     ·
     
@@ -252,26 +294,14 @@ is to leak libc and replace <code>printf()</code> with <code>system()</code>. He
 
 
   
-  
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-0V6ZC4TG82');
-        }
-      </script>
-    
+
   
 
+  
 
+  
+
+  
 
   
 
@@ -297,5 +327,4 @@ is to leak libc and replace <code>printf()</code> with <code>system()</code>. He
 
   
 </body>
-
 </html>

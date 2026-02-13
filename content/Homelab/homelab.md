@@ -1,5 +1,5 @@
 ---
-title: "Homelab"
+title: "The university homelab"
 date: 2023-04-18T01:25:53-08:00
 draft: false
 ---

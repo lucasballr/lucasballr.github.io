@@ -9,18 +9,18 @@
     <lastBuildDate>Fri, 27 Jan 2023 19:46:10 -0800</lastBuildDate>
     <atom:link href="http://localhost:1313/cyber/dice23/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>rev/parallel</title>
+      <link>http://localhost:1313/cyber/dice23/parallel/</link>
+      <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
+      <guid>http://localhost:1313/cyber/dice23/parallel/</guid>
+      <description>&lt;p&gt;This was basically a flag scrambler/checker that would run in 8 different&#xA;processes. The binary required there to be 8 processes in order to run correctly&#xA;because it would use inter-process communication.&lt;/p&gt;&#xA;&lt;p&gt;Essentially it would take your input, and jumble it using a key and just swap bytes&#xA;in weird places. This was easily reversable. Then it would user openMPI to send your&#xA;jumbled input in 8 byte sections to the 8 different processes. Then these processes&#xA;went in a loop 10000 times sending a byte at a certain index to the next process. These&#xA;processes were essentially rotating the bytes in a circle between processes. So it looked&#xA;kinda like this:&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>rev/super_qomputer</title>
       <link>http://localhost:1313/cyber/dice23/super_qomputer/</link>
       <pubDate>Fri, 27 Jan 2023 19:46:10 -0800</pubDate>
       <guid>http://localhost:1313/cyber/dice23/super_qomputer/</guid>
-      <description>This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1&amp;rsquo;s and 0&amp;rsquo;s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook.</description>
-    </item>
-    <item>
-      <title>rev/parallel</title>
-      <link>http://localhost:1313/cyber/dice23/parallel/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/cyber/dice23/parallel/</guid>
-      <description>This was basically a flag scrambler/checker that would run in 8 different processes. The binary required there to be 8 processes in order to run correctly because it would use inter-process communication.&#xA;Essentially it would take your input, and jumble it using a key and just swap bytes in weird places. This was easily reversable. Then it would user openMPI to send your jumbled input in 8 byte sections to the 8 different processes.</description>
+      <description>&lt;p&gt;This challenge gave you a qasm file which creates a quantum circuit.&#xA;This circuit was designed to just output a 1 or a 0 depending on the position.&#xA;All you had to do was read the superposition of the qubits and the resulting&#xA;string would be a bunch of 1&amp;rsquo;s and 0&amp;rsquo;s that translate to the ascii version of&#xA;the flag. It helped to run these things one at a time cause some stuff took extra&#xA;time so I did it in a jupyter notebook. Here&amp;rsquo;s the script:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

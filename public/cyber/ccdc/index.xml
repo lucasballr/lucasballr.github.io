@@ -6,21 +6,21 @@
     <description>Recent content in Cyber Defense Competitions on Lucas Ball</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 25 Mar 2024 19:55:10 -0800</lastBuildDate>
     <atom:link href="http://localhost:1313/cyber/ccdc/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>NCCDC 2022</title>
       <link>http://localhost:1313/cyber/ccdc/nccdc-2022/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 25 Mar 2024 19:55:10 -0800</pubDate>
       <guid>http://localhost:1313/cyber/ccdc/nccdc-2022/</guid>
-      <description>How did we get here? Link to heading It started with a random tryout with the OSUSEC club to see who might be eligible to compete in the competition. This ended with me getting my spot on the team learning anything I can about cyber defence. I had been working on binary exploitation at the time, so I had no idea what to expect for this. They told me to look up the best ways to secure a wordpress site as well as an nginx site.</description>
+      <description>&lt;h1 id=&#34;how-did-we-get-here&#34;&gt;&#xA;  How did we get here?&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#how-did-we-get-here&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;It started with a random tryout with the OSUSEC club to see who might be eligible to compete in the competition. This ended with me getting my spot on the team learning anything I can about cyber defence. I had been working on binary exploitation at the time, so I had no idea what to expect for this. They told me to look up the best ways to secure a wordpress site as well as an nginx site. These were both valid entry points of an attacker, so I went to work and eventually did a presentation on the subject.&lt;/p&gt;</description>
     </item>
     <item>
       <title>PRCCDC 2022</title>
       <link>http://localhost:1313/cyber/ccdc/prccdc-2022/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 25 Mar 2024 19:55:10 -0800</pubDate>
       <guid>http://localhost:1313/cyber/ccdc/prccdc-2022/</guid>
-      <description>Okay so I&amp;rsquo;m writing this two years after the fact, but I figured I&amp;rsquo;d talk about my experience. The 2024 version is much more in-depth than this one.&#xA;Why would I do this? Link to heading I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn&amp;rsquo;t really have the guidance/motivation to participate.</description>
+      <description>&lt;p&gt;Okay so I&amp;rsquo;m writing this two years after the fact, but I figured I&amp;rsquo;d talk about my experience. The 2024 version is much more in-depth than this one.&lt;/p&gt;&#xA;&lt;h3 id=&#34;why-would-i-do-this&#34;&gt;&#xA;  Why would I do this?&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#why-would-i-do-this&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;p&gt;I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn&amp;rsquo;t really have the guidance/motivation to participate. Fast-forward to 2021, I started showing up to meetings and getting to know everyone. I started joining in on CTF meetings and got introduced to the idea of the cyber defense competitions. I decided to try out for the CDC team and managed to get on it. We were scheduled to compete in the 2022 PRCCDC, so we got to practicing.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

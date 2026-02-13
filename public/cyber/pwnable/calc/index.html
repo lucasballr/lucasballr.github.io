@@ -13,21 +13,37 @@
 
 
 <meta name="author" content="Lucas Ball">
-<meta name="description" content="Calc Link to heading Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing&rsquo;s first, lets pull this up in ghidra and see what this is all about.
-void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it&rsquo;s got a timer on it, so you can&rsquo;t take too long to do your thing on the program.">
+<meta name="description" content="
+  Calc
+  
+    
+    Link to heading
+  
+
+Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing&rsquo;s first, lets pull this up in ghidra and see what this is all about.
+void main(){
+  signal(0xe,timeout);
+  alarm(0x3c);
+  puts(&#34;=== Welcome to SECPROG calculator ===&#34;);
+  fflush((FILE *)stdout);
+  calc();
+  puts(&#34;Merry Christmas!&#34;);
+  return;
+Looks like it&rsquo;s got a timer on it, so you can&rsquo;t take too long to do your thing on the program. Good thing we&rsquo;ll only end up needing a few seconds. The function we want to look at here is the calc() function:">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
 
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Calc">
   <meta name="twitter:description" content="Calc Link to heading Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing’s first, lets pull this up in ghidra and see what this is all about.
-void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it’s got a timer on it, so you can’t take too long to do your thing on the program.">
+void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it’s got a timer on it, so you can’t take too long to do your thing on the program. Good thing we’ll only end up needing a few seconds. The function we want to look at here is the calc() function:">
 
 <meta property="og:url" content="http://localhost:1313/cyber/pwnable/calc/">
   <meta property="og:site_name" content="Lucas Ball">
   <meta property="og:title" content="Calc">
   <meta property="og:description" content="Calc Link to heading Alrighty then. This was definitely a tough one. Time to put my thinking hat on and get to work. First thing’s first, lets pull this up in ghidra and see what this is all about.
-void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it’s got a timer on it, so you can’t take too long to do your thing on the program.">
+void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG calculator ===&#34;); fflush((FILE *)stdout); calc(); puts(&#34;Merry Christmas!&#34;); return; Looks like it’s got a timer on it, so you can’t take too long to do your thing on the program. Good thing we’ll only end up needing a few seconds. The function we want to look at here is the calc() function:">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="cyber">
@@ -40,7 +56,9 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 <link rel="canonical" href="http://localhost:1313/cyber/pwnable/calc/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
@@ -65,6 +83,7 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
 
@@ -93,7 +112,7 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -101,31 +120,37 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
       Lucas Ball
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cyber/">Cyber</a>
+              <a class="navigation-link " href="/homelab/">Homelab</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/mywork">My Work</a>
+              <a class="navigation-link " href="/mywork">My Work</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+              <a class="navigation-link " href="/cyber/">Cyber</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/contact/">Contact</a>
+              <a class="navigation-link " href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/contact/">Contact</a>
             </li>
           
         
@@ -151,7 +176,7 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
     <h1 id="calc">
   Calc
   <a class="heading-link" href="#calc">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h1>
@@ -193,116 +218,116 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 </span></span><span style="display:flex;"><span>  <span style="color:#cba6f7">return</span> local10;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Looks like this function reads exactly 400 characters of user input and puts it on the on in the <code>local10</code> buffer. This is only the case if the characters include <code>+,-,*,/,%,0-9</code>. These are the characters I had to work with. Now lets take a look at the <code>parse_expr()</code> function where all the magic happens.</p>
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>int parse_expr(void *param_1, void *param_2
-</span></span><span style="display:flex;"><span>  bzero(local_74,100);
-</span></span><span style="display:flex;"><span>  local_88 = 0;
-</span></span><span style="display:flex;"><span>  do {
-</span></span><span style="display:flex;"><span>    if (9 &lt; (int)*(char *)((int)param_1 + local_88) - 0x30U) {
-</span></span><span style="display:flex;"><span>      __n = (int)param_1 + (local_88 - (int)local_8c);
-</span></span><span style="display:flex;"><span>      __s1 = (char *)malloc(__n + 1);
-</span></span><span style="display:flex;"><span>      memcpy(__s1,local_8c,__n);
-</span></span><span style="display:flex;"><span>      __s1[__n] = &#39;\0&#39;;
-</span></span><span style="display:flex;"><span>      iVar2 = strcmp(__s1,&#34;0&#34;);
-</span></span><span style="display:flex;"><span>      if (iVar2 == 0) {
-</span></span><span style="display:flex;"><span>        puts(&#34;prevent division by zero&#34;);
-</span></span><span style="display:flex;"><span>        fflush((FILE *)stdout);
-</span></span><span style="display:flex;"><span>        uVar3 = 0;
-</span></span><span style="display:flex;"><span>        goto LAB_0804935f;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>      iVar2 = atoi(__s1);
-</span></span><span style="display:flex;"><span>      if (0 &lt; iVar2) {
-</span></span><span style="display:flex;"><span>        iVar1 = *param_2;
-</span></span><span style="display:flex;"><span>        *param_2 = iVar1 + 1;
-</span></span><span style="display:flex;"><span>        param_2[iVar1 + 1] = iVar2;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>      if ((*(char *)((int)param_1 + local_88) != &#39;\0&#39;) &amp;&amp;
-</span></span><span style="display:flex;"><span>         (9 &lt; (int)*(char *)((int)param_1 + local_88 + 1) - 0x30U)) {
-</span></span><span style="display:flex;"><span>        puts(&#34;expression error!&#34;);
-</span></span><span style="display:flex;"><span>        fflush((FILE *)stdout);
-</span></span><span style="display:flex;"><span>        uVar3 = 0;
-</span></span><span style="display:flex;"><span>        goto LAB_0804935f;
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>      local_8c = (void *)((int)param_1 + local_88 + 1);
-</span></span><span style="display:flex;"><span>      if (local_74[local_84] == &#39;\0&#39;) {
-</span></span><span style="display:flex;"><span>        local_74[local_84] = *(char *)((int)param_1 + local_88);
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>      else {
-</span></span><span style="display:flex;"><span>        switch(*(undefined *)((int)param_1 + local_88)) {
-</span></span><span style="display:flex;"><span>        case 0x25:
-</span></span><span style="display:flex;"><span>        case 0x2a:
-</span></span><span style="display:flex;"><span>        case 0x2f:
-</span></span><span style="display:flex;"><span>          if ((local_74[local_84] == &#39;+&#39;) || (local_74[local_84] == &#39;-&#39;)) {
-</span></span><span style="display:flex;"><span>            local_74[local_84 + 1] = *(char *)((int)param_1 + local_88);
-</span></span><span style="display:flex;"><span>            local_84 = local_84 + 1;
-</span></span><span style="display:flex;"><span>          }
-</span></span><span style="display:flex;"><span>          else {
-</span></span><span style="display:flex;"><span>            eval(param_2,(int)local_74[local_84]);
-</span></span><span style="display:flex;"><span>            local_74[local_84] = *(char *)((int)param_1 + local_88);
-</span></span><span style="display:flex;"><span>          }
-</span></span><span style="display:flex;"><span>          break;
-</span></span><span style="display:flex;"><span>        default:
-</span></span><span style="display:flex;"><span>          eval(param_2,(int)local_74[local_84]);
-</span></span><span style="display:flex;"><span>          local_84 = local_84 + -1;
-</span></span><span style="display:flex;"><span>          break;
-</span></span><span style="display:flex;"><span>        case 0x2b:
-</span></span><span style="display:flex;"><span>        case 0x2d:
-</span></span><span style="display:flex;"><span>          eval(param_2,(int)local_74[local_84]);
-</span></span><span style="display:flex;"><span>          local_74[local_84] = *(char *)((int)param_1 + local_88);
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>      if (*(char *)((int)param_1 + local_88) == &#39;\0&#39;) {
-</span></span><span style="display:flex;"><span>        for (; -1 &lt; local_84; local_84 = local_84 + -1) {
-</span></span><span style="display:flex;"><span>          eval(param_2,(int)local_74[local_84]);
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        uVar3 = 1;
-</span></span><span style="display:flex;"><span>    local_88 = local_88 + 1;
-</span></span><span style="display:flex;"><span>  } while( true );
-</span></span></code></pre></div><p>Looks like the first part is just converting each string of number characters into integers that could be evaluated. Then it would put the numbers on one buffer and the expression symbols on another buffer In This case, it&rsquo;s useful to take a look at how these buffers are being used to be evaluated. Looks like the ghidra decompiler had some issues with this section, but we&rsquo;ll just assume that the eval function takes an integer buffer and a char. The char is the expression symbol while the buffer is an array of numbers that was created in the parsing. Alright lets take a look at the eval function:</p>
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>void eval(int param_1,char param_2)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  if (param_2 == &#39;+&#39;) {
-</span></span><span style="display:flex;"><span>    param_1[param_1 + -1] = param_1[param_1 + -1] + param_1[param_1];
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  else {
-</span></span><span style="display:flex;"><span>    if (param_2 &lt; &#39;,&#39;) {
-</span></span><span style="display:flex;"><span>      if (param_2 == &#39;&#39;) {
-</span></span><span style="display:flex;"><span>        param_1[param_1 + -1] = param_1[*param_1 + -1] * param_1[param_1];
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    else {
-</span></span><span style="display:flex;"><span>      if (param_2 == &#39;-&#39;) {
-</span></span><span style="display:flex;"><span>        param_1[param_1 + -1] = param_1[param_1 + -1] - param_1[param_1];
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>      else {
-</span></span><span style="display:flex;"><span>        if (param_2 == &#39;/&#39;) {
-</span></span><span style="display:flex;"><span>          param_1[param_1 + -1] = param_1[param_1 + -1] / param_1[*param_1];
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>  *param_1 = *param_1 + -1;
-</span></span><span style="display:flex;"><span>  return;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Alright so I was right. The char gets checked to see how the evaluation should go, then it evaluates with the buffer at index -1 and index 1. Wait what??? This took far too long to notice, but there&rsquo;s a problem with trying to access the -1 index. If the sanitation is working correctly, this might actually be secure, but lets take a look at the sanitation to see if theres a problem here:</p>
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>iVar2 = strcmp(__s1,&#34;0&#34;);
-</span></span><span style="display:flex;"><span>if (iVar2 == 0) {
-</span></span><span style="display:flex;"><span>    puts(&#34;prevent division by zero&#34;);
-</span></span><span style="display:flex;"><span>    fflush((FILE *)stdout);
-</span></span><span style="display:flex;"><span>    uVar3 = 0;
-</span></span><span style="display:flex;"><span>    goto LAB_0804935f;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>iVar2 = atoi(__s1);
-</span></span><span style="display:flex;"><span>    if (0 &lt; iVar2) {
-</span></span><span style="display:flex;"><span>        iVar1 = *param_2;
-</span></span><span style="display:flex;"><span>        *param_2 = iVar1 + 1;
-</span></span><span style="display:flex;"><span>        param_2[iVar1 + 1] = iVar2;
-</span></span><span style="display:flex;"><span>    }
-</span></span></code></pre></div><p>So looking at it here it will check if the number we entered is &ldquo;0&rdquo;. If it is, we get an expression error and we resturn back to user input. If it&rsquo;s not &ldquo;0&rdquo; it will convert the number to an integer and save it to the buffer that will later be used in the eval function, <strong>but only if the converted number is larger than 0</strong>. So what if we entered &ldquo;00&rdquo; for the first input. Lets try it:</p>
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>=== Welcome to SECPROG calculator ===
-</span></span><span style="display:flex;"><span>00+10
-</span></span><span style="display:flex;"><span>0
-</span></span></code></pre></div><p>Okay we didn&rsquo;t get an expression error, but I don&rsquo;t exactly know what&rsquo;s going on here. I guess I&rsquo;ll take a look back at the eval function to see what&rsquo;s going on. When it runs the eval function we see that it sets the buffer[-1] to the value that was calculated. So with our &ldquo;00&rdquo; input, the first number was never allocated, so it must be evaluating our second number with whatever is before the buffer. Lets take a look at the order of variable definitions to see what comes before the buffer:</p>
+<pre tabindex="0"><code>int parse_expr(void *param_1, void *param_2
+  bzero(local_74,100);
+  local_88 = 0;
+  do {
+    if (9 &lt; (int)*(char *)((int)param_1 + local_88) - 0x30U) {
+      __n = (int)param_1 + (local_88 - (int)local_8c);
+      __s1 = (char *)malloc(__n + 1);
+      memcpy(__s1,local_8c,__n);
+      __s1[__n] = &#39;\0&#39;;
+      iVar2 = strcmp(__s1,&#34;0&#34;);
+      if (iVar2 == 0) {
+        puts(&#34;prevent division by zero&#34;);
+        fflush((FILE *)stdout);
+        uVar3 = 0;
+        goto LAB_0804935f;
+      }
+      iVar2 = atoi(__s1);
+      if (0 &lt; iVar2) {
+        iVar1 = *param_2;
+        *param_2 = iVar1 + 1;
+        param_2[iVar1 + 1] = iVar2;
+      }
+      if ((*(char *)((int)param_1 + local_88) != &#39;\0&#39;) &amp;&amp;
+         (9 &lt; (int)*(char *)((int)param_1 + local_88 + 1) - 0x30U)) {
+        puts(&#34;expression error!&#34;);
+        fflush((FILE *)stdout);
+        uVar3 = 0;
+        goto LAB_0804935f;
+      }
+      local_8c = (void *)((int)param_1 + local_88 + 1);
+      if (local_74[local_84] == &#39;\0&#39;) {
+        local_74[local_84] = *(char *)((int)param_1 + local_88);
+      }
+      else {
+        switch(*(undefined *)((int)param_1 + local_88)) {
+        case 0x25:
+        case 0x2a:
+        case 0x2f:
+          if ((local_74[local_84] == &#39;+&#39;) || (local_74[local_84] == &#39;-&#39;)) {
+            local_74[local_84 + 1] = *(char *)((int)param_1 + local_88);
+            local_84 = local_84 + 1;
+          }
+          else {
+            eval(param_2,(int)local_74[local_84]);
+            local_74[local_84] = *(char *)((int)param_1 + local_88);
+          }
+          break;
+        default:
+          eval(param_2,(int)local_74[local_84]);
+          local_84 = local_84 + -1;
+          break;
+        case 0x2b:
+        case 0x2d:
+          eval(param_2,(int)local_74[local_84]);
+          local_74[local_84] = *(char *)((int)param_1 + local_88);
+        }
+      }
+      if (*(char *)((int)param_1 + local_88) == &#39;\0&#39;) {
+        for (; -1 &lt; local_84; local_84 = local_84 + -1) {
+          eval(param_2,(int)local_74[local_84]);
+        }
+        uVar3 = 1;
+    local_88 = local_88 + 1;
+  } while( true );
+</code></pre><p>Looks like the first part is just converting each string of number characters into integers that could be evaluated. Then it would put the numbers on one buffer and the expression symbols on another buffer In This case, it&rsquo;s useful to take a look at how these buffers are being used to be evaluated. Looks like the ghidra decompiler had some issues with this section, but we&rsquo;ll just assume that the eval function takes an integer buffer and a char. The char is the expression symbol while the buffer is an array of numbers that was created in the parsing. Alright lets take a look at the eval function:</p>
+<pre tabindex="0"><code>void eval(int param_1,char param_2)
+
+{
+  if (param_2 == &#39;+&#39;) {
+    param_1[param_1 + -1] = param_1[param_1 + -1] + param_1[param_1];
+  }
+  else {
+    if (param_2 &lt; &#39;,&#39;) {
+      if (param_2 == &#39;&#39;) {
+        param_1[param_1 + -1] = param_1[*param_1 + -1] * param_1[param_1];
+      }
+    }
+    else {
+      if (param_2 == &#39;-&#39;) {
+        param_1[param_1 + -1] = param_1[param_1 + -1] - param_1[param_1];
+      }
+      else {
+        if (param_2 == &#39;/&#39;) {
+          param_1[param_1 + -1] = param_1[param_1 + -1] / param_1[*param_1];
+        }
+      }
+    }
+  }
+  *param_1 = *param_1 + -1;
+  return;
+}
+</code></pre><p>Alright so I was right. The char gets checked to see how the evaluation should go, then it evaluates with the buffer at index -1 and index 1. Wait what??? This took far too long to notice, but there&rsquo;s a problem with trying to access the -1 index. If the sanitation is working correctly, this might actually be secure, but lets take a look at the sanitation to see if theres a problem here:</p>
+<pre tabindex="0"><code>iVar2 = strcmp(__s1,&#34;0&#34;);
+if (iVar2 == 0) {
+    puts(&#34;prevent division by zero&#34;);
+    fflush((FILE *)stdout);
+    uVar3 = 0;
+    goto LAB_0804935f;
+}
+iVar2 = atoi(__s1);
+    if (0 &lt; iVar2) {
+        iVar1 = *param_2;
+        *param_2 = iVar1 + 1;
+        param_2[iVar1 + 1] = iVar2;
+    }
+</code></pre><p>So looking at it here it will check if the number we entered is &ldquo;0&rdquo;. If it is, we get an expression error and we resturn back to user input. If it&rsquo;s not &ldquo;0&rdquo; it will convert the number to an integer and save it to the buffer that will later be used in the eval function, <strong>but only if the converted number is larger than 0</strong>. So what if we entered &ldquo;00&rdquo; for the first input. Lets try it:</p>
+<pre tabindex="0"><code>=== Welcome to SECPROG calculator ===
+00+10
+0
+</code></pre><p>Okay we didn&rsquo;t get an expression error, but I don&rsquo;t exactly know what&rsquo;s going on here. I guess I&rsquo;ll take a look back at the eval function to see what&rsquo;s going on. When it runs the eval function we see that it sets the buffer[-1] to the value that was calculated. So with our &ldquo;00&rdquo; input, the first number was never allocated, so it must be evaluating our second number with whatever is before the buffer. Lets take a look at the order of variable definitions to see what comes before the buffer:</p>
 <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#f38ba8">int</span> iVar1;
 </span></span><span style="display:flex;"><span><span style="color:#f38ba8">char</span> <span style="color:#89dceb;font-weight:bold">*</span>s1;
 </span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> iVar2;
@@ -312,19 +337,19 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 </span></span><span style="display:flex;"><span><span style="color:#f38ba8">void</span> <span style="color:#89dceb;font-weight:bold">*</span>local_8c;
 </span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> local_88;
 </span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> local_84; <span style="color:#6c7086;font-style:italic">// Right before the buffer
-</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#f38ba8">char</span> local_74 [<span style="color:#fab387">100</span>]; <span style="color:#6c7086;font-style:italic">// The buffer
-</span></span></span><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#f38ba8">int</span> local_10;
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">char</span> local_74 [<span style="color:#fab387">100</span>]; <span style="color:#6c7086;font-style:italic">// The buffer
+</span></span></span><span style="display:flex;"><span><span style="color:#f38ba8">int</span> local_10;
 </span></span></code></pre></div><p>So <code>local_84</code> is our culprit. If we look above: <code>eval(param_2,(int)local_74[local_84]);</code> its the index of the buffer! And this is the value that ultimately gets output to the screen. I wrote a program to go through an arbitrary number of buffer indexes and I was able to read everything on the stack in the area. If you take a look at <code>e.py</code> you can see that it&rsquo;s the <code>list_stack()</code> function. So now we have arbitrary read. We can&rsquo;t really do much with that unless we can write things to memory. This is where it gets incredibly complicated. So lets say you plug in <code>00+20</code>. You&rsquo;re gonna get a response with the value of <code>buffer[20]</code>. But this parser runs on a loop until the expression is finished. So what if you sent <code>00+20+30</code>? We start out with the eval function outputting <code>buffer[20]</code>, but we&rsquo;ve done something here. We altered the index variable to <code>index = 20</code> so we run the loop again and we have <code>buffer[index-1] = buffer[index-1] + 30</code>. Well there you go, the value at buffer[19] just got set to whatever it was +30. We got arbitrary write.</p>
 <p>Now to figure out what we can do with this arbitrary read and write. I figured it would be a safe bet to try to overwrite the return address so I ran my <code>list_stack()</code> in gdb to find where that was. I found it at buffer[359]. This means I had to overwrite the buffer at index 360 to overwrite the return address. Lets try it:</p>
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>=== Welcome to SECPROG calculator ===
-</span></span><span style="display:flex;"><span>00+360+20
-</span></span><span style="display:flex;"><span>-5770548
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Segmentation fault (core dumped)
-</span></span></code></pre></div><p>There we go, we got a seg fault because we overwrote the return address. Since we can alter anything on the stack why not try some ROP? I took a look at the functions I had to work with and found that there were no <code>execve</code> or <code>system</code>. Uh oh&hellip; I guess I&rsquo;m gonna have to go the hard way and manually call execve with a ROP and <code>int 0x80</code>. But wait:</p>
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>pwndbg&gt; search &#34;/bin/sh&#34;
-</span></span><span style="display:flex;"><span>pwndbg&gt;
-</span></span></code></pre></div><p>Looks like I&rsquo;m gonna also have to put &ldquo;/bin/sh&rdquo; somewhere so I can use it when I call execve. This stumped me for a while because I could put &ldquo;/bin/sh&rdquo; on the stack with my arbitrary write, but I couldn&rsquo;t access it, because (after a lot of trial an error) I was unable to put a value higher than 0x7fffffff on the stack, and the stack just happened to start at 0xffff0000 making this a big problem. I&rsquo;d have to use <code>read()</code> to read the user input and place the &ldquo;/bin/sh&rdquo; somewhere in memory. So I did exactly that, I built a ROP chain that would read my input then return back to the <code>calc()</code> function so I could continue the exploit. Then I used the <code>calc()</code> function to create another ROP chain that would use our string to all <code>execve(&quot;/bin/sh&quot;, 0, 0)</code>. The way I did it took hours of trial and error because building the stack from the return address to the <code>int 0x80</code> was incredibly hard. Turns out doing that, each value that you changed would alter the next value. Which makes sense because of the way the <code>eval</code> function is put together. This means that each address that I entered had to be an offset of the previous address. After hours of trial and error, I got it. I connected up to the server and got the flag. <code>FLAG{EXAMPLE_FLAG}</code></p>
+<pre tabindex="0"><code>=== Welcome to SECPROG calculator ===
+00+360+20
+-5770548
+
+Segmentation fault (core dumped)
+</code></pre><p>There we go, we got a seg fault because we overwrote the return address. Since we can alter anything on the stack why not try some ROP? I took a look at the functions I had to work with and found that there were no <code>execve</code> or <code>system</code>. Uh oh&hellip; I guess I&rsquo;m gonna have to go the hard way and manually call execve with a ROP and <code>int 0x80</code>. But wait:</p>
+<pre tabindex="0"><code>pwndbg&gt; search &#34;/bin/sh&#34;
+pwndbg&gt;
+</code></pre><p>Looks like I&rsquo;m gonna also have to put &ldquo;/bin/sh&rdquo; somewhere so I can use it when I call execve. This stumped me for a while because I could put &ldquo;/bin/sh&rdquo; on the stack with my arbitrary write, but I couldn&rsquo;t access it, because (after a lot of trial an error) I was unable to put a value higher than 0x7fffffff on the stack, and the stack just happened to start at 0xffff0000 making this a big problem. I&rsquo;d have to use <code>read()</code> to read the user input and place the &ldquo;/bin/sh&rdquo; somewhere in memory. So I did exactly that, I built a ROP chain that would read my input then return back to the <code>calc()</code> function so I could continue the exploit. Then I used the <code>calc()</code> function to create another ROP chain that would use our string to all <code>execve(&quot;/bin/sh&quot;, 0, 0)</code>. The way I did it took hours of trial and error because building the stack from the return address to the <code>int 0x80</code> was incredibly hard. Turns out doing that, each value that you changed would alter the next value. Which makes sense because of the way the <code>eval</code> function is put together. This means that each address that I entered had to be an offset of the previous address. After hours of trial and error, I got it. I connected up to the server and got the flag. <code>FLAG{EXAMPLE_FLAG}</code></p>
 <p>Later I realized that if I built the stack backwards I wouldn&rsquo;t have had to go through all that trouble, but I guess some things you just gotta learn the hard way.</p>
 
   </article>
@@ -340,7 +365,7 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
     
       2019 -
     
-    2024
+    2026
      Lucas Ball 
     ·
     
@@ -364,26 +389,14 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 
 
   
-  
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-0V6ZC4TG82');
-        }
-      </script>
-    
+
   
 
+  
 
+  
+
+  
 
   
 
@@ -409,5 +422,4 @@ void main(){ signal(0xe,timeout); alarm(0x3c); puts(&#34;=== Welcome to SECPROG 
 
   
 </body>
-
 </html>

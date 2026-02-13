@@ -13,18 +13,24 @@
 
 
 <meta name="author" content="Lucas Ball">
-<meta name="description" content="This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1&rsquo;s and 0&rsquo;s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook.">
+<meta name="description" content="This challenge gave you a qasm file which creates a quantum circuit.
+This circuit was designed to just output a 1 or a 0 depending on the position.
+All you had to do was read the superposition of the qubits and the resulting
+string would be a bunch of 1&rsquo;s and 0&rsquo;s that translate to the ascii version of
+the flag. It helped to run these things one at a time cause some stuff took extra
+time so I did it in a jupyter notebook. Here&rsquo;s the script:">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
 
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="rev/super_qomputer">
-  <meta name="twitter:description" content="This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1’s and 0’s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook.">
+  <meta name="twitter:description" content="This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1’s and 0’s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook. Here’s the script:">
 
 <meta property="og:url" content="http://localhost:1313/cyber/dice23/super_qomputer/">
   <meta property="og:site_name" content="Lucas Ball">
   <meta property="og:title" content="rev/super_qomputer">
-  <meta property="og:description" content="This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1’s and 0’s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook.">
+  <meta property="og:description" content="This challenge gave you a qasm file which creates a quantum circuit. This circuit was designed to just output a 1 or a 0 depending on the position. All you had to do was read the superposition of the qubits and the resulting string would be a bunch of 1’s and 0’s that translate to the ascii version of the flag. It helped to run these things one at a time cause some stuff took extra time so I did it in a jupyter notebook. Here’s the script:">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="cyber">
@@ -37,7 +43,9 @@
 <link rel="canonical" href="http://localhost:1313/cyber/dice23/super_qomputer/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
@@ -62,6 +70,7 @@
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
 
@@ -90,7 +99,7 @@
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -98,31 +107,37 @@
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
       Lucas Ball
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cyber/">Cyber</a>
+              <a class="navigation-link " href="/homelab/">Homelab</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/mywork">My Work</a>
+              <a class="navigation-link " href="/mywork">My Work</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+              <a class="navigation-link " href="/cyber/">Cyber</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/contact/">Contact</a>
+              <a class="navigation-link " href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/contact/">Contact</a>
             </li>
           
         
@@ -190,7 +205,7 @@ time so I did it in a jupyter notebook. Here&rsquo;s the script:</p>
     
       2019 -
     
-    2024
+    2026
      Lucas Ball 
     ·
     
@@ -214,26 +229,14 @@ time so I did it in a jupyter notebook. Here&rsquo;s the script:</p>
 
 
   
-  
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-0V6ZC4TG82');
-        }
-      </script>
-    
+
   
 
+  
 
+  
+
+  
 
   
 
@@ -259,5 +262,4 @@ time so I did it in a jupyter notebook. Here&rsquo;s the script:</p>
 
   
 </body>
-
 </html>

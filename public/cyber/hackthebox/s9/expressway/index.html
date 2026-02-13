@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Expressway · Lucas Ball
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Lucas Ball">
+<meta name="description" content="
+  Write-up for HTB Expressway
+  
+    
+    Link to heading
+  
+
+
+  Initial recon
+  
+    
+    Link to heading
+  
+
+&gt; sudo nmap -sU &lt;IP&gt;
+OpenSSH 10.0p2 Debian 8 (protocol 2.0)
+
+PORT      STATE         SERVICE
+68/udp    open|filtered dhcpc
+69/udp    open|filtered tftp
+161/udp   open|filtered snmp
+500/udp   open          isakmp &lt;-----------------------
+1101/udp  open|filtered pt2-discover
+4500/udp  open|filtered nat-t-ike
+5003/udp  open|filtered filemaker
+9200/udp  open|filtered wap-wsp
+Leads to IPSEC/IKE vpn which has some misconfigurations.
+https://book.hacktricks.wiki/en/network-services-pentesting/ipsec-ike-vpn-pentesting.html
+Download ike-scan to get some information about it">
+<meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Expressway">
+  <meta name="twitter:description" content="Write-up for HTB Expressway Link to heading Initial recon Link to heading &gt; sudo nmap -sU &lt;IP&gt; OpenSSH 10.0p2 Debian 8 (protocol 2.0) PORT STATE SERVICE 68/udp open|filtered dhcpc 69/udp open|filtered tftp 161/udp open|filtered snmp 500/udp open isakmp &lt;----------------------- 1101/udp open|filtered pt2-discover 4500/udp open|filtered nat-t-ike 5003/udp open|filtered filemaker 9200/udp open|filtered wap-wsp Leads to IPSEC/IKE vpn which has some misconfigurations. https://book.hacktricks.wiki/en/network-services-pentesting/ipsec-ike-vpn-pentesting.html
+Download ike-scan to get some information about it">
+
+<meta property="og:url" content="http://localhost:1313/cyber/hackthebox/s9/expressway/">
+  <meta property="og:site_name" content="Lucas Ball">
+  <meta property="og:title" content="Expressway">
+  <meta property="og:description" content="Write-up for HTB Expressway Link to heading Initial recon Link to heading &gt; sudo nmap -sU &lt;IP&gt; OpenSSH 10.0p2 Debian 8 (protocol 2.0) PORT STATE SERVICE 68/udp open|filtered dhcpc 69/udp open|filtered tftp 161/udp open|filtered snmp 500/udp open isakmp &lt;----------------------- 1101/udp open|filtered pt2-discover 4500/udp open|filtered nat-t-ike 5003/udp open|filtered filemaker 9200/udp open|filtered wap-wsp Leads to IPSEC/IKE vpn which has some misconfigurations. https://book.hacktricks.wiki/en/network-services-pentesting/ipsec-ike-vpn-pentesting.html
+Download ike-scan to get some information about it">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="cyber">
+    <meta property="article:published_time" content="2025-09-27T19:55:10-08:00">
+    <meta property="article:modified_time" content="2025-09-27T19:55:10-08:00">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/cyber/hackthebox/s9/expressway/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Lucas Ball
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/homelab/">Homelab</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/mywork">My Work</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/cyber/">Cyber</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/contact/">Contact</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="http://localhost:1313/cyber/hackthebox/s9/expressway/">
+          Expressway
+        </a>
+      </h1>
+    </header>
+
+    <h1 id="write-up-for-htb-expressway">
+  Write-up for HTB Expressway
+  <a class="heading-link" href="#write-up-for-htb-expressway">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<h3 id="initial-recon">
+  Initial recon
+  <a class="heading-link" href="#initial-recon">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<pre tabindex="0"><code>&gt; sudo nmap -sU &lt;IP&gt;
+OpenSSH 10.0p2 Debian 8 (protocol 2.0)
+
+PORT      STATE         SERVICE
+68/udp    open|filtered dhcpc
+69/udp    open|filtered tftp
+161/udp   open|filtered snmp
+500/udp   open          isakmp &lt;-----------------------
+1101/udp  open|filtered pt2-discover
+4500/udp  open|filtered nat-t-ike
+5003/udp  open|filtered filemaker
+9200/udp  open|filtered wap-wsp
+</code></pre><p>Leads to IPSEC/IKE vpn which has some misconfigurations.
+<a href="https://book.hacktricks.wiki/en/network-services-pentesting/ipsec-ike-vpn-pentesting.html"  class="external-link" target="_blank" rel="noopener">https://book.hacktricks.wiki/en/network-services-pentesting/ipsec-ike-vpn-pentesting.html</a></p>
+<p>Download ike-scan to get some information about it</p>
+<pre tabindex="0"><code>Starting ike-scan 1.9.6 with 1 hosts (http://www.nta-monitor.com/tools/ike-scan/)
+10.129.253.211  Main Mode Handshake returned
+        HDR=(CKY-R=53a6713a18bdcf26)
+        SA=(Enc=3DES Hash=SHA1 Group=2:modp1024 Auth=PSK LifeType=Seconds LifeDuration=28800)
+        VID=09002689dfd6b712 (XAUTH)
+        VID=afcad71368a1f1c96b8696fc77570100 (Dead Peer Detection v1.0)
+</code></pre><p>IKE Backoff Patterns:</p>
+<pre tabindex="0"><code>IP Address      No.     Recv time               Delta Time
+10.129.253.211  1       1758692517.703869       0.000000
+10.129.253.211  Implementation guess: Linksys Etherfast
+
+ID(Type=ID_USER_FQDN, Value=ike@expressway.htb)
+</code></pre><p>Use hashcat to crack the PSK: <code>hashcat ./hash.txt rockyou.txt</code>
+PSK: </p>
+<h3 id="creds">
+  Creds
+  <a class="heading-link" href="#creds">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>User: ike
+Pass: </p>
+<p>(not useful. IDK what this is lol but I found it in the running processes)</p>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bash -c <span style="color:#a6e3a1">$&#39;(( ( printf &#34;\xCF\xC9\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x0Aduckduckgo\x03com\x00\x00\x01\x00\x01&#34; &gt;&amp;3; dd bs=9000 count=1 &lt;&amp;3 2&gt;/dev/null | xxd ) 3&gt;/dev/udp/1.1.1.1/53 &amp;&amp; echo &#34;DNS accessible&#34;) | grep &#34;accessible&#34; &amp;&amp; exit 0 ) 2&gt;/dev/null || echo &#34;DNS is not accessible&#34;&#39;</span>
+</span></span></code></pre></div><h3 id="sudo">
+  Sudo
+  <a class="heading-link" href="#sudo">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>got a nudge to look at sudo, so I checked the version and there were multiple CVEs for it. I normally don&rsquo;t check sudo versions for vulns cause
+linpeas always says it&rsquo;s &ldquo;potentially vulnerable&rdquo;. This time it actually was. This CVE worked to get root:
+<a href="https://github.com/pr0v3rbs/CVE-2025-32463_chwoot/tree/main"  class="external-link" target="_blank" rel="noopener">https://github.com/pr0v3rbs/CVE-2025-32463_chwoot/tree/main</a></p>
+<p>EZ root.</p>
+
+  </article>
+</section>
+
+  
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2026
+     Lucas Ball 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>

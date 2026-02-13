@@ -2,111 +2,111 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://lucasball.com/homelab/</loc>
+    <loc>http://localhost:1313/homelab/</loc>
     <lastmod>2026-02-12T23:29:01-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2026-02-12T23:29:01-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/hackthebox/</loc>
+    <loc>http://localhost:1313/cyber/hackthebox/</loc>
     <lastmod>2025-09-27T19:55:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/hackthebox/s9/</loc>
+    <loc>http://localhost:1313/cyber/hackthebox/s9/</loc>
     <lastmod>2025-09-27T19:55:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/ccdc/</loc>
+    <loc>http://localhost:1313/cyber/ccdc/</loc>
     <lastmod>2024-03-25T19:55:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/home/</loc>
+    <loc>http://localhost:1313/cyber/home/</loc>
     <lastmod>2024-03-25T19:55:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/ccdc/nccdc-2022/</loc>
+    <loc>http://localhost:1313/cyber/ccdc/nccdc-2022/</loc>
     <lastmod>2024-03-25T19:55:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/ccdc/prccdc-2022/</loc>
+    <loc>http://localhost:1313/cyber/ccdc/prccdc-2022/</loc>
     <lastmod>2024-03-25T19:55:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/pwnable/babystack/</loc>
+    <loc>http://localhost:1313/cyber/pwnable/babystack/</loc>
     <lastmod>2023-05-09T00:22:46-07:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/home/homelab/</loc>
+    <loc>http://localhost:1313/cyber/home/homelab/</loc>
     <lastmod>2023-04-18T01:25:53-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/authors/</loc>
+    <loc>http://localhost:1313/authors/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/lactf23/</loc>
+    <loc>http://localhost:1313/cyber/lactf23/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/authors/laozi/</loc>
+    <loc>http://localhost:1313/authors/laozi/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/lactf23/hacker-notes/</loc>
+    <loc>http://localhost:1313/cyber/lactf23/hacker-notes/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/lactf23/ebe/</loc>
+    <loc>http://localhost:1313/cyber/lactf23/ebe/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/lactf23/bot/</loc>
+    <loc>http://localhost:1313/cyber/lactf23/bot/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/lactf23/gatekeep/</loc>
+    <loc>http://localhost:1313/cyber/lactf23/gatekeep/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/lactf23/rick-roll/</loc>
+    <loc>http://localhost:1313/cyber/lactf23/rick-roll/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/lactf23/relro/</loc>
+    <loc>http://localhost:1313/cyber/lactf23/relro/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/lactf23/switcheroo/</loc>
+    <loc>http://localhost:1313/cyber/lactf23/switcheroo/</loc>
     <lastmod>2023-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/pwnable/3x17/</loc>
+    <loc>http://localhost:1313/cyber/pwnable/3x17/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/pwnable/calc/</loc>
+    <loc>http://localhost:1313/cyber/pwnable/calc/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/</loc>
+    <loc>http://localhost:1313/cyber/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/dice23/</loc>
+    <loc>http://localhost:1313/cyber/dice23/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/pwnable/dubblesort/</loc>
+    <loc>http://localhost:1313/cyber/pwnable/dubblesort/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/pwnable/orw/</loc>
+    <loc>http://localhost:1313/cyber/pwnable/orw/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/pwnable/</loc>
+    <loc>http://localhost:1313/cyber/pwnable/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/dice23/parallel/</loc>
+    <loc>http://localhost:1313/cyber/dice23/parallel/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/dice23/super_qomputer/</loc>
+    <loc>http://localhost:1313/cyber/dice23/super_qomputer/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/pwnable/start/</loc>
+    <loc>http://localhost:1313/cyber/pwnable/start/</loc>
     <lastmod>2023-01-27T19:46:10-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/pwnable/seethefile/</loc>
+    <loc>http://localhost:1313/cyber/pwnable/seethefile/</loc>
     <lastmod>2023-01-27T18:46:22-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/contact/</loc>
+    <loc>http://localhost:1313/contact/</loc>
     <lastmod>2023-01-24T01:25:53-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/mywork/</loc>
+    <loc>http://localhost:1313/mywork/</loc>
     <lastmod>2023-01-24T01:25:53-08:00</lastmod>
   </url><url>
-    <loc>https://lucasball.com/cyber/hackthebox/s9/expressway/</loc>
+    <loc>http://localhost:1313/cyber/hackthebox/s9/expressway/</loc>
   </url><url>
-    <loc>https://lucasball.com/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url><url>
-    <loc>https://lucasball.com/series/</loc>
+    <loc>http://localhost:1313/series/</loc>
   </url><url>
-    <loc>https://lucasball.com/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
   </url>
 </urlset>

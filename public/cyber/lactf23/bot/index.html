@@ -13,18 +13,33 @@
 
 
 <meta name="author" content="Lucas Ball">
-<meta name="description" content="The challenge Link to heading This was a simple buffer overflow. The program runs gets() which is a huge vulnerability since it doesn&rsquo;t have the size specified. There&rsquo;s also a bug with strcmp() that stops reading the input after a NULL byte. So the problem asks for your input and then compares it with a few strings before returning. All you have to do is write one of the strings terminated with a NULL byte then write the buffer overflow.">
+<meta name="description" content="
+  The challenge
+  
+    
+    Link to heading
+  
+
+This was a simple buffer overflow. The program runs gets() which
+is a huge vulnerability since it doesn&rsquo;t have the size specified.
+There&rsquo;s also a bug with strcmp() that stops reading the input after
+a NULL byte. So the problem asks for your input and then compares it
+with a few strings before returning. All you have to do is write one
+of the strings terminated with a NULL byte then write the buffer
+overflow. There was a &ldquo;get flag&rdquo; section of the code so I just overwrote
+the return address with that section:">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
 
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="pwn/bot">
-  <meta name="twitter:description" content="The challenge Link to heading This was a simple buffer overflow. The program runs gets() which is a huge vulnerability since it doesn’t have the size specified. There’s also a bug with strcmp() that stops reading the input after a NULL byte. So the problem asks for your input and then compares it with a few strings before returning. All you have to do is write one of the strings terminated with a NULL byte then write the buffer overflow.">
+  <meta name="twitter:description" content="The challenge Link to heading This was a simple buffer overflow. The program runs gets() which is a huge vulnerability since it doesn’t have the size specified. There’s also a bug with strcmp() that stops reading the input after a NULL byte. So the problem asks for your input and then compares it with a few strings before returning. All you have to do is write one of the strings terminated with a NULL byte then write the buffer overflow. There was a “get flag” section of the code so I just overwrote the return address with that section:">
 
 <meta property="og:url" content="http://localhost:1313/cyber/lactf23/bot/">
   <meta property="og:site_name" content="Lucas Ball">
   <meta property="og:title" content="pwn/bot">
-  <meta property="og:description" content="The challenge Link to heading This was a simple buffer overflow. The program runs gets() which is a huge vulnerability since it doesn’t have the size specified. There’s also a bug with strcmp() that stops reading the input after a NULL byte. So the problem asks for your input and then compares it with a few strings before returning. All you have to do is write one of the strings terminated with a NULL byte then write the buffer overflow.">
+  <meta property="og:description" content="The challenge Link to heading This was a simple buffer overflow. The program runs gets() which is a huge vulnerability since it doesn’t have the size specified. There’s also a bug with strcmp() that stops reading the input after a NULL byte. So the problem asks for your input and then compares it with a few strings before returning. All you have to do is write one of the strings terminated with a NULL byte then write the buffer overflow. There was a “get flag” section of the code so I just overwrote the return address with that section:">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="cyber">
@@ -37,7 +52,9 @@
 <link rel="canonical" href="http://localhost:1313/cyber/lactf23/bot/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
@@ -62,6 +79,7 @@
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
 
@@ -90,7 +108,7 @@
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -98,31 +116,37 @@
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
       Lucas Ball
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cyber/">Cyber</a>
+              <a class="navigation-link " href="/homelab/">Homelab</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/mywork">My Work</a>
+              <a class="navigation-link " href="/mywork">My Work</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+              <a class="navigation-link " href="/cyber/">Cyber</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/contact/">Contact</a>
+              <a class="navigation-link " href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/contact/">Contact</a>
             </li>
           
         
@@ -148,7 +172,7 @@
     <h3 id="the-challenge">
   The challenge
   <a class="heading-link" href="#the-challenge">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -160,7 +184,7 @@ with a few strings before returning. All you have to do is write one
 of the strings terminated with a NULL byte then write the buffer
 overflow. There was a &ldquo;get flag&rdquo; section of the code so I just overwrote
 the return address with that section:</p>
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#6c7086;font-style:italic">#!/usr/bin/env python3</span>
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#585b70;font-style:italic">#!/usr/bin/env python3</span>
 </span></span><span style="display:flex;"><span><span style="color:#94e2d5">from</span> <span style="color:#fab387">pwn</span> <span style="color:#94e2d5">import</span> <span style="color:#89dceb;font-weight:bold">*</span>
 </span></span><span style="display:flex;"><span>elf <span style="color:#89dceb;font-weight:bold">=</span> ELF(<span style="color:#a6e3a1">&#34;./bot_patched&#34;</span>)
 </span></span><span style="display:flex;"><span>context<span style="color:#89dceb;font-weight:bold">.</span>terminal <span style="color:#89dceb;font-weight:bold">=</span> [<span style="color:#a6e3a1">&#39;tmux&#39;</span>, <span style="color:#a6e3a1">&#39;splitw&#39;</span>, <span style="color:#a6e3a1">&#39;-h&#39;</span>]
@@ -197,7 +221,7 @@ the return address with that section:</p>
     
       2019 -
     
-    2024
+    2026
      Lucas Ball 
     ·
     
@@ -221,26 +245,14 @@ the return address with that section:</p>
 
 
   
-  
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-0V6ZC4TG82');
-        }
-      </script>
-    
+
   
 
+  
 
+  
+
+  
 
   
 
@@ -266,5 +278,4 @@ the return address with that section:</p>
 
   
 </body>
-
 </html>

@@ -14,23 +14,33 @@
 
 <meta name="author" content="Lucas Ball">
 <meta name="description" content="Okay so I&rsquo;m writing this two years after the fact, but I figured I&rsquo;d talk about my experience. The 2024 version is much more in-depth than this one.
-Why would I do this? Link to heading I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn&rsquo;t really have the guidance/motivation to participate.">
+
+  Why would I do this?
+  
+    
+    Link to heading
+  
+
+I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn&rsquo;t really have the guidance/motivation to participate. Fast-forward to 2021, I started showing up to meetings and getting to know everyone. I started joining in on CTF meetings and got introduced to the idea of the cyber defense competitions. I decided to try out for the CDC team and managed to get on it. We were scheduled to compete in the 2022 PRCCDC, so we got to practicing.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
 
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="PRCCDC 2022">
   <meta name="twitter:description" content="Okay so I’m writing this two years after the fact, but I figured I’d talk about my experience. The 2024 version is much more in-depth than this one.
-Why would I do this? Link to heading I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn’t really have the guidance/motivation to participate.">
+Why would I do this? Link to heading I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn’t really have the guidance/motivation to participate. Fast-forward to 2021, I started showing up to meetings and getting to know everyone. I started joining in on CTF meetings and got introduced to the idea of the cyber defense competitions. I decided to try out for the CDC team and managed to get on it. We were scheduled to compete in the 2022 PRCCDC, so we got to practicing.">
 
 <meta property="og:url" content="http://localhost:1313/cyber/ccdc/prccdc-2022/">
   <meta property="og:site_name" content="Lucas Ball">
   <meta property="og:title" content="PRCCDC 2022">
   <meta property="og:description" content="Okay so I’m writing this two years after the fact, but I figured I’d talk about my experience. The 2024 version is much more in-depth than this one.
-Why would I do this? Link to heading I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn’t really have the guidance/motivation to participate.">
+Why would I do this? Link to heading I essentially was trying to look into ways to get back into the whole hacker / computer science space and decided to look into OSUSEC again. I had originally joined the discord server in 2017 because I had an interest in cyber, but I didn’t really have the guidance/motivation to participate. Fast-forward to 2021, I started showing up to meetings and getting to know everyone. I started joining in on CTF meetings and got introduced to the idea of the cyber defense competitions. I decided to try out for the CDC team and managed to get on it. We were scheduled to compete in the 2022 PRCCDC, so we got to practicing.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="cyber">
+    <meta property="article:published_time" content="2024-03-25T19:55:10-08:00">
+    <meta property="article:modified_time" content="2024-03-25T19:55:10-08:00">
 
 
 
@@ -38,7 +48,9 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
 <link rel="canonical" href="http://localhost:1313/cyber/ccdc/prccdc-2022/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
@@ -63,6 +75,7 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
 
@@ -91,7 +104,7 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -99,31 +112,37 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
       Lucas Ball
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cyber/">Cyber</a>
+              <a class="navigation-link " href="/homelab/">Homelab</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/mywork">My Work</a>
+              <a class="navigation-link " href="/mywork">My Work</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+              <a class="navigation-link " href="/cyber/">Cyber</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/contact/">Contact</a>
+              <a class="navigation-link " href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/contact/">Contact</a>
             </li>
           
         
@@ -150,7 +169,7 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
 <h3 id="why-would-i-do-this">
   Why would I do this?
   <a class="heading-link" href="#why-would-i-do-this">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -158,7 +177,7 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
 <h3 id="training">
   Training
   <a class="heading-link" href="#training">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -167,7 +186,7 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
 <h3 id="the-event">
   The event
   <a class="heading-link" href="#the-event">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -175,7 +194,7 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
 <h3 id="t0">
   t0
   <a class="heading-link" href="#t0">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -183,7 +202,7 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
 <h3 id="t1">
   t1
   <a class="heading-link" href="#t1">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -191,7 +210,7 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
 <h3 id="reflection">
   Reflection
   <a class="heading-link" href="#reflection">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -210,7 +229,7 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
     
       2019 -
     
-    2024
+    2026
      Lucas Ball 
     ·
     
@@ -234,26 +253,14 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
 
 
   
-  
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-0V6ZC4TG82');
-        }
-      </script>
-    
+
   
 
+  
 
+  
+
+  
 
   
 
@@ -279,5 +286,4 @@ Why would I do this? Link to heading I essentially was trying to look into ways 
 
   
 </body>
-
 </html>

@@ -13,18 +13,32 @@
 
 
 <meta name="author" content="Lucas Ball">
-<meta name="description" content="How it started Link to heading I initially started my homelab with the intention to get a network-wide adblock set up for my network. I didn&rsquo;t really like having to look at ads everywhere I went on the internet. I decided to install pi-hole on an old raspberry pi. This is what fueled my need for MORE! From there I found the /r/homelab subreddit and /r/selfhosted subreddit. These forums helped me figure out what to do with my homelab.">
+<meta name="description" content="
+  How it started
+  
+    
+    Link to heading
+  
+
+I initially started my homelab with the intention to get a network-wide
+adblock set up for my network. I didn&rsquo;t really like having to look at ads
+everywhere I went on the internet. I decided to install pi-hole on an old
+raspberry pi. This is what fueled my need for MORE! From there I found the /r/homelab subreddit and
+/r/selfhosted subreddit. These forums helped me figure out what to do with my homelab.
+Since I am a cybersecurity student, I obviously wanted to use my homelab to improve my skills in
+cybersecurity.">
 <meta name="keywords" content="blog,cybersecurity,infosec,personal,pwn">
+
 
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Homelab">
-  <meta name="twitter:description" content="How it started Link to heading I initially started my homelab with the intention to get a network-wide adblock set up for my network. I didn’t really like having to look at ads everywhere I went on the internet. I decided to install pi-hole on an old raspberry pi. This is what fueled my need for MORE! From there I found the /r/homelab subreddit and /r/selfhosted subreddit. These forums helped me figure out what to do with my homelab.">
+  <meta name="twitter:description" content="How it started Link to heading I initially started my homelab with the intention to get a network-wide adblock set up for my network. I didn’t really like having to look at ads everywhere I went on the internet. I decided to install pi-hole on an old raspberry pi. This is what fueled my need for MORE! From there I found the /r/homelab subreddit and /r/selfhosted subreddit. These forums helped me figure out what to do with my homelab. Since I am a cybersecurity student, I obviously wanted to use my homelab to improve my skills in cybersecurity.">
 
 <meta property="og:url" content="http://localhost:1313/cyber/home/homelab/">
   <meta property="og:site_name" content="Lucas Ball">
   <meta property="og:title" content="Homelab">
-  <meta property="og:description" content="How it started Link to heading I initially started my homelab with the intention to get a network-wide adblock set up for my network. I didn’t really like having to look at ads everywhere I went on the internet. I decided to install pi-hole on an old raspberry pi. This is what fueled my need for MORE! From there I found the /r/homelab subreddit and /r/selfhosted subreddit. These forums helped me figure out what to do with my homelab.">
+  <meta property="og:description" content="How it started Link to heading I initially started my homelab with the intention to get a network-wide adblock set up for my network. I didn’t really like having to look at ads everywhere I went on the internet. I decided to install pi-hole on an old raspberry pi. This is what fueled my need for MORE! From there I found the /r/homelab subreddit and /r/selfhosted subreddit. These forums helped me figure out what to do with my homelab. Since I am a cybersecurity student, I obviously wanted to use my homelab to improve my skills in cybersecurity.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="cyber">
@@ -37,7 +51,9 @@
 <link rel="canonical" href="http://localhost:1313/cyber/home/homelab/">
 
 
-<link rel="preload" href="/fonts/forkawesome-webfont.woff2?v=1.2.0" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
 
 
   
@@ -62,6 +78,7 @@
 
 
 
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg" sizes="any">
 <link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
 <link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
 
@@ -90,7 +107,7 @@
   
 <div class="float-container">
     <a id="dark-mode-toggle" class="colorscheme-toggle">
-        <i class="fa fa-adjust fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
     </a>
 </div>
 
@@ -98,31 +115,37 @@
   <main class="wrapper">
     <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="/">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
       Lucas Ball
     </a>
     
+    
       <input type="checkbox" id="menu-toggle" />
       <label class="menu-button float-right" for="menu-toggle">
-        <i class="fa fa-bars fa-fw" aria-hidden="true"></i>
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
       </label>
       <ul class="navigation-list">
         
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/cyber/">Cyber</a>
+              <a class="navigation-link " href="/homelab/">Homelab</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/mywork">My Work</a>
+              <a class="navigation-link " href="/mywork">My Work</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/images/resume.pdf">Resume</a>
+              <a class="navigation-link " href="/cyber/">Cyber</a>
             </li>
           
             <li class="navigation-item">
-              <a class="navigation-link" href="/contact/">Contact</a>
+              <a class="navigation-link " href="/images/resume.pdf">Resume</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/contact/">Contact</a>
             </li>
           
         
@@ -148,7 +171,7 @@
     <h1 id="how-it-started">
   How it started
   <a class="heading-link" href="#how-it-started">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h1>
@@ -162,7 +185,7 @@ cybersecurity.</p>
 <h1 id="how-its-going">
   How it&rsquo;s going
   <a class="heading-link" href="#how-its-going">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h1>
@@ -173,7 +196,7 @@ All of my computability is contained within 2 server boxes:</p>
 <h3 id="server-1-pwn">
   Server #1 (pwn)
   <a class="heading-link" href="#server-1-pwn">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -185,7 +208,7 @@ instances for CTF challenges and training endpoints for practice.</p>
 <h3 id="server-2-proxmox">
   Server #2 (Proxmox)
   <a class="heading-link" href="#server-2-proxmox">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -201,7 +224,7 @@ tools like uptime-kuma and a local instance of netdata.</li>
 <h3 id="other-hardware">
   Other hardware
   <a class="heading-link" href="#other-hardware">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -217,7 +240,7 @@ I couldn&rsquo;t have them in my new apartment, so I&rsquo;ve since retired them
 <h3 id="cloud-infrastructure">
   Cloud Infrastructure
   <a class="heading-link" href="#cloud-infrastructure">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -229,7 +252,7 @@ pointing to different servers on my network and all of that can be easily manage
 <h3 id="tailscale">
   Tailscale
   <a class="heading-link" href="#tailscale">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h3>
@@ -246,7 +269,7 @@ reverse proxy that I have set up in AWS.</p>
 <h1 id="what-went-wrong">
   What Went Wrong
   <a class="heading-link" href="#what-went-wrong">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h1>
@@ -255,7 +278,7 @@ Stick out like a sore thumb.</p>
 <h4 id="the-vm-router">
   The VM router???
   <a class="heading-link" href="#the-vm-router">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
@@ -276,7 +299,7 @@ pure panic trying to get my network back online.</p>
 <h4 id="what-does-hot-swap-mean">
   What does hot swap mean???
   <a class="heading-link" href="#what-does-hot-swap-mean">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h4>
@@ -295,7 +318,7 @@ with a quick google search. Just a fun horror story I like to tell about my home
 <h1 id="next-steps">
   Next Steps
   <a class="heading-link" href="#next-steps">
-    <i class="fa fa-link" aria-hidden="true" title="Link to heading"></i>
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
     <span class="sr-only">Link to heading</span>
   </a>
 </h1>
@@ -317,7 +340,7 @@ For now, this is what it looks like.</p>
     
       2019 -
     
-    2024
+    2026
      Lucas Ball 
     ·
     
@@ -341,26 +364,14 @@ For now, this is what it looks like.</p>
 
 
   
-  
-    
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V6ZC4TG82"></script>
-      <script>
-        var doNotTrack = false;
-        if ( false ) {
-          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-          var doNotTrack = (dnt == "1" || dnt == "yes");
-        }
-        if (!doNotTrack) {
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-0V6ZC4TG82');
-        }
-      </script>
-    
+
   
 
+  
 
+  
+
+  
 
   
 
@@ -386,5 +397,4 @@ For now, this is what it looks like.</p>
 
   
 </body>
-
 </html>
