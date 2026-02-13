@@ -10,7 +10,7 @@ Email: lucas@lucasball.com
 
 Or direct message on any of my socials:
 
-- [Linkedin](www.linkedin.com/in/lucasballr)
+- [Linkedin](https://www.linkedin.com/in/lucasballr)
 - [Twitter](https://twitter.com/lucasballr)
 - [Instagram](https://www.instagram.com/lucasballr/)
 - [Mastodon](https://defcon.social/@laozi)
