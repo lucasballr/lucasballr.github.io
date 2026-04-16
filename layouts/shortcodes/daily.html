@@ -1,0 +1,7 @@
+{{ $facts := site.Data.facts }}
+{{ $day := now.Day }}
+{{ $index := mod $day (len $facts) }}
+
+<blockquote>
+  {{ (index $facts $index).text }}
+</blockquote>
